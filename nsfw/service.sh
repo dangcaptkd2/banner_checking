@@ -4,7 +4,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
-WORK_PATH=/home/quyennt72/banner_checking/nsfw
+WORK_PATH=../nsfw
 SIGNAL="image_nsfw.py"
 
 echo "[.] Find service $JOB_NAME ...."

@@ -4,7 +4,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
-WORK_PATH=/home/quyennt72/banner_checking
+WORK_PATH=../banner_checking_fptonline
 SIGNAL="image_server.py"
 
 echo "[.] Find service $JOB_NAME ...."
