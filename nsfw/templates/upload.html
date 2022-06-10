@@ -1,0 +1,22 @@
+<!doctype html>
+<meta charset="UTF-8">
+<title>Python Flask File Upload Example</title>
+<h2>NSFW API</h2>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+
+<form method="post" action="/nsfw/html">
+	<label for="path">PATH:</label>
+	<input type="text" id="text" name="fname" placeholder="">
+	<button type="submit">Submit</button>
+</form>
+

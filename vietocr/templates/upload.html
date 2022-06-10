@@ -1,0 +1,26 @@
+<!doctype html>
+<meta charset="UTF-8">
+<title>Viet OCR api</title>
+<h2>Select a file to upload</h2>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+
+<form method="post" action="/viet_ocr/html">
+	<label for="url">URL:</label>
+	<input type="text" id="text" name="fname" placeholder="">
+	<button type="submit">Submit</button>
+</form>
+{% if filename %}
+	<div style="width: 100%; text-align: center; position: relative;">
+		<img src="{{ url_for('static', filename='/uploads/' + filename) }}" width="500">
+	</div>
+{% endif %}

@@ -1,0 +1,1 @@
+from deepface.main import search_face
