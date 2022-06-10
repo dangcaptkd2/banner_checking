@@ -138,6 +138,6 @@ def test_full(filename):
 	print(procssesing_image(filename))
 
 if __name__ == "__main__":
-	#filename = '21.png'
-	#test_full(filename)
-	main()
+	filename = '21.png'
+	test_full(filename)
+	#main()

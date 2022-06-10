@@ -36,9 +36,9 @@ from flask_restful import Resource #, reqparse
 
 from detection import DETECTION
 from recognition import RECOGNITION 
-from mid_process import mid_process, action_merge
-from policy_checking import check_text_eng, check_text_vi
-from utils import *
+from utils import mid_process, action_merge
+from utils import check_text_eng, check_text_vi
+from utils import call_api_vi, call_api_nsfw, check_is_vn, clear_folder
 
 import torch
 
