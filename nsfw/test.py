@@ -1,6 +1,6 @@
-from yolov5 import get_human
-from deepface import search
+from yolov5 import get_human, get_weapon
+from deepface import search_face
 
-img_path = 'C:/Users/quyennt72/Desktop/nguyenxuanphuc2.jpg'
+img_path = '/home/quyennt72/banner_checking_fptonline/static/uploads/sungluc.jpg'
 
-print(search(img_path))
+print(get_weapon(img_path))

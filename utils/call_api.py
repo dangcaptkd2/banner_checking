@@ -6,7 +6,7 @@ API_ENDPOINT = "https://rnd.fptonline.net/banner_detection/check_ocr"
 
 
 
-def call(name, path):
+def call(name: str, path: str) -> dict:
     ##### Truyền path ảnh vào đây
     #### format: 
     """

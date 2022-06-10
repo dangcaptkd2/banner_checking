@@ -1,4 +1,3 @@
-from fileinput import filename
 import os
 import cv2
 from tqdm import tqdm
@@ -8,12 +7,12 @@ from PIL import Image
 
 os.makedirs('./debugs/crop_images', exist_ok=True)
 
-def up(a, b):
+def up(a: list, b: list) -> bool:
   if a[1] >= b[3]:
     return True 
   return False
 
-def beside(a, b):
+def beside(a: list, b: list) -> bool:
   if a[0] >= b[0]:
     if (b[1] <= a[1] and a[1]<=b[3]) or (b[1] <= a[3] and a[3]<= b[3]) or (a[1] <= b[1] and b[1] <= a[3]):
       return True

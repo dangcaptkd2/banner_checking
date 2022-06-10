@@ -1,1 +1,1 @@
-from yolov5.detect import get_human, get_flag
+from yolov5.detect import get_human, get_flag, get_weapon

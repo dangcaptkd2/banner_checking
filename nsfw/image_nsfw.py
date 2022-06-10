@@ -13,7 +13,7 @@ from flask_restful import Api, Resource
 import sys
 
 import time
-from nsfw import detect_nsfw, detect_flag
+from nsfw import detect_nsfw, detect_flag, detect_weapon
 
 import os
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
@@ -51,9 +51,15 @@ def upload_check_ocr_url():
 	
 		result["time_detect_sexy_in"] = round(time.time()-start, 5)
 		
+		start = time.time()
 		result_flag = detect_flag(img_path, draw=True)
 		result['flag'] = result_flag
 		result["time_detect_flag_in"] = round(time.time()-start, 5)
+
+		start = time.time()
+		result_weapon = detect_weapon(img_path, draw=True)
+		result['weapon'] = result_weapon
+		result["time_detect_weapon_in"] = round(time.time()-start, 5)
 		return result
 	return render_template("upload.html")
 	

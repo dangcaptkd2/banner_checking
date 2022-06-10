@@ -51,9 +51,6 @@ def run(
         dnn=False,  # use OpenCV DNN for ONNX inference
 ):
     source = str(source)
-    # Directories
-    save_dir = increment_path(Path(project) / name, exist_ok=exist_ok)  # increment run
-    (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
 
     # Load model
     device = select_device(device)
@@ -80,8 +77,7 @@ def run(
         dt[0] += t2 - t1
 
         # Inference
-        visualize = increment_path(save_dir / Path(path).stem, mkdir=True) if visualize else False
-        pred = model(im, augment=augment, visualize=visualize)
+        pred = model(im, augment=augment)
         t3 = time_sync()
         dt[1] += t3 - t2
 
@@ -131,9 +127,13 @@ def get_flag(img_path, src='model_flag.pt'):
     print(">>>> running flag model")
     return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.8)
 
-def main():
-    img_path = 'C:/Users/quyennt72/Desktop/co3que/images (28).jpg'
-    print(get_flag(img_path=img_path))
+def get_weapon(img_path, src='model_weapon.pt'):
+    print(">>>> running weapon model")
+    return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.5)
+
+# def main():
+#     img_path = 'C:/Users/quyennt72/Desktop/co3que/images (28).jpg'
+#     print(get_flag(img_path=img_path))
     
 # if __name__ == "__main__":
 #     main()

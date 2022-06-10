@@ -9,7 +9,7 @@ import argparse
 from flask import Flask, jsonify, request, render_template, flash, redirect, url_for
 from flask_restful import Api
 from api import Stat, procssesing_image 
-from policy_checking import check_text_eng, check_text_vi
+
 import sys
 
 import os
@@ -138,6 +138,6 @@ def test_full(filename):
 	print(procssesing_image(filename))
 
 if __name__ == "__main__":
-	filename = '21.png'
-	test_full(filename)
-	#main()
+	#filename = '21.png'
+	#test_full(filename)
+	main()
