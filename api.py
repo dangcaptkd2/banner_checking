@@ -76,6 +76,7 @@ def procssesing_image(filename=None):
         'time_reg_vn_in': 0,
         'status_sexy': False, 
         'flag': False,
+        'weapon': False,
         'time_detect_image': 0,
         'Status': 'Review',
         'total_time': 0,
@@ -101,9 +102,10 @@ def procssesing_image(filename=None):
     R['status_sexy'] = result_nsfw['status_sexy']
     R['flag'] = result_nsfw['flag']
     R['status_face_reg'] = result_nsfw['status_face_reg']
+    R['weapon'] = result_nsfw['weapon']
     R['time_detect_image'] = round(end_nsfw-start_nsfw, 5)
-
-    if R['status_sexy'] or R['flag'] or not result_nsfw['status_face_reg'] is None:
+    
+    if R['status_sexy'] or R['flag'] or not R['status_face_reg'] is None or R['weapon']:
         R['Status'] = 'Block'
         R['total_time'] = round(time.time()-start_time,5)
         return R

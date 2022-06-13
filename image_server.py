@@ -71,6 +71,7 @@ def upload_check_oc_html():
 					'time_detect_image': 'Thời gian chạy mô hình detect hình ảnh (CPU)', 
 					'status_sexy': 'Kết quả của mô hình detect sexy', 
 					'flag': 'Kết quả của mô hình detect cờ', 
+					'weapon': 'Kết quả của mô hình detect vũ khí',
 					'status_face_reg': 'Kết của nhận diện chính khách',
 					'ban keyword': 'Danh sách các từ khóa bị cấm', 
 					'Status': 'Status', 
