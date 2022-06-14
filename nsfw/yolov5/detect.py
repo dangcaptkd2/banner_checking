@@ -31,22 +31,10 @@ def run(
         iou_thres=0.45,  # NMS IOU threshold
         max_det=1000,  # maximum detections per image
         device='cpu',  # cuda device, i.e. 0 or 0,1,2,3 or cpu
-        view_img=False,  # show results
-        save_txt=True,  # save results to *.txt
         save_conf=False,  # save confidences in --save-txt labels
-        save_crop=False,  # save cropped prediction boxes
-        nosave=False,  # do not save images/videos
         classes=None,  # filter by class: --class 0, or --class 0 2 3
         agnostic_nms=False,  # class-agnostic NMS
         augment=False,  # augmented inference
-        visualize=False,  # visualize features
-        update=False,  # update all models
-        project=ROOT / 'runs/detect',  # save results to project/name
-        name='exp',  # save results to project/name
-        exist_ok=False,  # existing project/name ok, do not increment
-        line_thickness=3,  # bounding box thickness (pixels)
-        hide_labels=False,  # hide labels
-        hide_conf=False,  # hide confidences
         half=False,  # use FP16 half-precision inference
         dnn=False,  # use OpenCV DNN for ONNX inference
 ):
@@ -123,12 +111,16 @@ def run(
 def get_human(img_path):
     return run(source=img_path)
 
-def get_flag(img_path, src='model_flag.pt'):
+def get_flag(img_path, src='model_flag_5m.pt'):
     print(">>>> running flag model")
     return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.8)
 
 def get_weapon(img_path, src='model_weapon.pt'):
     print(">>>> running weapon model")
+    return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.5)
+
+def get_crypto(img_path, src='crypto_model.pt'):
+    print(">>>> running crypto model")
     return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.5)
 
 # def main():

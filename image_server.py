@@ -72,6 +72,7 @@ def upload_check_oc_html():
 					'status_sexy': 'Kết quả của mô hình detect sexy', 
 					'flag': 'Kết quả của mô hình detect cờ', 
 					'weapon': 'Kết quả của mô hình detect vũ khí',
+					'crypto': 'Kết quả của mô hình detect tiền ảo',
 					'status_face_reg': 'Kết của nhận diện chính khách',
 					'ban keyword': 'Danh sách các từ khóa bị cấm', 
 					'Status': 'Status', 

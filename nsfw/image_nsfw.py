@@ -7,13 +7,13 @@ import sys
 import argparse
 import json
 
-from flask import Flask, jsonify, request, render_template, flash, redirect, url_for
+from flask import Flask, request, render_template
 from flask_restful import Api, Resource
 
 import sys
 
 import time
-from nsfw import detect_nsfw, detect_flag, detect_weapon
+from nsfw import detect_nsfw, detect_flag, detect_weapon, detect_crypto
 
 import os
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
@@ -60,6 +60,11 @@ def upload_check_ocr_url():
 		result_weapon = detect_weapon(img_path, draw=True)
 		result['weapon'] = result_weapon
 		result["time_detect_weapon_in"] = round(time.time()-start, 5)
+
+		start = time.time()
+		result_crypto = detect_crypto(img_path, draw=True)
+		result['crypto'] = result_crypto
+		result["time_detect_crypto_in"] = round(time.time()-start, 5)
 		return result
 	return render_template("upload.html")
 	

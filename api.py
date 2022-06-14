@@ -77,6 +77,7 @@ def procssesing_image(filename=None):
         'status_sexy': False, 
         'flag': False,
         'weapon': False,
+        'crypto': False,
         'time_detect_image': 0,
         'Status': 'Review',
         'total_time': 0,
@@ -92,9 +93,6 @@ def procssesing_image(filename=None):
     ####################################### NOT SAFE FOR WORK MODULE
     start_nsfw = time.time()
     result_nsfw = call_api_nsfw(filename=image_path)
-    # nsfw = NSFW()
-    # result_nsfw = nsfw.predict_image(image_path)
-    # print(">>>>> done nsfw", result_nsfw)
 
     print(">>>>> done nsfw")
     end_nsfw = time.time()
@@ -103,9 +101,10 @@ def procssesing_image(filename=None):
     R['flag'] = result_nsfw['flag']
     R['status_face_reg'] = result_nsfw['status_face_reg']
     R['weapon'] = result_nsfw['weapon']
+    R['crypto'] = result_nsfw['crypto']
     R['time_detect_image'] = round(end_nsfw-start_nsfw, 5)
     
-    if R['status_sexy'] or R['flag'] or not R['status_face_reg'] is None or R['weapon']:
+    if R['status_sexy'] or R['flag'] or not R['status_face_reg'] is None or R['weapon'] or R['crypto']:
         R['Status'] = 'Block'
         R['total_time'] = round(time.time()-start_time,5)
         return R

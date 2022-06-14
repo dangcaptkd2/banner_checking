@@ -118,7 +118,6 @@ def check_is_vn(lst, threshold=0.6):
 def clear_folder():
     path_image_root = './static/uploads/'
     path_crop = './debugs/crop_images'
-    path_models_classify = './models/'
     if len(os.listdir(path_image_root)) > 50:
         shutil.rmtree(path_image_root)
         os.makedirs(path_image_root)

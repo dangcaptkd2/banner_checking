@@ -1,5 +1,5 @@
 from nsfw_model import NSFW 
-from yolov5 import get_human, get_flag, get_weapon
+from yolov5 import get_human, get_flag, get_weapon, get_crypto
 from crop_human import human_filter, convert
 from deepface import search_face
 
@@ -43,7 +43,15 @@ def detect_weapon(img_path, draw = False):
     if out_yolo is None:
         return False 
     if draw:
-        print(">>>>>>>>>>>>>>>>>>>", out_yolo)
+        draw_image(img_path, out_yolo)
+    return True
+
+def detect_crypto(img_path, draw = False):
+    img_path = os.path.join(root_image_path, img_path)
+    out_yolo = get_crypto(img_path=img_path)
+    if out_yolo is None:
+        return False 
+    if draw:
         draw_image(img_path, out_yolo)
     return True
 
