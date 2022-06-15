@@ -28,17 +28,23 @@ for filename in os.listdir(path_db):
     name = filename[:-4]
     db[name] = np.load(f'./deepface/database/{filename}')
 
-def search_face(image_query_path):
-    threshold = 0.2553
+def embedding_single_face(image_query_path):
     img = preprocess_face(img=image_query_path, detector_backend='retinaface', target_size=(input_shape_y, input_shape_x), enforce_detection=False)
     img = normalize_input(img = img, normalization = 'Facenet2018')
     embedding1 = model.predict(img)[0].tolist()
-    for name in db:
-        for embedding2 in db[name]:
-            dis = spatial.distance.cosine(embedding1, embedding2)
-            # print(">>>>", dis)
-            if dis<=threshold:
-                return name 
-    
-    return None
+    return embedding1
 
+def search_single_face(image_query_path):
+    threshold = 0.2553
+    embed_query = embedding_single_face(image_query_path)
+    
+    lst_name = list(db.keys())
+    scores = []
+    for name in lst_name:
+        tmp = []
+        for embed in db[name]:
+            dis = spatial.distance.cosine(embed_query, embed)
+            tmp.append(dis)
+        tmp = np.mean(tmp)
+        scores.append(tmp)
+    return min(scores), lst_name[np.argmin(scores)]

@@ -1,1 +1,1 @@
-from deepface.main import search_face
+from deepface.main import search_single_face
