@@ -1,4 +1,3 @@
-from cv2 import threshold
 from nsfw_model import NSFW 
 from yolov5 import get_human, get_flag, get_weapon, get_crypto
 from crop_human import human_filter, convert
@@ -30,31 +29,37 @@ def draw_image(img_path, out_yolo):
 root_image_path = '../'
 
 def detect_flag(img_path, draw = False):
+    ban_list = ['ba_que', 'my', 'nga', 'trieu_tien', 'trung_quoc', 'ukraina', 'viet_nam',]
     img_path = os.path.join(root_image_path, img_path)
     out_yolo = get_flag(img_path=img_path)
     if out_yolo is None:
         return False 
     if draw:
         draw_image(img_path, out_yolo)
-    return True
+
+    names = [i[0] for i in out_yolo]
+    ban_names = [i for i in names if i in ban_list]
+    return ban_names
 
 def detect_weapon(img_path, draw = False):
     img_path = os.path.join(root_image_path, img_path)
     out_yolo = get_weapon(img_path=img_path)
     if out_yolo is None:
-        return False 
+        return [] 
     if draw:
         draw_image(img_path, out_yolo)
-    return True
+    names = [i[0] for i in out_yolo]
+    return names
 
 def detect_crypto(img_path, draw = False):
     img_path = os.path.join(root_image_path, img_path)
     out_yolo = get_crypto(img_path=img_path)
     if out_yolo is None:
-        return False 
+        return [] 
     if draw:
         draw_image(img_path, out_yolo)
-    return True
+    names = [i[0] for i in out_yolo]
+    return names
 
 def detect_nsfw(img_path, draw = False):
     img_path = os.path.join(root_image_path, img_path)

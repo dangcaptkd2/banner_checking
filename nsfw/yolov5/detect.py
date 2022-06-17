@@ -47,7 +47,6 @@ def run(
     stride, names, pt = model.stride, model.names, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
 
-
     dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
     bs = 1  # batch_size
 
@@ -97,7 +96,10 @@ def run(
                         line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
                         a = ('%g ' * len(line)).rstrip() % line
                         a = list(map(float, a.split()))
+                        a[0] = names[int(a[0])]
                         result.append(a)
+                
+                        print(">>>> result detect:", names[int(cls)], conf)
             else:
                 print("found no object by yolov5")
                 result=None
@@ -113,19 +115,13 @@ def get_human(img_path):
 
 def get_flag(img_path, src='model_flag_5m_best.pt'):
     print(">>>> running flag model")
-    return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.6)
+    return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.7)
 
 def get_weapon(img_path, src='model_weapon.pt'):
     print(">>>> running weapon model")
-    return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.7)
+    return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.8)
 
 def get_crypto(img_path, src='crypto_model.pt'):
     print(">>>> running crypto model")
-    return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.5)
+    return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.8)
 
-# def main():
-#     img_path = 'C:/Users/quyennt72/Desktop/co3que/images (28).jpg'
-#     print(get_flag(img_path=img_path))
-    
-# if __name__ == "__main__":
-#     main()
