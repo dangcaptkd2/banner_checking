@@ -11,7 +11,7 @@ from tensorflow.keras.layers import MaxPooling2D, AveragePooling2D
 from tensorflow.keras.models import load_model
 from tensorflow.keras import backend as K
 
-from deepface.deepface.commons import functions
+from nsfw.deepface.deepface.commons import functions
 
 #---------------------------------------
 

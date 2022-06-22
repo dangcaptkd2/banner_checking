@@ -24,9 +24,8 @@ def human_filter(w: int, h: int, lst: list, return_only_biggest_box: bool = True
   for dt in lst:
     cls, x1,x2,y1,y2 = convert(w, h, dt)
 
-    if cls==0:
+    if cls=='person':
       result.append([x1,x2,y1,y2])
-
   if return_only_biggest_box:
     if len(result)>1:
       return find_largest_box(result)

@@ -26,7 +26,7 @@ class NSFW():
         #self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.device = 'cpu'
         self.model = None
-        self.path_ckp = '../models/my_model_nsfw_42.pt'
+        self.path_ckp = './models/my_model_nsfw.pt'
         self.transform = transforms.Compose([
                                         SquarePad(),
                                         transforms.Resize(256),
@@ -61,12 +61,9 @@ class NSFW():
             score , pred = torch.max(re, 1)
             pred = pred.cpu().detach().numpy()
             score = score.cpu().detach().numpy()
-            # print(score)
-            # print(self.class_names[pred[0]])
             if self.class_names[pred[0]] == 'sexy' and score[0]>thres:
                 return True 
             return False
-        # return {"status_sexy": self.class_names[pred[0]]}
 
 
 # if __name__ == "__main__":

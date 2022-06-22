@@ -1,1 +1,1 @@
-from detection.icdar2013_detection import DETECTION
+from detection.detection import DETECTION

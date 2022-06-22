@@ -73,31 +73,35 @@ def action_merge(sorted_cor, name, image_path):
     crop = img[box[1]:box[3], box[0]:box[2]]
     final_path = des + '/' + str(key) +'.jpg'
     cv2.imwrite(final_path, crop)
-  
-def mid_process(name, path_image, result_detect):
-  print('>>>> name in mid process:', name)
-  cor = result_detect
+
+
+
+def merge_boxes_to_line_text(img, sorted_cor):  
+  new_r = merge(sorted_cor)
+  key = sorted(list(map(int, list(new_r.keys()))))
+  final_dict = {}
+  for idx, key in enumerate(key):
+    final_dict[idx] = new_r[key]
+  lines =[]
+  for key, box in final_dict.items():
+    crop = img[box[1]:box[3], box[0]:box[2]]
+    lines.append(crop)  
+  return lines
+
+def mid_process_func_2(image, result_detect):
 
   sorted_cor = {}
-  for n, dic in list(cor.items()):
-    list_key = list(dic.keys())
-    for i in range(len(list_key)-1):
-      for j in range(i+1, len(list_key)):
-          if (up(dic[list_key[i]], dic[list_key[j]]) or beside(dic[list_key[i]], dic[list_key[j]])):
-            swap_dic(dic, list_key[i], list_key[j])
-    sorted_cor[n] = dic
 
-  image = cv2.imread(path_image)
+  list_key = list(result_detect.keys())
+  for i in range(len(list_key)-1):
+    for j in range(i+1, len(list_key)):
+        if (up(result_detect[list_key[i]], result_detect[list_key[j]]) or beside(result_detect[list_key[i]], result_detect[list_key[j]])):
+          swap_dic(result_detect, list_key[i], list_key[j])
+  sorted_cor = result_detect
 
   list_arr = []
-
-  for index, box in sorted_cor[name].items():
+  for index, box in sorted_cor.items():
       crop = image[box[1]:box[3], box[0]:box[2]]
-
       list_arr.append(Image.fromarray(crop.astype('uint8'), 'RGB').convert('L'))
-      # final_path = des + '/' + str(index) +'.jpg'
-      # cv2.imwrite(final_path, crop)
-
-  #action_merge(sorted_cor, name, image)
 
   return list_arr, sorted_cor

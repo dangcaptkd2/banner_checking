@@ -3,7 +3,7 @@ import numpy as np
 import cv2 as cv
 import gdown
 
-from deepface.deepface.commons import functions
+from nsfw.deepface.deepface.commons import functions
 
 class _Layer:
     input_shape = (None, 112, 112, 3)

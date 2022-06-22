@@ -1,5 +1,5 @@
 
-from deepface.deepface.detectors import FaceDetector
+from nsfw.deepface.deepface.detectors import FaceDetector
 
 # Link - https://google.github.io/mediapipe/solutions/face_detection
 

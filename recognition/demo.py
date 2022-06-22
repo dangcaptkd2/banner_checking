@@ -11,6 +11,7 @@ from recognition.utils import CTCLabelConverter, AttnLabelConverter
 from recognition.dataset import RawDataset, AlignCollate
 from recognition.model import Model
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# device = 'cpu'
 
 import os
 from tqdm import tqdm
@@ -96,7 +97,7 @@ class RECOGNITION():
 
         return self.model
 
-    def predict_arr(self, bib_list, name):
+    def predict_arr(self, bib_list):
 
         X = ImgArrDataset(bib_list)  
         data_loader = torch.utils.data.DataLoader(
@@ -108,9 +109,10 @@ class RECOGNITION():
             pin_memory= True,
         )
         # predict
-        total_result = {}
         model = self.get_model()
         model.eval()
+        result_1_img = {}
+        
         with torch.no_grad():
             for image_tensors, index in data_loader:
                 batch_size = image_tensors.size(0)
@@ -136,9 +138,7 @@ class RECOGNITION():
                     preds_str = self.converter.decode(preds_index, length_for_pred)
 
                 preds_prob = F.softmax(preds, dim=2)
-                preds_max_prob, _ = preds_prob.max(dim=2)
-
-                result_1_img = {}
+                preds_max_prob, _ = preds_prob.max(dim=2)                
 
                 for index, (img_name, pred, pred_max_prob) in enumerate(zip(index, preds_str, preds_max_prob)):
 
@@ -150,8 +150,6 @@ class RECOGNITION():
                     # calculate confidence score (= multiply of pred_max_prob)
                     confidence_score = pred_max_prob.cumprod(dim=0)[-1]
                     result_1_img[index] = (pred, round(float(confidence_score), 4))
+  
 
-              
-                total_result[name] = result_1_img    
-
-        return total_result
+        return result_1_img

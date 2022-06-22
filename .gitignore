@@ -130,10 +130,9 @@ dmypy.json
 
 
 /build
-/data
-/debugs
 /static
-*.pth
-*.pt
-*.tar
+/New folder
 *.zip
+*.pt 
+*.pth 
+*.tar

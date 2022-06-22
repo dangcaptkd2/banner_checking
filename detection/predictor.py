@@ -60,11 +60,11 @@ class VisualizationDemo(object):
                     vis_output = visualizer.draw_sem_seg(
                         predictions["sem_seg"].argmax(dim=0).to(self.cpu_device)
                     )
-                if "instances" in predictions:
-                    instances = predictions["instances"].to(self.cpu_device)
-                    vis_output,polygons = visualizer.draw_instance_predictions(predictions=instances)
+                # if "instances" in predictions:
+                #     instances = predictions["instances"].to(self.cpu_device)
+                #     vis_output,polygons = visualizer.draw_instance_predictions(predictions=instances)
 
-        return predictions, vis_output, polygons
+        return predictions #, vis_output, polygons
 
     def _frame_from_video(self, video):
         while video.isOpened():

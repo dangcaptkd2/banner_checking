@@ -15,9 +15,8 @@ def compare(key, text):
             return True 
     return False
 
-def check_text_vi(text):
-    
-    if text=='None':
+def check_text_vi(text: str):
+    if text is None:
         return []
     low_text = text.lower()
     for key, lst_key in dic_vi.items():
@@ -28,8 +27,8 @@ def check_text_vi(text):
     
     return []
 
-def check_text_eng(text):
-    if text=='None':
+def check_text_eng(text: str):
+    if text is None:
         return []
     low_text = text.lower()
     for key, lst_key in dic_eng.items():
@@ -39,10 +38,6 @@ def check_text_eng(text):
                 return [key, word]
     
     return []
-
-# text = 'forest fires'
-# print(check_text_eng(text))
-# print('stupid' in dic_eng['obscenity'])
 
 
     

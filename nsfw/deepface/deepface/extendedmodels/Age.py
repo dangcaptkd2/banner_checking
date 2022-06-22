@@ -1,10 +1,10 @@
-from deepface.deepface.basemodels import VGGFace
+from nsfw.deepface.deepface.basemodels import VGGFace
 import os
 from pathlib import Path
 import gdown
 import numpy as np
 
-from deepface.deepface.commons import functions
+from nsfw.deepface.deepface.commons import functions
 
 import tensorflow as tf
 tf_version = int(tf.__version__.split(".")[0])

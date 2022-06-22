@@ -12,9 +12,9 @@ import pandas as pd
 from tqdm import tqdm
 import pickle
 
-from deepface.deepface.basemodels import VGGFace, OpenFace, Facenet, Facenet512, FbDeepFace, DeepID, DlibWrapper, ArcFace, SFace, Boosting
-# from deepface.deepface.extendedmodels import Age, Gender, Race, Emotion
-from deepface.deepface.commons import functions, distance as dst
+from nsfw.deepface.deepface.basemodels import VGGFace, OpenFace, Facenet, Facenet512, FbDeepFace, DeepID, DlibWrapper, ArcFace, SFace, Boosting
+# from nsfw.deepface.deepface.extendedmodels import Age, Gender, Race, Emotion
+from nsfw.deepface.deepface.commons import functions, distance as dst
 
 import tensorflow as tf
 tf_version = int(tf.__version__.split(".")[0])

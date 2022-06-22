@@ -1,7 +1,7 @@
 import cv2
 import os
 import pandas as pd
-from deepface.deepface.detectors import FaceDetector
+from nsfw.deepface.deepface.detectors import FaceDetector
 
 def build_model():
 

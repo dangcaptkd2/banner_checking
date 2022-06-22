@@ -1,5 +1,5 @@
 import cv2
-from deepface.deepface.detectors import FaceDetector
+from nsfw.deepface.deepface.detectors import FaceDetector
 
 def build_model():
 	from mtcnn import MTCNN

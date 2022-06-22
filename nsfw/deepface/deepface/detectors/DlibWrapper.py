@@ -3,7 +3,7 @@ import gdown
 import bz2
 import os
 
-from deepface.deepface.commons import functions
+from nsfw.deepface.deepface.commons import functions
 
 def build_model():
 

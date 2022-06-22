@@ -8,12 +8,11 @@ import argparse
 
 from flask import Flask, jsonify, request, render_template, flash, redirect, url_for
 from flask_restful import Api
-from api import Stat, procssesing_image 
+from api import Stat, banner_cheking
 
 import sys
 
 import os
-import shutil
 import gdown
 
 from werkzeug.utils import secure_filename
@@ -39,6 +38,9 @@ app.config['JSON_AS_ASCII'] = False
 
 ALLOWED_EXTENSIONS = set(['jpg', 'png', 'jpeg'])
 
+
+my_module = banner_cheking()
+
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -47,7 +49,7 @@ def download_image_from_url(url, filename):
 	gdown.download(url, output, quiet=False)
 
 @app.route('/banner_detection/html', methods=['GET','POST'])
-def upload_check_oc_html():
+def upload_check_ocr_html():
 	if request.method.lower() == 'post':
 		start_time = time.time()	
 		if 'file' not in request.files:			
@@ -59,14 +61,13 @@ def upload_check_oc_html():
 			filename = secure_filename(file.filename)			
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-			r = procssesing_image(filename) 
+			r = my_module.predict(filename) 
 			r['total_time'] = round(time.time()-start_time,5)
 			d = {
 					'time_detect_text': 'Thời gian phát hiện vùng có text (GPU)', 
 					'time_reg_eng': 'Thời gian nhận dạng text theo tiếng Anh (GPU)', 
 					'text': 'Text theo tiếng Anh', 
 					'time_reg_vn': 'Thời gian nhận dạng text theo tiếng Việt (CPU)', 
-					'time_reg_vn_in': 'Thời gian execution của model nhận dạng tiếng Việt', 
 					'text_vietnamese': 'Text theo tiếng Việt', 
 					'time_detect_image': 'Thời gian chạy mô hình detect hình ảnh (CPU)', 
 					'status_sexy': 'Kết quả của mô hình detect sexy', 
@@ -101,7 +102,7 @@ def upload_check_ocr():
 		if file and allowed_file(file.filename):
 			filename = secure_filename(file.filename)			
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			r = procssesing_image(filename) 
+			r = my_module.predict(filename) 
 			return jsonify(dict(error=0,data=r))
 	return render_template('upload.html')
 
@@ -113,7 +114,7 @@ def upload_check_ocr_url():
 		if allowed_file(url):
 			download_image_from_url(url, filename)
 
-			r = procssesing_image(filename=filename)
+			r = my_module.predict(filename)
 			return jsonify(dict(error=0,data=r))
 		else:
 			flash('Allowed only image url -> jpg, png, jpeg')

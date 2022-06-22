@@ -1,9 +1,9 @@
-from deepface.deepface.basemodels import Facenet
+from nsfw.deepface.deepface.basemodels import Facenet
 from pathlib import Path
 import os
 import gdown
 
-from deepface.deepface.commons import functions
+from nsfw.deepface.deepface.commons import functions
 
 def loadModel(url = 'https://github.com/serengil/deepface_models/releases/download/v1.0/facenet512_weights.h5'):
 

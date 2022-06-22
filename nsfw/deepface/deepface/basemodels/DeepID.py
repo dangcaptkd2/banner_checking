@@ -7,7 +7,7 @@ from tensorflow import keras
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Conv2D, Activation, Input, Add, MaxPooling2D, Flatten, Dense, Dropout
 
-from deepface.deepface.commons import functions
+from nsfw.deepface.deepface.commons import functions
 
 #-------------------------------------
 

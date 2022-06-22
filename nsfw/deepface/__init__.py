@@ -1,1 +1,1 @@
-from deepface.main import search_single_face
+from nsfw.deepface.main import search_single_face

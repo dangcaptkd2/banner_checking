@@ -13,11 +13,11 @@ if str(ROOT) not in sys.path:
 ROOT = Path(os.path.relpath(ROOT, Path.cwd()))  # relative
 
 from models.common import DetectMultiBackend
-from utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadStreams
-from utils.general import (LOGGER, check_file, check_img_size, check_imshow, check_requirements, colorstr, cv2,
+from nsfw.yolov5.utils.dataloaders import IMG_FORMATS, VID_FORMATS, LoadImages, LoadStreams
+from nsfw.yolov5.utils.general import (LOGGER, check_file, check_img_size, check_imshow, check_requirements, colorstr, cv2,
                            increment_path, non_max_suppression, print_args, scale_coords, strip_optimizer, xyxy2xywh)
-from utils.plots import Annotator, colors, save_one_box
-from utils.torch_utils import select_device, time_sync
+from nsfw.yolov5.utils.plots import Annotator, colors, save_one_box
+from nsfw.yolov5.utils.torch_utils import select_device, time_sync
 
 import gc
 
@@ -110,18 +110,18 @@ def run(
     torch.cuda.empty_cache()
     return result        
 
-def get_human(img_path):
-    return run(source=img_path)
+def get_human(img_path, src='./models/model_human.pt'):
+    return run(source=img_path, weights=src)
 
-def get_flag(img_path, src='model_flag_5m_best.pt'):
+def get_flag(img_path, src='./models/model_flag_5m.pt'):
     print(">>>> running flag model")
-    return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.7)
+    return run(source=img_path, weights=src, imgsz=(320,320), conf_thres=0.7)
 
-def get_weapon(img_path, src='model_weapon.pt'):
+def get_weapon(img_path, src='./models/model_weapon.pt'):
     print(">>>> running weapon model")
-    return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.8)
+    return run(source=img_path, weights=src, imgsz=(320,320), conf_thres=0.8)
 
-def get_crypto(img_path, src='crypto_model.pt'):
+def get_crypto(img_path, src='./models/crypto_model.pt'):
     print(">>>> running crypto model")
-    return run(source=img_path, weights=ROOT / src, imgsz=(320,320), conf_thres=0.8)
+    return run(source=img_path, weights=src, imgsz=(320,320), conf_thres=0.8)
 

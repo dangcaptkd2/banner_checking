@@ -1,8 +1,8 @@
-from deepface.deepface.detectors import OpenCvWrapper, SsdWrapper, DlibWrapper, MtcnnWrapper, RetinaFaceWrapper,MediapipeWrapper
+from nsfw.deepface.deepface.detectors import OpenCvWrapper, SsdWrapper, DlibWrapper, MtcnnWrapper, RetinaFaceWrapper,MediapipeWrapper
 from PIL import Image
 import math
 import numpy as np
-from deepface.deepface.commons import distance
+from nsfw.deepface.deepface.commons import distance
 
 def build_model(detector_backend):
 

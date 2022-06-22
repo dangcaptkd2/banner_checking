@@ -4,8 +4,8 @@ import os
 import cv2
 import pandas as pd
 
-from deepface.deepface.detectors import OpenCvWrapper
-from deepface.deepface.commons import functions
+from nsfw.deepface.deepface.detectors import OpenCvWrapper
+from nsfw.deepface.deepface.commons import functions
 
 def build_model():
 

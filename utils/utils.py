@@ -110,16 +110,13 @@ def check_is_vn(lst, threshold=0.6):
         if check_single_word(w)==1:
             c+=1
     score = c/len(lst)
-    print(">>>> score vietnamese:", score)
     if score>=threshold:
         return True 
     return False
 
 def clear_folder():
     path_image_root = './static/uploads/'
-    path_crop = './debugs/crop_images'
     if len(os.listdir(path_image_root)) > 50:
         shutil.rmtree(path_image_root)
         os.makedirs(path_image_root)
-        shutil.rmtree(path_crop)
         print("reset folder contain file!!!!!!")
