@@ -113,5 +113,5 @@ class banner_cheking():
 if __name__ == '__main__': 
 
     a = banner_cheking()
-    r = a.predict('21.png')
+    r = a.predict('ID__15614_.jpg')
     print(r)
