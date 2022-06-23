@@ -88,7 +88,7 @@ class banner_cheking():
             result_eng = recog.predict_arr(bib_list=list_arr)
             del recog
             torch.cuda.empty_cache()
-            text_en = [result_eng[k][0] for k in result_eng]
+            text_en = [result_eng[k][0] for k in result_eng if result_eng[k][1]>0.6]
             item['text'] = ' '.join(text_en)
 
             if not check_is_vn(text_en):
