@@ -1,7 +1,7 @@
 from nsfw.nsfw_model import NSFW 
 from nsfw.yolov5 import get_human, get_flag, get_weapon, get_crypto
 from nsfw.crop_human import human_filter, convert
-from nsfw.deepface import search_single_face
+# from nsfw.deepface import search_single_face
 
 # from TextFuseNet.mid_process import 
 
