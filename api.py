@@ -52,26 +52,26 @@ class banner_cheking():
         }
 
         image_path = os.path.join(self.path_image_root, filename)
-        # result_nsfw = detect_nsfw(img_path=image_path, draw=True)
-        # if isinstance(result_nsfw, str):
-        #     item["status_face_reg"] = result_nsfw
-        #     item['Status'] = 'Block'
-        #     return item
-        # elif result_nsfw:
-        #     item["status_sexy"] =  True
-        #     item['Status'] = 'Block'
-        #     return item
-        # item['flag'] = detect_flag(img_path=image_path, draw=True)
-        # if item['flag']:
-        #     item['Status'] = 'Block'
-        #     return item
+        result_nsfw = detect_nsfw(img_path=image_path, draw=True)
+        if isinstance(result_nsfw, str):
+            item["status_face_reg"] = result_nsfw
+            item['Status'] = 'Block'
+            return item
+        elif result_nsfw:
+            item["status_sexy"] =  True
+            item['Status'] = 'Block'
+            return item
+        item['flag'] = detect_flag(img_path=image_path, draw=True)
+        if item['flag']:
+            item['Status'] = 'Block'
+            return item
         
         # item['weapon'] = detect_weapon(img_path=image_path, draw=True)
         # if item['weapon']:
         #     return item
-        # item['crypto'] = detect_crypto(img_path=image_path, draw=True)
-        # if item['crypto']:
-        #     return item
+        item['crypto'] = detect_crypto(img_path=image_path, draw=True)
+        if item['crypto']:
+            return item
 
         name = filename.replace('.jpg', '').replace('.jpeg', '').replace('.png', '')
         image_path = os.path.join(self.path_image_root, filename)     
@@ -111,7 +111,7 @@ class banner_cheking():
         return item
 
 if __name__ == '__main__': 
-
+    print("helllooooo")
     a = banner_cheking()
     r = a.predict('ID__15614_.jpg')
     print(r)
