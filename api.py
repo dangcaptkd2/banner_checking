@@ -71,6 +71,7 @@ class banner_cheking():
         #     return item
         item['crypto'] = detect_crypto(img_path=image_path, draw=True)
         if item['crypto']:
+            item['Status'] = 'Block'
             return item
 
         name = filename.replace('.jpg', '').replace('.jpeg', '').replace('.png', '')

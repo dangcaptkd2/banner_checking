@@ -35,7 +35,7 @@ case "$1" in
 			kill $PROCESS_ID
 			echo "[.] Stopped."
 		fi
-		python3.7 $SIGNAL > /dev/null 2>&1 &
+		/root/anaconda3/envs/torch_cuda/bin/python $SIGNAL > /dev/null 2>&1 &
 		echo "[.] Done."
         ;;
     *)  
@@ -43,7 +43,7 @@ case "$1" in
             PROCESS_ID=$(ps -ef | grep -v grep | grep "$SIGNAL" | cut -c10-15)
             printf "[.] Service runing pid: ${GREEN} $PROCESS_ID ${NC}\n"
         else            
-            python3.7 $SIGNAL > /dev/null 2>&1 &
+            /root/anaconda3/envs/torch_cuda/bin/python $SIGNAL > /dev/null 2>&1 &
             echo "[.] Done"
         fi
 		;;
