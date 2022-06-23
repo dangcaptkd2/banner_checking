@@ -50,7 +50,7 @@ class NSFW():
 
         return model
 
-    def predict(self, image, thres=0.5):
+    def predict(self, image, thres=0.8):
         with torch.no_grad():
             x = self.transform(image)
             x = x.unsqueeze(0)
@@ -61,7 +61,7 @@ class NSFW():
             score , pred = torch.max(re, 1)
             pred = pred.cpu().detach().numpy()
             score = score.cpu().detach().numpy()
-            if self.class_names[pred[0]] == 'sexy' and score[0]>thres:
+            if self.class_names[pred[0]] == 'sexy' and score[0]>=thres:
                 return True 
             return False
 
