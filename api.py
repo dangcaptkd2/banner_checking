@@ -93,8 +93,10 @@ class banner_cheking():
             item['text'] = ' '.join(text_en)
 
             if not check_is_vn(text_en):
-                if check_text_eng(item['text']):
+                result_check_text_eng = check_text_eng(item['text'])
+                if result_check_text_eng:
                     item['Status'] = 'Block'
+                    item['ban keyword'] = result_check_text_eng
                     return item
 
             else:
@@ -104,8 +106,10 @@ class banner_cheking():
                 del recog_vn
                 torch.cuda.empty_cache()
                 item['text_vietnamese'] = ' '.join(text_vn)
-                if check_text_vi(item['text_vietnamese']):
+                result_check_text_vi = check_text_vi(item['text_vietnamese'])
+                if result_check_text_vi:
                     item['Status'] = 'Block'
+                    item['ban keyword'] = result_check_text_vi
                     return item
 
         clear_folder()
