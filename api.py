@@ -20,8 +20,6 @@ import time
 
 import gc
 
-path_models_classify = './models/'
-
 class Stat(Resource):
     def get(self):
         return dict(error=0,message="server start")
@@ -48,7 +46,8 @@ class banner_cheking():
             'time_detect_image': 0,
             'Status': 'Review',
             'total_time': 0,
-            'ban keyword': []
+            'ban keyword': [],
+            'time_reg_vn_in': 0,
         }
 
         image_path = os.path.join(self.path_image_root, filename)
