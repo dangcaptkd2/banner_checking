@@ -104,7 +104,7 @@ def check_single_word(T):
           return 1
       return -1
 
-def check_is_vn(lst, threshold=0.6):
+def check_is_vn(lst: list, threshold=0.6) -> bool:
     c=0
     for w in lst:
         if check_single_word(w)==1:

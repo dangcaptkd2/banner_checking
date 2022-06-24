@@ -89,6 +89,10 @@ class banner_cheking():
             del recog
             torch.cuda.empty_cache()
             text_en = [result_eng[k][0] for k in result_eng if result_eng[k][1]>0.6]
+
+            if len(text_en)==0:
+                return item
+                
             item['text'] = ' '.join(text_en)
 
             if not check_is_vn(text_en):
