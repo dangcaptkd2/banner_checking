@@ -4,7 +4,7 @@ from flask_restful import Resource
 from detection import DETECTION
 from recognition import RECOGNITION 
 from recognition_vn.vietocr import RECOGNITION_VN
-from utils.mid_process import mid_process_func_2, action_merge, merge_boxes_to_line_text
+from utils.mid_process import mid_process_func_2, merge_boxes_to_line_text
 from utils.policy_checking import check_text_eng, check_text_vi
 from utils.utils import check_is_vn, clear_folder
 from nsfw.nsfw import detect_flag, detect_weapon, detect_crypto, detect_nsfw
@@ -27,9 +27,9 @@ class Stat(Resource):
 class banner_cheking():
     def __init__(self) -> None:
         self.path_image_root = './static/uploads/'
-        # self.detect = DETECTION()
-        # self.recog = RECOGNITION()
-        # self.recog_vn = RECOGNITION_VN()
+        self.detect = DETECTION()
+        self.recog = RECOGNITION()
+        self.recog_vn = RECOGNITION_VN()
         
     def predict(self, filename):
         item = {
@@ -77,16 +77,16 @@ class banner_cheking():
         image_path = os.path.join(self.path_image_root, filename)     
         img = cv2.imread(image_path)
 
-        detect = DETECTION()
-        result_detect = detect.create_file_result(img, name=name)
-        del detect
+        # detect = DETECTION()
+        result_detect = self.detect.create_file_result(img, name=name)
+        # del detect
         torch.cuda.empty_cache()
         list_arr, sorted_cor = mid_process_func_2(image = img, result_detect=result_detect)
         
         if len(list_arr)>0:
-            recog = RECOGNITION()
-            result_eng = recog.predict_arr(bib_list=list_arr)
-            del recog
+            # recog = RECOGNITION()
+            result_eng = self.recog.predict_arr(bib_list=list_arr)
+            # del recog
             torch.cuda.empty_cache()
             text_en = [result_eng[k][0] for k in result_eng if result_eng[k][1]>0.6]
 
@@ -104,9 +104,9 @@ class banner_cheking():
 
             else:
                 bboxs = merge_boxes_to_line_text(img, sorted_cor)
-                recog_vn = RECOGNITION_VN()
-                text_vn = recog_vn.predict(bboxs)
-                del recog_vn
+                # recog_vn = RECOGNITION_VN()
+                text_vn = self.recog_vn.predict(bboxs)
+                # del recog_vn
                 torch.cuda.empty_cache()
                 item['text_vietnamese'] = ' '.join(text_vn)
                 result_check_text_vi = check_text_vi(item['text_vietnamese'])

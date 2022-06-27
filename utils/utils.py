@@ -28,11 +28,11 @@ def call_api_nsfw(filename):
     return result
 
 def check_single_word(T):
-    vowel = 'ueoai'
+    vowel = 'ueoaiy'
     # 1.Chuyển chuỗi về không dấu, low case 
     T = T.strip().lower()
 
-    # Nếu T là toàn là số thì là tiếng việt, nếu T chứ w,z,j,f thì không phải là tiếng việt
+    # Nếu T là toàn là số thì là tiếng việt, nếu T chứa w,z,j,f thì không phải là tiếng việt
     if T.isnumeric():
       return 1
     for i in ['w', 'z', 'j', 'f']:
@@ -69,7 +69,6 @@ def check_single_word(T):
       """
       7.2. Mảng A có length = 3: Nếu T có chứa cụm từ sau : uoi|uoc|uye|uya|oai|quai|giay|giau|giao|quao|giua|giuong|uay|oay|uan|yeu|ieu|queo 
       => là tiếng Việt. Nếu không trả ra là khác tiếng Việt.
-
       """
       if len(A)==3:
         tmp = ["uoi","uoc","uye","uya","oai","quai","giay","giau","giao","quao","giua","giuong","uay","oay","uan","yeu","ieu","queo"]

@@ -5,8 +5,6 @@ import shutil
 import json
 from PIL import Image
 
-os.makedirs('./debugs/crop_images', exist_ok=True)
-
 def up(a: list, b: list) -> bool:
   if a[1] >= b[3]:
     return True 
@@ -31,7 +29,7 @@ def check_near_box(l1, l2, thres_x=10, thres_y=5):
     return True
   return False
 
-def merge_2_boxes(d, id1, id2):
+def merge_2_boxes(d: dict, id1: int, id2: int) -> dict:
   x1,y1,x2,y2 = d[id1]
   x1_,y1_,x2_,y2_ = d[id2]
 
@@ -40,13 +38,13 @@ def merge_2_boxes(d, id1, id2):
   del d[id2]
   return d
 
-def merge(dic):
-  d=dic
+def merge(dic: dict, thres_h: float, thres_w: float) -> dict:
+  d=dic.copy()
   sta = 0
   end = 1
   max_id = len(d)
   while end<max_id:
-    if check_near_box(d[sta], d[end]):
+    if check_near_box(d[sta], d[end], thres_x=thres_w, thres_y=thres_h):
       d = merge_2_boxes(d, sta, end) 
       end+=1
     else:
@@ -54,30 +52,35 @@ def merge(dic):
       end = sta+1
   return d
 
-def action_merge(sorted_cor, name, image_path):
+# def action_merge(sorted_cor, name, image_path):
 
-  img = cv2.imread(image_path)
+#   img = cv2.imread(image_path)
+#   h,w,_ = img.shape()
 
-  des = './debugs/crop_images/' + name
-  if os.path.isdir(des):
-    shutil.rmtree(des)
-  os.makedirs(des)
+#   des = './debugs/crop_images/' + name
+#   if os.path.isdir(des):
+#     shutil.rmtree(des)
+#   os.makedirs(des)
 
-  new_r = merge(sorted_cor[name])
-  key = sorted(list(map(int, list(new_r.keys()))))
-  final_dict = {}
-  for idx, key in enumerate(key):
-    final_dict[idx] = new_r[key]
+#   new_r = merge(sorted_cor[name], h, w)
+#   key = sorted(list(map(int, list(new_r.keys()))))
+#   final_dict = {}
+#   for idx, key in enumerate(key):
+#     final_dict[idx] = new_r[key]
 
-  for key, box in final_dict.items():
-    crop = img[box[1]:box[3], box[0]:box[2]]
-    final_path = des + '/' + str(key) +'.jpg'
-    cv2.imwrite(final_path, crop)
+#   for key, box in final_dict.items():
+#     crop = img[box[1]:box[3], box[0]:box[2]]
+#     final_path = des + '/' + str(key) +'.jpg'
+#     cv2.imwrite(final_path, crop)
 
 
 
-def merge_boxes_to_line_text(img, sorted_cor):  
-  new_r = merge(sorted_cor)
+def merge_boxes_to_line_text(img, sorted_cor, thres=0.15):  
+  h,w,_ = img.shape
+  thres_h = thres*h
+  thres_w = thres*w
+
+  new_r = merge(sorted_cor, thres_h=thres_h, thres_w=thres_w)
   key = sorted(list(map(int, list(new_r.keys()))))
   final_dict = {}
   for idx, key in enumerate(key):

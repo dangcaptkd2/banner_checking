@@ -61,6 +61,7 @@ class NSFW():
             score , pred = torch.max(re, 1)
             pred = pred.cpu().detach().numpy()
             score = score.cpu().detach().numpy()
+            print("score sexy", score, pred)
             if self.class_names[pred[0]] == 'sexy' and score[0]>=thres:
                 return True 
             return False
