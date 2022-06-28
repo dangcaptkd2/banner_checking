@@ -6,7 +6,7 @@ from recognition import RECOGNITION
 from recognition_vn.vietocr import RECOGNITION_VN
 from utils.mid_process import mid_process_func_2, merge_boxes_to_line_text
 from utils.policy_checking import check_text_eng, check_text_vi
-from utils.utils import check_is_vn, clear_folder
+from utils.utils import check_is_vn, clear_folder, save_image
 from nsfw.nsfw import detect_flag, detect_weapon, detect_crypto, detect_nsfw
 
 import torch
@@ -104,6 +104,7 @@ class banner_cheking():
 
             else:
                 bboxs = merge_boxes_to_line_text(img, sorted_cor)
+                # save_image(bboxs)
                 # recog_vn = RECOGNITION_VN()
                 text_vn = self.recog_vn.predict(bboxs)
                 # del recog_vn

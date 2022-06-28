@@ -70,9 +70,10 @@ class DETECTION():
         prediction= self.model.run_on_image(img)
         dic_bbox = convert_to_xyxy(prediction)
 
+        image = img.copy()
         for k,v in dic_bbox.items():
-            cv2.rectangle(img, (v[0], v[1]), (v[2], v[3]), (0, 0, 255), 1)
-        cv2.imwrite(f'./static/uploads/{name}_.jpg', img)
+            cv2.rectangle(image, (v[0], v[1]), (v[2], v[3]), (0, 0, 255), 1)
+        cv2.imwrite(f'./static/uploads/{name}_.jpg', image)
 
         if len(dic_bbox) == 0:
             self.ok = False

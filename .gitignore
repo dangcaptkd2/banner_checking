@@ -132,6 +132,7 @@ dmypy.json
 /build
 /static
 /New folder
+/saved_image
 /service.sh
 /test.py
 *.zip

@@ -3,6 +3,7 @@ from collections import Counter
 import os
 import shutil
 import json
+import cv2
 
 def call_api_vi(name):
     API_ENDPOINT = "http://localhost:4050/viet_ocr/html"
@@ -27,7 +28,7 @@ def call_api_nsfw(filename):
 
     return result
 
-def check_single_word(T):
+def check_single_word(T: str) -> int:
     vowel = 'ueoaiy'
     # 1.Chuyển chuỗi về không dấu, low case 
     T = T.strip().lower()
@@ -113,9 +114,21 @@ def check_is_vn(lst: list, threshold=0.6) -> bool:
         return True 
     return False
 
-def clear_folder():
+def clear_folder() -> None:
     path_image_root = './static/uploads/'
     if len(os.listdir(path_image_root)) > 50:
         shutil.rmtree(path_image_root)
         os.makedirs(path_image_root)
         print("reset folder contain file!!!!!!")
+
+def save_image(lst: list, BGR: bool=True) -> None:
+  path_save = './saved_image/'
+  if not os.path.isdir(path_save):
+    os.mkdir(path_save)
+  
+  for crop in lst:
+    id = len(os.listdir(path_save))
+    if BGR:
+      cv2.imwrite(f'{path_save}{str(id)}.jpg', crop)
+    else:
+      cv2.imwrite(f'{path_save}{str(id)}.jpg', crop[:, :, ::-1])

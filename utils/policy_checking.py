@@ -5,7 +5,7 @@ import json
 dic_vi = json.load(open('./data/dic_vi.json'))
 dic_eng = json.load(open('./data/dic_eng.json'))
 
-def compare(key, text):
+def compare(key: str, text: str) -> bool:
     lst = text.split()
     k = key.split()
 
@@ -15,7 +15,7 @@ def compare(key, text):
             return True 
     return False
 
-def check_text_vi(text: str):
+def check_text_vi(text: str) -> list:
     if text is None:
         return []
     low_text = text.lower()
@@ -27,7 +27,7 @@ def check_text_vi(text: str):
     
     return []
 
-def check_text_eng(text: str):
+def check_text_eng(text: str) -> list:
     if text is None:
         return []
     low_text = text.lower()
