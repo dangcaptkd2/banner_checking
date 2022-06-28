@@ -88,7 +88,8 @@ def merge_boxes_to_line_text(img, sorted_cor, thres=0.15):
   lines =[]
   for key, box in final_dict.items():
     crop = img[box[1]:box[3], box[0]:box[2]]
-    lines.append(crop)  
+    if crop.shape[0]>10 and crop.shape[1]>10:
+      lines.append(crop)  
   return lines
 
 def mid_process_func_2(image, result_detect):
