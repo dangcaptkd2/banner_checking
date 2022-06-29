@@ -31,7 +31,7 @@ class banner_cheking():
         self.recog = RECOGNITION()
         self.recog_vn = RECOGNITION_VN()
         
-    def predict(self, filename):
+    def predict(self, filename: str) -> dict:
         item = {
             'text': None,
             'text_vietnamese': None,
@@ -51,18 +51,23 @@ class banner_cheking():
         }
 
         image_path = os.path.join(self.path_image_root, filename)
+
+        since = time.time()
         result_nsfw = detect_nsfw(img_path=image_path, draw=True)
         if isinstance(result_nsfw, str):
             item["status_face_reg"] = result_nsfw
             item['Status'] = 'Block'
+            item['time_detect_image'] = round(time.time()-since, 5)
             return item
         elif result_nsfw:
             item["status_sexy"] =  True
             item['Status'] = 'Block'
+            item['time_detect_image'] = round(time.time()-since, 5)
             return item
         item['flag'] = detect_flag(img_path=image_path, draw=True)
         if item['flag']:
             item['Status'] = 'Block'
+            item['time_detect_image'] = round(time.time()-since, 5)
             return item
         
         # item['weapon'] = detect_weapon(img_path=image_path, draw=True)
@@ -71,10 +76,14 @@ class banner_cheking():
         item['crypto'] = detect_crypto(img_path=image_path, draw=True)
         if item['crypto']:
             item['Status'] = 'Block'
+            item['time_detect_image'] = round(time.time()-since, 5)
             return item
 
+        item['time_detect_image'] = round(time.time()-since, 5)
+
         name = filename.replace('.jpg', '').replace('.jpeg', '').replace('.png', '')
-        image_path = os.path.join(self.path_image_root, filename)     
+        image_path = os.path.join(self.path_image_root, filename)    
+        since = time.time() 
         img = cv2.imread(image_path)
 
         # detect = DETECTION()
@@ -82,9 +91,11 @@ class banner_cheking():
         # del detect
         torch.cuda.empty_cache()
         list_arr, sorted_cor = mid_process_func_2(image = img, result_detect=result_detect)
-        
+        item['time_detect_text'] = round(time.time()-since, 5)
+
         if len(list_arr)>0:
             # recog = RECOGNITION()
+            since = time.time()
             result_eng = self.recog.predict_arr(bib_list=list_arr)
             # del recog
             torch.cuda.empty_cache()
@@ -94,6 +105,7 @@ class banner_cheking():
                 return item
                 
             item['text'] = ' '.join(text_en)
+            item['time_reg_eng'] = round(time.time()-since, 5)
 
             if not check_is_vn(text_en):
                 result_check_text_eng = check_text_eng(item['text'])
@@ -103,6 +115,7 @@ class banner_cheking():
                     return item
 
             else:
+                since = time.time()
                 bboxs = merge_boxes_to_line_text(img, sorted_cor)
                 # save_image(bboxs)
                 # recog_vn = RECOGNITION_VN()
@@ -114,8 +127,10 @@ class banner_cheking():
                 if result_check_text_vi:
                     item['Status'] = 'Block'
                     item['ban keyword'] = result_check_text_vi
+                    item['time_reg_vn'] = round(time.time()-since, 5)
                     return item
-
+                item['time_reg_vn'] = round(time.time()-since, 5)
+            
         clear_folder()
         return item
 

@@ -11,7 +11,7 @@ class RECOGNITION_VN():
         self.config = Cfg.load_config_from_name('vgg_transformer')
         self.config['weights'] = './models/transformerocr.pth'
         self.config['cnn']['pretrained']=False
-        self.config['device'] = 'cpu'
+        self.config['device'] = 'cuda'
         self.config['predictor']['beamsearch']=False
 
         self.model = None

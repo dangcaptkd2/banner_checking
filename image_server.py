@@ -67,7 +67,7 @@ def upload_check_ocr_html():
 					'time_detect_text': 'Thời gian phát hiện vùng có text (GPU)', 
 					'time_reg_eng': 'Thời gian nhận dạng text theo tiếng Anh (GPU)', 
 					'text': 'Text theo tiếng Anh', 
-					'time_reg_vn': 'Thời gian nhận dạng text theo tiếng Việt (CPU)', 
+					'time_reg_vn': 'Thời gian nhận dạng text theo tiếng Việt (GPU)', 
 					'text_vietnamese': 'Text theo tiếng Việt', 
 					'time_detect_image': 'Thời gian chạy mô hình detect hình ảnh (CPU)', 
 					'status_sexy': 'Kết quả của mô hình detect sexy', 
