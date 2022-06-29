@@ -73,9 +73,16 @@ def merge(dic: dict, thres_h: float, thres_w: float) -> dict:
 #     final_path = des + '/' + str(key) +'.jpg'
 #     cv2.imwrite(final_path, crop)
 
+def expand_bbox(bbox: list, img_w: int, img_h: int, thres: float=0.02) -> list:
+  x1,y1,x2,y2 = bbox 
+  new_x1 = x1-thres*img_w
+  new_x2 = x2+thres*img_w
 
+  new_y1 = y1-thres*img_h
+  new_y2 = y2+thres*img_h
+  return list(map(int, [new_x1, new_y1, new_x2, new_y2]))
 
-def merge_boxes_to_line_text(img, sorted_cor, thres=0.15):  
+def merge_boxes_to_line_text(img, sorted_cor, thres=0.15, expand=True):  
   h,w,_ = img.shape
   thres_h = thres*h
   thres_w = thres*w
@@ -87,7 +94,11 @@ def merge_boxes_to_line_text(img, sorted_cor, thres=0.15):
     final_dict[idx] = new_r[key]
   lines =[]
   for key, box in final_dict.items():
-    crop = img[box[1]:box[3], box[0]:box[2]]
+    if expand:
+      new_box = expand_bbox(box, img_w=w, img_h=h)
+      crop = img[new_box[1]:new_box[3], new_box[0]:new_box[2]]
+    else:
+      crop = img[box[1]:box[3], box[0]:box[2]]
     if crop.shape[0]>10 and crop.shape[1]>10:
       lines.append(crop)  
   return lines
