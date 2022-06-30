@@ -26,11 +26,11 @@ class NSFW():
         #self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.device = 'cpu'
         self.model = None
-        self.path_ckp = './models/my_model_nsfw.pt'
+        self.path_ckp = './models/nsfw.pt'
         self.transform = transforms.Compose([
                                         SquarePad(),
-                                        transforms.Resize(256),
-                                        transforms.CenterCrop(224),
+                                        transforms.Resize(128),
+                                        transforms.CenterCrop(112),
                                         #transforms.RandomHorizontalFlip(),
                                         transforms.ToTensor(),
                                         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
