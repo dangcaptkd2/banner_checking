@@ -26,7 +26,7 @@ class NSFW():
         #self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.device = 'cpu'
         self.model = None
-        self.path_ckp = './models/nsfw.pt'
+        self.path_ckp = './models/model_sexy_new_efb0.pt'
         self.transform = transforms.Compose([
                                         SquarePad(),
                                         transforms.Resize(128),
@@ -41,9 +41,9 @@ class NSFW():
     def load_model(self):
         if self.model is not None:
             return self.model
-        model = models.resnet18(pretrained=True)
-        numrs = model.fc.in_features
-        model.fc = nn.Linear(numrs, 2)
+        model = models.efficientnet_b0(pretrained=True)
+        numrs = model.classifier[1].in_features
+        model.classifier[1] = nn.Linear(numrs, 2)
         model.load_state_dict(torch.load(self.path_ckp, map_location=torch.device('cpu')))
         model.to(self.device)
         model.eval()
