@@ -33,7 +33,7 @@ class NSFW():
                                         transforms.CenterCrop(112),
                                         #transforms.RandomHorizontalFlip(),
                                         transforms.ToTensor(),
-                                        # transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+                                        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
                                     ])
         self.softmax_layer = nn.Softmax(dim=1)
         self.class_names = ['neural', 'sexy']
