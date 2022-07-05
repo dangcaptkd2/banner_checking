@@ -26,7 +26,7 @@ class NSFW():
         #self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.device = 'cpu'
         self.model = None
-        self.path_ckp = './models/model_sexy_new_efb0.pt'
+        self.path_ckp = './models/model_ef_b0_transfer.pt'
         self.transform = transforms.Compose([
                                         SquarePad(),
                                         transforms.Resize(128),

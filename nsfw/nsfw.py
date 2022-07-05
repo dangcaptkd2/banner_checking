@@ -76,16 +76,15 @@ def detect_nsfw(img_path, draw = False):
             if draw:
                 image_draw = cv2.rectangle(image_draw, (x1,y1), (x2,y2), (0,0,255), 1)
                 name = img_path.split('/')[-1].replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
-                cv2.imwrite('./static/uploads/'+name, image_draw)
             crop_rgb = img_rgb[y1:y2, x1:x2]
             crop_image = Image.fromarray(crop_rgb.astype('uint8'), 'RGB')
             
             #######save image to create data
-            if crop_image.size[0]*crop_image.size[1]>=5000:
-                if not os.path.isdir('./data_sexy'):
-                    os.mkdir('./data_sexy')
-                tmp_name = len(os.listdir('./data_sexy'))
-                crop_image.save(f"./data_sexy/{tmp_name}.jpg")
+            # if crop_image.size[0]*crop_image.size[1]>=5000:
+            #     if not os.path.isdir('./data_sexy'):
+            #         os.mkdir('./data_sexy')
+            #     tmp_name = len(os.listdir('./data_sexy'))
+            #     crop_image.save(f"./data_sexy/{tmp_name}.jpg")
                 
             model = NSFW()
             result_nsfw = model.predict(crop_image)
@@ -94,8 +93,9 @@ def detect_nsfw(img_path, draw = False):
             gc.collect()
             torch.cuda.empty_cache()
             if result_nsfw:
+                cv2.imwrite('./static/uploads/'+name, image_draw)
                 return result_nsfw 
-
+        cv2.imwrite('./static/uploads/'+name, image_draw)
     # cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
     # print(">>> num human and hello", len(cordinates))
     # if cordinates:
