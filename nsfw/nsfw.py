@@ -82,11 +82,6 @@ def detect_nsfw(img_path, draw = False):
             
             #######save image to create data
             if crop_image.size[0]*crop_image.size[1]>=5000:
-                if not os.path.isdir('./data_sexy'):
-                    os.mkdir('./data_sexy')
-                tmp_name = len(os.listdir('./data_sexy'))
-                crop_image.save(f"./data_sexy/{tmp_name}.jpg")
-                
                 model = NSFW()
                 result_nsfw = model.predict(crop_image)
                 
@@ -94,6 +89,10 @@ def detect_nsfw(img_path, draw = False):
                 gc.collect()
                 torch.cuda.empty_cache()
                 if result_nsfw:
+                    if not os.path.isdir('./data_sexy'):
+                        os.mkdir('./data_sexy')
+                    tmp_name = len(os.listdir('./data_sexy'))
+                    crop_image.save(f"./data_sexy/{tmp_name}.jpg")
                     return result_nsfw 
         
     # cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
