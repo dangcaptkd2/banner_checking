@@ -63,43 +63,42 @@ def detect_nsfw(img_path, draw = False):
 
     if out_yolo is None:
         return False
-    img = cv2.imread(img_path)   
+    img = cv2.imread(img_path)  
+    h,w,_ = img.shape  
     
     image_draw = img.copy()
     img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     h,w,_ = img.shape
     cordinates = 0
-    cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
-    if cordinates:
-        for cordinate in cordinates:
-            x1,x2,y1,y2 = cordinate
-            if draw:
-                image_draw = cv2.rectangle(image_draw, (x1,y1), (x2,y2), (0,0,255), 1)
-                name = img_path.split('/')[-1].replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
-                cv2.imwrite('./static/uploads/'+name, image_draw)
-            crop_rgb = img_rgb[y1:y2, x1:x2]
-            crop_image = Image.fromarray(crop_rgb.astype('uint8'), 'RGB')
-            
-            if crop_image.size[0]*crop_image.size[1]>=6000:
-                model = NSFW()
-                result_nsfw = model.predict(crop_image)
-                
-                del model
-                gc.collect()
-                torch.cuda.empty_cache()
-                if result_nsfw:
-                    if not os.path.isdir('./data_sexy'):
-                        os.mkdir('./data_sexy')
-                    tmp_name = len(os.listdir('./data_sexy'))
-                    crop_image.save(f"./data_sexy/{tmp_name}.jpg")
-                    return result_nsfw 
-                else:
-                    #######save image to create data
-                    if not os.path.isdir('./human_image'):
-                            os.mkdir('./human_image')
-                    tmp_name = len(os.listdir('./human_image'))
-                    crop_image.save(f"./human_image/{tmp_name}.jpg")
+    cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=True)
+    x1,x2,y1,y2 = cordinates
+    if draw:
+        image_draw = cv2.rectangle(image_draw, (x1,y1), (x2,y2), (0,0,255), 1)
+        name = img_path.split('/')[-1].replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
+        cv2.imwrite('./static/uploads/'+name, image_draw)
+    crop_rgb = img_rgb[y1:y2, x1:x2]
+    crop_image = Image.fromarray(crop_rgb.astype('uint8'), 'RGB')
+    
+    if crop_image.size[0]*crop_image.size[1]>=0.35*h*w:
+        model = NSFW()
+        result_nsfw = model.predict(crop_image)
         
+        del model
+        gc.collect()
+        torch.cuda.empty_cache()
+        if result_nsfw:
+            if not os.path.isdir('./data_sexy'):
+                os.mkdir('./data_sexy')
+            tmp_name = len(os.listdir('./data_sexy'))
+            crop_image.save(f"./data_sexy/{tmp_name}.jpg")
+            return result_nsfw 
+        else:
+            #######save image to create data
+            if not os.path.isdir('./human_image'):
+                    os.mkdir('./human_image')
+            tmp_name = len(os.listdir('./human_image'))
+            crop_image.save(f"./human_image/{tmp_name}.jpg")
+
     # cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
     # print(">>> num human and hello", len(cordinates))
     # if cordinates:
