@@ -134,6 +134,7 @@ dmypy.json
 /New folder
 /data_sexy
 /saved_image
+/human_image
 /service.sh
 /test.py
 *.zip
