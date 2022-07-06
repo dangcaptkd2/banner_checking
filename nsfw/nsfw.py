@@ -80,7 +80,7 @@ def detect_nsfw(img_path, draw = False):
             crop_rgb = img_rgb[y1:y2, x1:x2]
             crop_image = Image.fromarray(crop_rgb.astype('uint8'), 'RGB')
             
-            if crop_image.size[0]*crop_image.size[1]>=5000:
+            if crop_image.size[0]*crop_image.size[1]>=10000:
                 model = NSFW()
                 result_nsfw = model.predict(crop_image)
                 
