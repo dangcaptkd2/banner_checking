@@ -71,6 +71,8 @@ def detect_nsfw(img_path, draw = False):
     h,w,_ = img.shape
     cordinates = 0
     cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=True)
+    if not cordinates :
+        return False
     x1,x2,y1,y2 = cordinates
     if draw:
         image_draw = cv2.rectangle(image_draw, (x1,y1), (x2,y2), (0,0,255), 1)
