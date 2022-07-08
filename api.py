@@ -51,6 +51,11 @@ class banner_cheking():
         }
 
         image_path = os.path.join(self.path_image_root, filename)
+        name = filename.replace('.jpg', '').replace('.jpeg', '').replace('.png', '')    
+        since = time.time() 
+        img = cv2.imread(image_path)
+        if img is None:
+            return item 
 
         since = time.time()
         result_nsfw = detect_nsfw(img_path=image_path, draw=True)
@@ -80,11 +85,6 @@ class banner_cheking():
             return item
 
         item['time_detect_image'] = round(time.time()-since, 5)
-
-        name = filename.replace('.jpg', '').replace('.jpeg', '').replace('.png', '')
-        image_path = os.path.join(self.path_image_root, filename)    
-        since = time.time() 
-        img = cv2.imread(image_path)
 
         # detect = DETECTION()
         result_detect = self.detect.create_file_result(img, name=name)
