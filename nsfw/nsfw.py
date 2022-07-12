@@ -2,6 +2,7 @@ from nsfw.nsfw_model import NSFW
 from nsfw.yolov5 import get_human, get_flag, get_weapon, get_crypto
 from nsfw.crop_human import human_filter, convert
 # from nsfw.deepface import search_single_face
+# from nsfw.deepface import search_single_face
 
 # from TextFuseNet.mid_process import 
 
@@ -91,24 +92,32 @@ def detect_nsfw(img_path, draw = False):
             del model
             gc.collect()
             torch.cuda.empty_cache()
+
+            path_save_sexy = './tmp_images/sexy_image'
+            path_save_neural = './tmp_images/neural_image'
+            if not os.path.isdir(path_save_neural):
+                os.mkdir(path_save_neural)
+            if not os.path.isdir(path_save_sexy):
+                os.mkdir(path_save_sexy)
+
             if result_nsfw:
-                if not os.path.isdir('./data_sexy'):
-                    os.mkdir('./data_sexy')
-                tmp_name = len(os.listdir('./data_sexy'))
-                crop_image.save(f"./data_sexy/{tmp_name}.jpg")
+                if not os.path.isdir(path_save_sexy):
+                    os.mkdir(path_save_sexy)
+                tmp_name = len(os.listdir(path_save_sexy))
+                crop_image.save(f"{path_save_sexy}/{tmp_name}.jpg")
                 return result_nsfw 
             else:
                 #######save image to create data
-                if not os.path.isdir('./human_image'):
-                        os.mkdir('./human_image')
-                tmp_name = len(os.listdir('./human_image'))
-                crop_image.save(f"./human_image/{tmp_name}.jpg")
+                if not os.path.isdir(path_save_neural):
+                        os.mkdir(path_save_neural)
+                tmp_name = len(os.listdir(path_save_neural))
+                crop_image.save(f"{path_save_neural}/{tmp_name}.jpg")
         else:
             # if not os.path.isdir('./human_image_small'):
             #             os.mkdir('./human_image_small')
             # tmp_name = len(os.listdir('./human_image_small'))
             # crop_image.save(f"./human_image_small/{tmp_name}.jpg")
-            print(">>>>>", "smallll", crop_image.size[0]*crop_image.size[1])
+            print(">>>>>", "smallll", crop_image.size[0], crop_image.size[1])
 
     # cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
     # print(">>> num human and hello", len(cordinates))

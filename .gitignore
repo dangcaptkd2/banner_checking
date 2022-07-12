@@ -132,11 +132,11 @@ dmypy.json
 /build
 /static
 /New folder
-/data_sexy
-/saved_image
-/human_image
+/tmp_images
 /service.sh
 /test.py
+/utils/call_api.py
+/utils/Untitled.ipynb
 *.zip
 *.pt 
 *.pth 

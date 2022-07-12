@@ -111,17 +111,17 @@ def run(
     return result        
 
 def get_human(img_path, src='./models/model_human.pt'):
-    return run(source=img_path, weights=src)
+    return run(source=img_path, weights=src, conf_thres=0.5)
 
 def get_flag(img_path, src='./models/model_flag_5m.pt'):
     print(">>>> running flag model")
-    return run(source=img_path, weights=src, imgsz=(320,320), conf_thres=0.8)
+    return run(source=img_path, weights=src, imgsz=(320,320), conf_thres=0.9)
 
 def get_weapon(img_path, src='./models/model_weapon.pt'):
     print(">>>> running weapon model")
-    return run(source=img_path, weights=src, imgsz=(320,320), conf_thres=0.8)
+    return run(source=img_path, weights=src, imgsz=(320,320), conf_thres=0.9)
 
 def get_crypto(img_path, src='./models/model_crypto_new.pt'):
     print(">>>> running crypto model")
-    return run(source=img_path, weights=src, imgsz=(320,320), conf_thres=0.7)
+    return run(source=img_path, weights=src, imgsz=(320,320), conf_thres=0.9)
 
