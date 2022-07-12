@@ -137,6 +137,8 @@ dmypy.json
 /test.py
 /utils/call_api.py
 /utils/Untitled.ipynb
+/data_sexy
+/human_image
 *.zip
 *.pt 
 *.pth 
