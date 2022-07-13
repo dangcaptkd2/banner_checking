@@ -33,4 +33,9 @@
 		<img src="{{ url_for('static', filename='/uploads/' + filename) }}">
 	</div>
 {% endif %}
+{% if filename2 %}
+	<div style="width: 100%; text-align: center; position: relative;">
+		<img src="{{ url_for('static', filename='/uploads/' + filename2) }}">
+	</div>
+{% endif %}
 

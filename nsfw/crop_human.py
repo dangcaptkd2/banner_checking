@@ -19,6 +19,13 @@ def convert(dw, dh, dt):
       b = dh - 1
   return _,l,r,t,b
 
+def convert_filter(w: int, h: int, lst: list) -> list:
+  result = []
+  for dt in lst:
+    cls, x1,x2,y1,y2 = convert(w, h, dt)
+    result.append([x1,x2,y1,y2])
+  return result
+
 def human_filter(w: int, h: int, lst: list, return_only_biggest_box: bool = True) -> any:
   result = []
   for dt in lst:

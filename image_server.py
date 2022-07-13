@@ -84,8 +84,12 @@ def upload_check_ocr_html():
 			
 			#return jsonify(dict(error=0,data=r))
 			new_filename = filename.replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
+			new_filename2 = filename.replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'__.jpg'
 			if os.path.isfile(os.path.join('./static/uploads', new_filename)):
-				return render_template('upload.html', filename=new_filename)
+				if not os.path.isfile(os.path.join('./static/uploads', new_filename)):
+					return render_template('upload.html', filename=new_filename)
+				else:
+					return render_template('upload.html', filename=new_filename, filename2=new_filename2)
 			else:
 				return render_template('upload.html', filename=filename)
 	
