@@ -25,8 +25,8 @@ class Stat(Resource):
         return dict(error=0,message="server start")
 
 class banner_cheking():
-    def __init__(self) -> None:
-        self.path_image_root = './static/uploads/'
+    def __init__(self, path_image_root) -> None:
+        self.path_image_root = path_image_root
         self.detect = DETECTION()
         self.recog = RECOGNITION()
         self.recog_vn = RECOGNITION_VN()

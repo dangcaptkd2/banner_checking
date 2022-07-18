@@ -60,6 +60,19 @@ def detect_crypto(img_path, draw = False):
     return names
 
 def detect_nsfw(img_path, draw = False):
+    path_save_sexy = './tmp_images/sexy_image'   # save images that model classify predict was sexy
+    path_save_neural = './tmp_images/neural_image' # save images that model classify predict was neural
+    path_save_sexy_but_not_has_boob = './tmp_images/sexy_image_half' #save images that model detect canot detect boob
+    path_save_human4boob_detect = './tmp_images/human4boob_detect'  #save images to run model detect boob
+    if not os.path.isdir(path_save_neural):
+        os.mkdir(path_save_neural)
+    if not os.path.isdir(path_save_sexy):
+        os.mkdir(path_save_sexy)
+    if not os.listdir(path_save_human4boob_detect):
+        os.mkdir(path_save_human4boob_detect)
+    if not os.path.isdir(path_save_sexy_but_not_has_boob):
+        os.mkdir(path_save_sexy_but_not_has_boob)
+
     out_yolo = get_human(img_path=img_path)
 
     if out_yolo is None:
@@ -91,20 +104,11 @@ def detect_nsfw(img_path, draw = False):
             gc.collect()
             torch.cuda.empty_cache()
 
-            path_save_sexy = './tmp_images/sexy_image'
-            path_save_neural = './tmp_images/neural_image'
-            path_save_sexy_but_not_has_boob = './tmp_images/sexy_image_half'
-            if not os.path.isdir(path_save_neural):
-                os.mkdir(path_save_neural)
-            if not os.path.isdir(path_save_sexy):
-                os.mkdir(path_save_sexy)
-
             checking_boob = True
 
             if result_nsfw:
                 result_boob = None
                 if checking_boob:
-                    path_save_human4boob_detect = './tmp_images/human4boob_detect'
                     name = len(os.listdir(path_save_human4boob_detect))
                     path_ = "{}/{}.jpg".format(path_save_human4boob_detect, name)
                     crop_image.save(path_)
@@ -127,29 +131,19 @@ def detect_nsfw(img_path, draw = False):
 
                         return result_nsfw 
                     else:
-                        if not os.path.isdir(path_save_sexy_but_not_has_boob):
-                            os.mkdir(path_save_sexy_but_not_has_boob)
                         tmp_name = len(os.listdir(path_save_sexy_but_not_has_boob))
                         crop_image.save(f"{path_save_sexy_but_not_has_boob}/{tmp_name}.jpg")
                         print(">>>>", "sexy but dont have boob")
                 else:
-                    if not os.path.isdir(path_save_sexy):
-                            os.mkdir(path_save_sexy)
                     tmp_name = len(os.listdir(path_save_sexy))
                     crop_image.save(f"{path_save_sexy}/{tmp_name}.jpg")
                     return result_nsfw 
-            else:
-                #######save image to create data
-                if not os.path.isdir(path_save_neural):
-                        os.mkdir(path_save_neural)
-                tmp_name = len(os.listdir(path_save_neural))
-                crop_image.save(f"{path_save_neural}/{tmp_name}.jpg")
-        else:
-            # if not os.path.isdir('./human_image_small'):
-            #             os.mkdir('./human_image_small')
-            # tmp_name = len(os.listdir('./human_image_small'))
-            # crop_image.save(f"./human_image_small/{tmp_name}.jpg")
-            print(">>>>>", "smallll", crop_image.size[0], crop_image.size[1])
+            # else:
+            #     #######save image to create data
+            #     if not os.path.isdir(path_save_neural):
+            #             os.mkdir(path_save_neural)
+            #     tmp_name = len(os.listdir(path_save_neural))
+            #     crop_image.save(f"{path_save_neural}/{tmp_name}.jpg")
 
     # cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
     # print(">>> num human and hello", len(cordinates))
