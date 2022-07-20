@@ -96,7 +96,7 @@ def detect_nsfw(img_path, draw = False):
         crop_rgb = img_rgb[y1:y2, x1:x2]
         crop_image = Image.fromarray(crop_rgb.astype('uint8'), 'RGB')
         
-        if crop_image.size[0]*crop_image.size[1]>=5000:
+        if crop_image.size[0]*crop_image.size[1]>=2000:
             model = NSFW()
             result_nsfw = model.predict(crop_image)
             
@@ -144,6 +144,8 @@ def detect_nsfw(img_path, draw = False):
             #             os.mkdir(path_save_neural)
             #     tmp_name = len(os.listdir(path_save_neural))
             #     crop_image.save(f"{path_save_neural}/{tmp_name}.jpg")
+        # else:
+        #     print(">>> smalll images", crop_image.size[0], '*', crop_image.size[1], crop_image.size[0]*crop_image.size[1])
 
     # cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
     # print(">>> num human and hello", len(cordinates))
