@@ -68,7 +68,7 @@ def detect_nsfw(img_path, draw = False):
         os.mkdir(path_save_neural)
     if not os.path.isdir(path_save_sexy):
         os.mkdir(path_save_sexy)
-    if not os.listdir(path_save_human4boob_detect):
+    if not os.path.isdir(path_save_human4boob_detect):
         os.mkdir(path_save_human4boob_detect)
     if not os.path.isdir(path_save_sexy_but_not_has_boob):
         os.mkdir(path_save_sexy_but_not_has_boob)

@@ -50,7 +50,7 @@ class NSFW():
 
         return model
 
-    def predict(self, image, thres=0.8):
+    def predict(self, image, thres=0.6):
         with torch.no_grad():
             x = self.transform(image)
             x = x.unsqueeze(0)
