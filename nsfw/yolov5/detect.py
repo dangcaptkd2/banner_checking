@@ -126,7 +126,7 @@ def get_crypto(img_path, src='./models/model_crypto_new.pt'):
     print(">>>> running crypto model")
     return run(source=img_path, weights=src, imgsz=(320,320), conf_thres=0.82)
 
-def get_boob(img_path, src='./models/boob_detect_2507.pt'):
+def get_boob(img_path, src='./models/boob_detect_2607.pt'):
     print(">>>> running detect boob model")
-    return run(source=img_path, weights=src, imgsz=(320,320), conf_thres=0.25)
+    return run(source=img_path, weights=src, imgsz=(320,320), conf_thres=0.4)
 

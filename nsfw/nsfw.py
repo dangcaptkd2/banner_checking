@@ -59,7 +59,7 @@ def detect_crypto(img_path, draw = False):
     names = [i[0] for i in out_yolo]
     return names
 
-def detect_nsfw(img_path, draw = False):
+def detect_nsfw(img_path, draw = False, save_image=False):
     path_save_sexy = './tmp_images/sexy_image'   # save images that model classify predict was sexy
     path_save_neural = './tmp_images/neural_image' # save images that model classify predict was neural
     path_save_sexy_but_not_has_boob = './tmp_images/sexy_image_half' #save images that model detect canot detect boob
@@ -115,10 +115,9 @@ def detect_nsfw(img_path, draw = False):
                     result_boob = get_boob(path_)
                     print(">>> boob:", result_boob)
                     if result_boob is not None:
-                        if not os.path.isdir(path_save_sexy):
-                            os.mkdir(path_save_sexy)
-                        tmp_name = len(os.listdir(path_save_sexy))
-                        crop_image.save(f"{path_save_sexy}/{tmp_name}.jpg")
+                        if save_image:
+                            tmp_name = len(os.listdir(path_save_sexy))
+                            crop_image.save(f"{path_save_sexy}/{tmp_name}.jpg")
 
                         human_img_array = cv2.imread(path_)
                         h,w,_ = human_img_array.shape
@@ -131,21 +130,19 @@ def detect_nsfw(img_path, draw = False):
 
                         return result_nsfw 
                     else:
-                        tmp_name = len(os.listdir(path_save_sexy_but_not_has_boob))
-                        crop_image.save(f"{path_save_sexy_but_not_has_boob}/{tmp_name}.jpg")
+                        if save_image:
+                            tmp_name = len(os.listdir(path_save_sexy_but_not_has_boob))
+                            crop_image.save(f"{path_save_sexy_but_not_has_boob}/{tmp_name}.jpg")
                         print(">>>>", "sexy but dont have boob")
                 else:
-                    tmp_name = len(os.listdir(path_save_sexy))
-                    crop_image.save(f"{path_save_sexy}/{tmp_name}.jpg")
+                    if save_image:
+                        tmp_name = len(os.listdir(path_save_sexy))
+                        crop_image.save(f"{path_save_sexy}/{tmp_name}.jpg")
                     return result_nsfw 
-            # else:
-            #     #######save image to create data
-            #     if not os.path.isdir(path_save_neural):
-            #             os.mkdir(path_save_neural)
-            #     tmp_name = len(os.listdir(path_save_neural))
-            #     crop_image.save(f"{path_save_neural}/{tmp_name}.jpg")
-        # else:
-        #     print(">>> smalll images", crop_image.size[0], '*', crop_image.size[1], crop_image.size[0]*crop_image.size[1])
+            else:
+                if save_image:
+                    tmp_name = len(os.listdir(path_save_neural))
+                    crop_image.save(f"{path_save_neural}/{tmp_name}.jpg")
 
     # cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
     # print(">>> num human and hello", len(cordinates))
