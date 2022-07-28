@@ -76,7 +76,7 @@ def detect_nsfw(img_path, draw = False, save_image=False):
     out_yolo = get_human(img_path=img_path)
 
     if out_yolo is None:
-        return False
+        return None
     img = cv2.imread(img_path)  
     h,w,_ = img.shape  
     
@@ -86,7 +86,7 @@ def detect_nsfw(img_path, draw = False, save_image=False):
     cordinates = 0
     cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
     if not cordinates :
-            return False
+            return None
     for cordinate in cordinates:
         x1,x2,y1,y2 = cordinate
         if draw:
