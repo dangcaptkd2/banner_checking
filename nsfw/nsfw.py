@@ -64,14 +64,16 @@ def detect_nsfw(img_path, draw = False, save_image=False):
     path_save_neural = './tmp_images/neural_image' # save images that model classify predict was neural
     path_save_sexy_but_not_has_boob = './tmp_images/sexy_image_half' #save images that model detect canot detect boob
     path_save_human4boob_detect = './tmp_images/human4boob_detect'  #save images to run model detect boob
-    if not os.path.isdir(path_save_neural):
-        os.mkdir(path_save_neural)
-    if not os.path.isdir(path_save_sexy):
-        os.mkdir(path_save_sexy)
+
     if not os.path.isdir(path_save_human4boob_detect):
         os.mkdir(path_save_human4boob_detect)
-    if not os.path.isdir(path_save_sexy_but_not_has_boob):
-        os.mkdir(path_save_sexy_but_not_has_boob)
+    if save_image:
+        if not os.path.isdir(path_save_neural):
+            os.mkdir(path_save_neural)
+        if not os.path.isdir(path_save_sexy):
+            os.mkdir(path_save_sexy)
+        if not os.path.isdir(path_save_sexy_but_not_has_boob):
+            os.mkdir(path_save_sexy_but_not_has_boob)
 
     out_yolo = get_human(img_path=img_path)
 
