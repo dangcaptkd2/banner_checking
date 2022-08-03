@@ -22,21 +22,21 @@ class SquarePad:
 
 
 class NSFW():
-    def __init__(self) -> None:
+    def __init__(self, config) -> None:
         #self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.device = 'cpu'
         self.model = None
-        self.path_ckp = './models/sexy_2907.pt'
+        self.path_ckp = config['models']['sexy']
         self.transform = transforms.Compose([
                                         SquarePad(),
                                         transforms.Resize(128),
                                         transforms.CenterCrop(112),
-                                        #transforms.RandomHorizontalFlip(),
                                         transforms.ToTensor(),
                                         transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
                                     ])
         self.softmax_layer = nn.Softmax(dim=1)
-        self.class_names = ['neural', 'sexy']
+        self.class_names = config['models']['class_name_sexy']
+        self.thres = config['threshold']['sexy']
     
     def load_model(self):
         if self.model is not None:
@@ -50,7 +50,7 @@ class NSFW():
 
         return model
 
-    def predict(self, image, thres=0.7):
+    def predict(self, image):
         with torch.no_grad():
             x = self.transform(image)
             x = x.unsqueeze(0)
@@ -64,7 +64,7 @@ class NSFW():
             pred = pred.cpu().detach().numpy()
             score = score.cpu().detach().numpy()
             print("score sexy", score, pred)
-            if self.class_names[pred[0]] == 'sexy' and score[0]>thres:
+            if self.class_names[pred[0]] == 'sexy' and score[0]>self.thres:
                 return True 
             return False
 

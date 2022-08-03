@@ -2,7 +2,6 @@ from nsfw.nsfw_model import NSFW
 from nsfw.yolov5 import get_human, get_flag, get_weapon, get_crypto, get_boob
 from nsfw.crop_human import human_filter, convert, convert_filter
 # from nsfw.deepface import search_single_face
-# from nsfw.deepface import search_single_face
 
 # from TextFuseNet.mid_process import 
 
@@ -26,48 +25,48 @@ def draw_image(img_path, out_yolo):
     name = img_path.split('/')[-1].replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
     cv2.imwrite('./static/uploads/'+name, img)
 
-def detect_flag(img_path, draw = False):
+def detect_flag(img_path, config):
     ban_list = ['ba_que', 'my', 'nga', 'trieu_tien', 'trung_quoc', 'ukraina', 'viet_nam',]
     # img_path = os.path.join(root_image_path, img_path)
-    out_yolo = get_flag(img_path=img_path)
+    out_yolo = get_flag(img_path=img_path, config=config)
     if out_yolo is None:
         return False 
-    if draw:
+    if config["utils"]["draw"]:
         draw_image(img_path, out_yolo)
 
     names = [i[0] for i in out_yolo]
     ban_names = [i for i in names if i in ban_list]
     return ban_names
 
-def detect_weapon(img_path, draw = False):
+def detect_weapon(img_path, config):
     # img_path = os.path.join(root_image_path, img_path)
-    out_yolo = get_weapon(img_path=img_path)
+    out_yolo = get_weapon(img_path=img_path, config=config)
     if out_yolo is None:
         return [] 
-    if draw:
+    if config["utils"]["draw"]:
         draw_image(img_path, out_yolo)
     names = [i[0] for i in out_yolo]
     return names
 
-def detect_crypto(img_path, draw = False):
+def detect_crypto(img_path, config):
     # img_path = os.path.join(root_image_path, img_path)
-    out_yolo = get_crypto(img_path=img_path)
+    out_yolo = get_crypto(img_path=img_path, config=config)
     if out_yolo is None:
         return [] 
-    if draw:
+    if config["utils"]["draw"]:
         draw_image(img_path, out_yolo)
     names = [i[0] for i in out_yolo]
     return names
 
-def detect_nsfw(img_path, draw = False, save_image=False):
-    path_save_sexy = './tmp_images/sexy_image'   # save images that model classify predict was sexy
-    path_save_neural = './tmp_images/neural_image' # save images that model classify predict was neural
-    path_save_sexy_but_not_has_boob = './tmp_images/sexy_image_half' #save images that model detect canot detect boob
-    path_save_human4boob_detect = './tmp_images/human4boob_detect'  #save images to run model detect boob
+def detect_nsfw(img_path, config):
+    path_save_sexy = config["path_save"]["sexy"]   # save images that model classify predict was sexy
+    path_save_neural = config["path_save"]["neural"] # save images that model classify predict was neural
+    path_save_sexy_but_not_has_boob = config["path_save"]["sexy_half"] #save images that model detect canot detect boob
+    path_save_human4boob_detect = config["path_save"]["human4boob_detect"]  #save images to run model detect boob
 
     if not os.path.isdir(path_save_human4boob_detect):
         os.mkdir(path_save_human4boob_detect)
-    if save_image:
+    if config['utils']['save_image']:
         if not os.path.isdir(path_save_neural):
             os.mkdir(path_save_neural)
         if not os.path.isdir(path_save_sexy):
@@ -75,7 +74,7 @@ def detect_nsfw(img_path, draw = False, save_image=False):
         if not os.path.isdir(path_save_sexy_but_not_has_boob):
             os.mkdir(path_save_sexy_but_not_has_boob)
 
-    out_yolo = get_human(img_path=img_path)
+    out_yolo = get_human(img_path=img_path, config=config)
 
     if out_yolo is None:
         return None
@@ -91,33 +90,32 @@ def detect_nsfw(img_path, draw = False, save_image=False):
             return None
     for cordinate in cordinates:
         x1,x2,y1,y2 = cordinate
-        if draw:
+        if config['utils']['draw']:
             image_draw = cv2.rectangle(image_draw, (x1,y1), (x2,y2), (0,0,255), 1)
             name = img_path.split('/')[-1].replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
             cv2.imwrite('./static/uploads/'+name, image_draw)
         crop_rgb = img_rgb[y1:y2, x1:x2]
         crop_image = Image.fromarray(crop_rgb.astype('uint8'), 'RGB')
         
-        if crop_image.size[0]*crop_image.size[1]>=2000:
-            model = NSFW()
+        if crop_image.size[0]*crop_image.size[1]>=config['threshold']['size_human']:
+            model = NSFW(config=config)
             result_nsfw = model.predict(crop_image)
             
             del model
             gc.collect()
             torch.cuda.empty_cache()
 
-            checking_boob = True
-
             if result_nsfw:
                 result_boob = None
-                if checking_boob:
+                if config['utils']['checking_boob']:
                     name = len(os.listdir(path_save_human4boob_detect))
                     path_ = "{}/{}.jpg".format(path_save_human4boob_detect, name)
                     crop_image.save(path_)
-                    result_boob = get_boob(path_)
-                    print(">>> boob:", result_boob)
+                    result_boob = get_boob(path_, config=config)
+                    if config['utils']['verbose']:
+                        print(">>> boob:", result_boob)
                     if result_boob is not None:
-                        if save_image:
+                        if config['utils']['save_image']:
                             tmp_name = len(os.listdir(path_save_sexy))
                             crop_image.save(f"{path_save_sexy}/{tmp_name}.jpg")
 
@@ -132,17 +130,18 @@ def detect_nsfw(img_path, draw = False, save_image=False):
 
                         return result_nsfw 
                     else:
-                        if save_image:
+                        if config['utils']['save_image']:
                             tmp_name = len(os.listdir(path_save_sexy_but_not_has_boob))
                             crop_image.save(f"{path_save_sexy_but_not_has_boob}/{tmp_name}.jpg")
-                        print(">>>>", "sexy but dont have boob")
+                        if config['utils']['verbose']:
+                            print(">>>>", "sexy but dont have boob")
                 else:
-                    if save_image:
+                    if config['utils']['save_image']:
                         tmp_name = len(os.listdir(path_save_sexy))
                         crop_image.save(f"{path_save_sexy}/{tmp_name}.jpg")
                     return result_nsfw 
             else:
-                if save_image:
+                if config['utils']['save_image']:
                     tmp_name = len(os.listdir(path_save_neural))
                     crop_image.save(f"{path_save_neural}/{tmp_name}.jpg")
 

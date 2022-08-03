@@ -39,7 +39,7 @@ app.config['JSON_AS_ASCII'] = False
 ALLOWED_EXTENSIONS = set(['jpg', 'png', 'jpeg'])
 
 
-my_module = banner_cheking(path_image_root='./static/uploads/')
+my_module = banner_cheking()
 
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

@@ -23,11 +23,11 @@ class RECOGNITION_VN():
         return self.model
 
 
-    def predict(self, image_array):
+    def predict(self, image_array, thres=0.6):
         model = self.get_model()
         text_boundings = [Image.fromarray(B) for B in image_array]
         texts, scores = model.predict_batch(text_boundings,return_prob=True)
         print(">>>>>>>",dict(zip(texts, scores)))
-        final_text = [texts[i] for i in range(len(texts)) if scores[i]>0.6]
+        final_text = [texts[i] for i in range(len(texts)) if scores[i]>thres]
         return final_text
     
