@@ -29,7 +29,7 @@ utils:
 path_save:
     path_image_root: "./static/uploads/"
     sexy: "./tmp_images/sexy_image/"
-    neural: "./tmp_images/sexy_image/"
+    neural: "./tmp_images/neural_image/"
     sexy_half: "./tmp_images/sexy_image_half/"
     human4boob_detect: "./tmp_images/human4boob_detect/"
 test:
