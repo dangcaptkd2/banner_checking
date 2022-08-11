@@ -37,13 +37,18 @@ class NSFW():
         self.softmax_layer = nn.Softmax(dim=1)
         self.class_names = config['models']['class_name_sexy']
         self.thres = config['threshold']['sexy']
+        self.model_name = config['models']['name_model_sexy']
     
     def load_model(self):
         if self.model is not None:
             return self.model
-        model = models.efficientnet_b0(pretrained=True)
+        if  self.model_name == 'efficientnet_b0':
+            model = models.efficientnet_b0(pretrained=True)
+        elif self.model_name == 'efficientnet_b1':
+            model = models.efficientnet_b1(pretrained=True)
         numrs = model.classifier[1].in_features
-        model.classifier[1] = nn.Linear(numrs, 2)
+        model.classifier[1] = nn.Linear(numrs, len(self.class_names))
+
         model.load_state_dict(torch.load(self.path_ckp, map_location=torch.device('cpu')))
         model.to(self.device)
         model.eval()
@@ -64,7 +69,7 @@ class NSFW():
             pred = pred.cpu().detach().numpy()
             score = score.cpu().detach().numpy()
             print("score sexy", score, pred)
-            if self.class_names[pred[0]] == 'sexy' and score[0]>self.thres:
+            if self.class_names[pred[0]] != 'neural' and score[0]>self.thres:
                 return True 
             return False
 
