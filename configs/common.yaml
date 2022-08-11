@@ -1,5 +1,5 @@
 threshold:
-    sexy: 0.7
+    sexy: 0.6
     detect_human: 0.45
     detect_boob: 0.6
     detect_flag: 0.9
