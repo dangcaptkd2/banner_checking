@@ -46,7 +46,7 @@ def allowed_file(filename):
 
 def download_image_from_url(url, filename):
 	output = f"./static/uploads/{filename}"
-	gdown.download(url, output, quiet=False)
+	gdown.download(url, output, quiet=False, verify=False)
 
 @app.route('/banner_detection/html', methods=['GET','POST'])
 def upload_check_ocr_html():
@@ -112,17 +112,44 @@ def upload_check_ocr():
 
 @app.route('/banner_detection/check_ocr_url', methods =["GET", "POST"])
 def upload_check_ocr_url():
+	start_time = time.time()	
 	filename = "test_image.jpg"
 	if request.method == "POST":
 		url = request.form.get("fname")
-		if allowed_file(url):
-			download_image_from_url(url, filename)
+		# if allowed_file(url):
+		download_image_from_url(url, filename)
 
-			r = my_module.predict(filename)
-			return jsonify(dict(error=0,data=r))
+		r = my_module.predict(filename) 
+		r['total_time'] = round(time.time()-start_time,5)
+		d = {
+				'time_detect_text': 'Thời gian phát hiện vùng có text (GPU)', 
+				'time_reg_eng': 'Thời gian nhận dạng text theo tiếng Anh (GPU)', 
+				'text': 'Text theo tiếng Anh', 
+				'time_reg_vn': 'Thời gian nhận dạng text theo tiếng Việt (GPU)', 
+				'text_vietnamese': 'Text theo tiếng Việt', 
+				'time_detect_image': 'Thời gian chạy mô hình detect hình ảnh (CPU)', 
+				'status_sexy': 'Kết quả của mô hình detect sexy', 
+				'flag': 'Kết quả của mô hình detect cờ', 
+				'weapon': 'Kết quả của mô hình detect vũ khí',
+				'crypto': 'Kết quả của mô hình detect tiền ảo',
+				'status_face_reg': 'Kết của nhận diện chính khách',
+				'ban keyword': 'Danh sách các từ khóa bị cấm', 
+				'Status': 'Status', 
+				'total_time': 'Tổng thời gian'
+			}
+		for k,v in d.items():
+			flash(v+': '+str(r[k]))
+		
+		#return jsonify(dict(error=0,data=r))
+		new_filename = filename.replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
+		new_filename2 = filename.replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'__.jpg'
+		if os.path.isfile(os.path.join('./static/uploads', new_filename)):
+			if not os.path.isfile(os.path.join('./static/uploads', new_filename)):
+				return render_template('upload.html', filename=new_filename)
+			else:
+				return render_template('upload.html', filename=new_filename, filename2=new_filename2)
 		else:
-			flash('Allowed only image url -> jpg, png, jpeg')
-			return redirect(request.url)
+			return render_template('upload.html', filename=filename)
 	return render_template("upload.html")
 
 @app.route('/banner_detection/display/<filename>')
