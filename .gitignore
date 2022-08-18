@@ -137,6 +137,7 @@ dmypy.json
 /utils/call_api.py
 /utils/Untitled.ipynb
 /demo.ipynb
+/demo.py
 *.zip
 *.pt 
 *.pth 
