@@ -1,5 +1,5 @@
 from nsfw.nsfw_model import NSFW 
-from nsfw.yolov5 import get_human, get_flag, get_weapon, get_crypto, get_boob
+from nsfw.yolov5.detect import get_human, get_flag, get_weapon, get_crypto, get_boob
 from nsfw.crop_human import human_filter, convert, convert_filter
 # from nsfw.deepface import search_single_face
 
