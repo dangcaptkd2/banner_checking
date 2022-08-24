@@ -1,7 +1,7 @@
 from nsfw.nsfw_model import NSFW 
 from nsfw.yolov5.detect import get_human, get_flag, get_weapon, get_crypto, get_boob
 from nsfw.crop_human import human_filter, convert, convert_filter
-# from nsfw.deepface import search_single_face
+from nsfw.deepface import search_single_face
 
 # from TextFuseNet.mid_process import 
 
@@ -145,30 +145,30 @@ def detect_nsfw(img_path, config):
                     tmp_name = len(os.listdir(path_save_neural))
                     crop_image.save(f"{path_save_neural}/{tmp_name}.jpg")
 
-    # cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
-    # print(">>> num human and hello", len(cordinates))
-    # if cordinates:
-    #     scores = []
-    #     names = []
-    #     xys = []
-    #     threshold = 0.3
-    #     for cor in cordinates:
-    #         x1,x2,y1,y2 = cor
-    #         crop_bgr = img[y1:y2, x1:x2]
-    #         score, who = search_single_face(crop_bgr)
-    #         scores.append(score)
-    #         names.append(who)
-    #         xys.append([x1,x2,y1,y2])
+    cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
+    print(">>> num human and hello", len(cordinates))
+    if cordinates:
+        scores = []
+        names = []
+        xys = []
+        threshold = 0.3
+        for cor in cordinates:
+            x1,x2,y1,y2 = cor
+            crop_bgr = img[y1:y2, x1:x2]
+            score, who = search_single_face(crop_bgr)
+            scores.append(score)
+            names.append(who)
+            xys.append([x1,x2,y1,y2])
             
-    #     if min(scores) < threshold:
-    #         idx = np.argmin(scores)
-    #         x1,x2,y1,y2 = xys[idx]
-    #         color = (0, 255, 255)
-    #         if draw:
-    #             image_draw = cv2.rectangle(image_draw, (x1,y1), (x2,y2), color, 1)
-    #             name = img_path.split('/')[-1].replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
-    #             cv2.imwrite('./static/uploads/'+name, image_draw) 
-    #         return names[idx]
+        if min(scores) < threshold:
+            idx = np.argmin(scores)
+            x1,x2,y1,y2 = xys[idx]
+            color = (0, 255, 255)
+            if draw:
+                image_draw = cv2.rectangle(image_draw, (x1,y1), (x2,y2), color, 1)
+                name = img_path.split('/')[-1].replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
+                cv2.imwrite('./static/uploads/'+name, image_draw) 
+            return names[idx]
     return False
 
 if __name__ == "__main__":
