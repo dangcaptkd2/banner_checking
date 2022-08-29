@@ -164,7 +164,7 @@ def detect_nsfw(img_path, config):
             idx = np.argmin(scores)
             x1,x2,y1,y2 = xys[idx]
             color = (0, 255, 255)
-            if draw:
+            if config["utils"]["draw"]:
                 image_draw = cv2.rectangle(image_draw, (x1,y1), (x2,y2), color, 1)
                 name = img_path.split('/')[-1].replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
                 cv2.imwrite('./static/uploads/'+name, image_draw) 
