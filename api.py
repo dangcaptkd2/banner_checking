@@ -84,7 +84,7 @@ class banner_cheking():
                 return item
         
         if config["run"]["weapon"]:
-            item['weapon'] = detect_weapon(img_path=image_path, draw=True)
+            item['weapon'] = detect_weapon(img_path=image_path, config=config)
             if item['weapon']:
                 item['Status'] = 'Block'
                 item['time_detect_image'] = round(time.time()-since, 5)
@@ -198,7 +198,7 @@ class banner_cheking():
                 return item
         
         if config["run"]["weapon"]:
-            r = detect_weapon(img_path=image_path, draw=True)
+            r = detect_weapon(img_path=image_path, config=config)
             if r:
                 item['Status'] = dict_result['weapon']
                 item['Reason'] = r
