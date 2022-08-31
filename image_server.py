@@ -110,6 +110,21 @@ def upload_check_ocr():
 			return jsonify(dict(error=0,data=r))
 	return render_template('upload.html')
 
+@app.route('/banner_detection/check_banner', methods=['GET','POST'])
+def check_banner():
+	if request.method.lower() == 'post':	
+		if 'file' not in request.files:			
+			return jsonify(dict(error=1,message="Data invaild"))
+		file = request.files['file']	
+		if file.filename == '':			
+			return jsonify(dict(error=1,message="Data invaild"))
+		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)			
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			r = my_module.predict_2(filename) 
+			return jsonify(dict(error=0,data=r))
+	return render_template('upload.html')
+
 @app.route('/banner_detection/check_ocr_url', methods =["GET", "POST"])
 def upload_check_ocr_url():
 	start_time = time.time()	

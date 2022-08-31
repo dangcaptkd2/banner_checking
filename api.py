@@ -63,27 +63,34 @@ class banner_cheking():
             return item 
 
         since = time.time()
-        result_nsfw = detect_nsfw(img_path=image_path, config=config)
-        if isinstance(result_nsfw, str):
-            item["status_face_reg"] = result_nsfw
-            item['Status'] = 'Block'
-            item['time_detect_image'] = round(time.time()-since, 5)
-            return item
-        elif result_nsfw:
-            item["status_sexy"] =  True
-            item['Status'] = 'Block'
-            item['time_detect_image'] = round(time.time()-since, 5)
-            return item
-        if not config["test"]["test_sexy_only"]:
+        if config["run"]["sexy"]:
+            result_nsfw = detect_nsfw(img_path=image_path, config=config, politician=config["run"]["politician"])
+            if isinstance(result_nsfw, str):
+                item["status_face_reg"] = result_nsfw
+                item['Status'] = 'Block'
+                item['time_detect_image'] = round(time.time()-since, 5)
+                return item
+            elif result_nsfw:
+                item["status_sexy"] =  True
+                item['Status'] = 'Block'
+                item['time_detect_image'] = round(time.time()-since, 5)
+                return item
+  
+        if config["run"]["flag"]:
             item['flag'] = detect_flag(img_path=image_path, config=config)
             if item['flag']:
                 item['Status'] = 'Block'
                 item['time_detect_image'] = round(time.time()-since, 5)
                 return item
-            
-            # item['weapon'] = detect_weapon(img_path=image_path, draw=True)
-            # if item['weapon']:
-            #     return item
+        
+        if config["run"]["weapon"]:
+            item['weapon'] = detect_weapon(img_path=image_path, draw=True)
+            if item['weapon']:
+                item['Status'] = 'Block'
+                item['time_detect_image'] = round(time.time()-since, 5)
+                return item
+
+        if config["run"]["crypto"]:
             item['crypto'] = detect_crypto(img_path=image_path, config=config)
             if item['crypto']:
                 item['Status'] = 'Block'
@@ -92,7 +99,7 @@ class banner_cheking():
 
         item['time_detect_image'] = round(time.time()-since, 5)
 
-        if not config["test"]["test_sexy_only"]:
+        if config["run"]["ocr"]:
             # detect = DETECTION()
             result_detect = self.detect.create_file_result(img, name=name)
             # del detect
@@ -139,6 +146,120 @@ class banner_cheking():
                     item['time_reg_vn'] = round(time.time()-since, 5)
         clear_folder()
         return item
+    
+    def predict_2(self, filename: str) -> dict:
+        item = {
+            'text': None,
+            'text_vietnamese': None,
+            'time_detect_text': 0,
+            'time_reg_eng': 0,
+            'time_reg_vn': 0,
+            'time_detect_image': 0,
+            'Status': 0,  # 0: review, 1: keyword, 2: sexy, 3: crypto, 4: flag, 5: politician, 6: weapon
+            'Reason': None,
+            'total_time': 0,
+        }
+        dict_result = {
+            'review': 0,
+            'keyword': 1,
+            'sexy': 2,
+            'crypto': 3,
+            'flag': 4,
+            'politician': 5,
+            'weapon': 6,
+        }
+
+        image_path = os.path.join(self.path_image_root, filename)
+        name = filename.replace('.jpg', '').replace('.jpeg', '').replace('.png', '')    
+        since = time.time() 
+        img = cv2.imread(image_path)
+        if img is None:
+            return item 
+
+        since = time.time()
+        if config["run"]["sexy"]:
+            result_nsfw = detect_nsfw(img_path=image_path, config=config, politician=config["run"]["politician"])
+            if isinstance(result_nsfw, str):
+                item["Reason"] = result_nsfw
+                item['Status'] = dict_result['politician']
+                item['time_detect_image'] = round(time.time()-since, 5)
+                return item
+            elif result_nsfw:
+                item['Status'] = dict_result['sexy']
+                item['time_detect_image'] = round(time.time()-since, 5)
+                return item
+  
+        if config["run"]["flag"]:
+            r = detect_flag(img_path=image_path, config=config)
+            if r:
+                item['Status'] = dict_result['flag']
+                item['Reason'] = r
+                item['time_detect_image'] = round(time.time()-since, 5)
+                return item
+        
+        if config["run"]["weapon"]:
+            r = detect_weapon(img_path=image_path, draw=True)
+            if r:
+                item['Status'] = dict_result['weapon']
+                item['Reason'] = r
+                item['time_detect_image'] = round(time.time()-since, 5)
+                return item
+
+        if config["run"]["crypto"]:
+            r = detect_crypto(img_path=image_path, config=config)
+            if r:
+                item['Status'] = dict_result['crypto']
+                item['Reason'] = r
+                item['time_detect_image'] = round(time.time()-since, 5)
+                return item
+
+        item['time_detect_image'] = round(time.time()-since, 5)
+
+        if config["run"]["ocr"]:
+            # detect = DETECTION()
+            result_detect = self.detect.create_file_result(img, name=name)
+            # del detect
+            torch.cuda.empty_cache()
+            list_arr, sorted_cor = mid_process_func_2(image = img, result_detect=result_detect)
+            item['time_detect_text'] = round(time.time()-since, 5)
+
+            if len(list_arr)>0:
+                # recog = RECOGNITION()
+                since = time.time()
+                result_eng = self.recog.predict_arr(bib_list=list_arr)
+                # del recog
+                torch.cuda.empty_cache()
+                text_en = [result_eng[k][0] for k in result_eng if result_eng[k][1]>config["threshold"]["eng_text"]]
+
+                if len(text_en)==0:
+                    return item
+                    
+                item['text'] = ' '.join(text_en)
+                item['time_reg_eng'] = round(time.time()-since, 5)
+
+                if not check_is_vn(text_en, threshold=config["threshold"]["is_vn"]):
+                    result_check_text_eng = check_text_eng(item['text'])
+                    if result_check_text_eng:
+                        item['Status'] = dict_result['keyword']
+                        item['Reason'] = result_check_text_eng
+                        return item
+
+                else:
+                    since = time.time()
+                    bboxs = merge_boxes_to_line_text(img, sorted_cor)
+                    text_vn = self.recog_vn.predict(bboxs, thres=config["threshold"]["vi_text"])
+                    torch.cuda.empty_cache()
+                    item['text_vietnamese'] = ' '.join(text_vn)
+                    result_check_text_vi = check_text_vi(item['text_vietnamese'])
+                    if result_check_text_vi:
+                        item['Status'] = dict_result['keyword']
+                        item['Reason'] = result_check_text_vi
+                        item['time_reg_vn'] = round(time.time()-since, 5)
+                        return item
+                    item['time_reg_vn'] = round(time.time()-since, 5)
+        clear_folder()
+        return item
+
 
 if __name__ == '__main__': 
     print("helllooooo")

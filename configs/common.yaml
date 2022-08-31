@@ -9,6 +9,7 @@ threshold:
     eng_text: 0.6
     vi_text: 0.6
     is_vn: 0.6
+    same_face: 0.2
 models:
     textfusenet: "./models/model_ic13_r101.pth"
     deeptext: "./models/TPS-ResNet-BiLSTM-Attn.pth"
@@ -33,8 +34,13 @@ path_save:
     neural: "./tmp_images/neural_image/"
     sexy_half: "./tmp_images/sexy_image_half/"
     human4boob_detect: "./tmp_images/human4boob_detect/"
-test:
-    test_sexy_only: False  # MUST FALSE WHEN COMMIT!!!!
+run:
+    sexy: True          # MUST TRUE WHEN COMMIT!!!!
+    politician: True    # MUST TRUE WHEN COMMIT!!!!
+    crypto: True        # MUST TRUE WHEN COMMIT!!!!
+    flag: True          # MUST TRUE WHEN COMMIT!!!!
+    weapon: True        # MUST TRUE WHEN COMMIT!!!!
+    ocr: True           # MUST TRUE WHEN COMMIT!!!!
 
 
 
