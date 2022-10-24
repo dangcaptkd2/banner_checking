@@ -218,6 +218,7 @@ class banner_cheking():
 
         if config["run"]["ocr"]:
             # detect = DETECTION()
+            since = time.time()
             result_detect = self.detect.create_file_result(img, name=name)
             # del detect
             torch.cuda.empty_cache()
