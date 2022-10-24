@@ -112,6 +112,7 @@ def upload_check_ocr():
 
 @app.route('/banner_detection/check_banner', methods=['GET','POST'])
 def check_banner():
+	start_time = time.time()
 	if request.method.lower() == 'post':	
 		if 'file' not in request.files:			
 			return jsonify(dict(error=1,message="Data invaild"))
@@ -122,6 +123,7 @@ def check_banner():
 			filename = secure_filename(file.filename)			
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 			r = my_module.predict_2(filename) 
+			r['total_time'] = round(time.time()-start_time, 5)
 			return jsonify(dict(error=0,data=r))
 	return render_template('upload.html')
 
@@ -183,10 +185,5 @@ def main():
 	app.debug = True
 	app.run("0.0.0.0", port=port, threaded=True)
 
-def test_full(filename):
-	print(procssesing_image(filename))
-
 if __name__ == "__main__":
-	#filename = '21.png'
-	#test_full(filename)
 	main()
