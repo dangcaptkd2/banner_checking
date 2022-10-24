@@ -32,9 +32,10 @@ class Stat(Resource):
 class banner_cheking():
     def __init__(self) -> None:
         self.path_image_root = config['path_save']['path_image_root']
-        self.detect = DETECTION()
-        self.recog = RECOGNITION()
-        self.recog_vn = RECOGNITION_VN()
+        if config["run"]["ocr"]:
+            self.detect = DETECTION()
+            self.recog = RECOGNITION()
+            self.recog_vn = RECOGNITION_VN()
         
     def predict(self, filename: str) -> dict:
         item = {
