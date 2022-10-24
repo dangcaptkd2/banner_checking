@@ -118,15 +118,16 @@ def clear_folder() -> None:
     path_image_root = './static/uploads/'
     path_save_human4boob_detect = './tmp_images/human4boob_detect'
     
-    if len(os.listdir(path_image_root)) > 100:
-        shutil.rmtree(path_image_root)
-        os.makedirs(path_image_root)
-        print("reset folder contain file!!!!!!")
+    if os.path.isdir(path_image_root):
+      if len(os.listdir(path_image_root)) > 100:
+          shutil.rmtree(path_image_root)
+          os.makedirs(path_image_root)
+          print("reset folder contain file!!!!!!")
 
-
-    if len(os.listdir(path_save_human4boob_detect)) > 100:
-      shutil.rmtree(path_save_human4boob_detect)
-      print("reset human4boob_detect contain file!!!!!!")
+    if os.path.isdir(path_save_human4boob_detect):
+      if len(os.listdir(path_save_human4boob_detect)) > 100:
+        shutil.rmtree(path_save_human4boob_detect)
+        print("reset human4boob_detect contain file!!!!!!")
 
 def save_image(lst: list, BGR: bool=True) -> None:
   path_save = './saved_image/'
