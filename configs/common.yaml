@@ -2,13 +2,14 @@ threshold:
     sexy: 0.7
     detect_human: 0.45
     detect_boob: 0.7
-    detect_flag: 0.8
+    detect_flag: 0.85
     detect_crypto: 0.82
     detect_weapon: 0.9
     size_human: 2000
     eng_text: 0.6
     vi_text: 0.6
     is_vn: 0.6
+    same_face: 0.2
 models:
     textfusenet: "./models/model_ic13_r101.pth"
     deeptext: "./models/TPS-ResNet-BiLSTM-Attn.pth"
@@ -18,23 +19,28 @@ models:
     detect_boob: "./models/boob_detect_1008.pt"
     detect_flag: "./models/model_flag_5m.pt"
     detect_crypto: "./models/model_crypto_new.pt"
-    detect_weapon: None
-    class_name_sexy: ['bikini', 'neural', 'nude'] #['neural', 'sexy']
+    detect_weapon: "./models/weapon_0609.pt"
+    class_name_sexy: ['bikini', 'neural', 'nude'] 
     name_model_sexy: "efficientnet_b1"
 utils:
     draw: True
     save_image: False
-    verbose: False
+    verbose: True
     show_image: True
     checking_boob: True
 path_save:
-    path_image_root: "./static/uploads/"
+    path_image_root: "./static/uploads/" 
     sexy: "./tmp_images/sexy_image/"
     neural: "./tmp_images/neural_image/"
     sexy_half: "./tmp_images/sexy_image_half/"
     human4boob_detect: "./tmp_images/human4boob_detect/"
-test:
-    test_sexy_only: False  # MUST FALSE WHEN COMMIT!!!!
+run:
+    sexy: True          # MUST TRUE WHEN COMMIT!!!!
+    politician: True    # MUST TRUE WHEN COMMIT!!!!
+    crypto: True        # MUST TRUE WHEN COMMIT!!!!
+    flag: True          # MUST TRUE WHEN COMMIT!!!!
+    weapon: False        
+    ocr: True           # MUST TRUE WHEN COMMIT!!!!
 
 
 
