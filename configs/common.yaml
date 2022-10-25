@@ -9,7 +9,7 @@ threshold:
     eng_text: 0.6
     vi_text: 0.6
     is_vn: 0.6
-    same_face: 0.2
+    same_face: 0.3
 models:
     textfusenet: "./models/model_ic13_r101.pth"
     deeptext: "./models/TPS-ResNet-BiLSTM-Attn.pth"
