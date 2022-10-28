@@ -117,6 +117,6 @@ def mid_process_func_2(image, result_detect):
   list_arr = []
   for index, box in sorted_cor.items():
       crop = image[box[1]:box[3], box[0]:box[2]]
-      list_arr.append(Image.fromarray(crop.astype('uint8'), 'RGB').convert('L'))
+      list_arr.append(Image.fromarray(crop.astype('uint8'), 'RGB')) #.convert('P'))
 
   return list_arr, sorted_cor

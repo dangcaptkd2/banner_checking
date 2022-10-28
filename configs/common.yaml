@@ -35,10 +35,10 @@ path_save:
     sexy_half: "./tmp_images/sexy_image_half/"
     human4boob_detect: "./tmp_images/human4boob_detect/"
 run:
-    sexy: True          # MUST TRUE WHEN COMMIT!!!!
-    politician: True    # MUST TRUE WHEN COMMIT!!!!
-    crypto: True        # MUST TRUE WHEN COMMIT!!!!
-    flag: True          # MUST TRUE WHEN COMMIT!!!!
+    sexy: False          # MUST TRUE WHEN COMMIT!!!!
+    politician: False    # MUST TRUE WHEN COMMIT!!!!
+    crypto: False        # MUST TRUE WHEN COMMIT!!!!
+    flag: False          # MUST TRUE WHEN COMMIT!!!!
     weapon: False        
     ocr: True           # MUST TRUE WHEN COMMIT!!!!
 

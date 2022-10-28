@@ -1,0 +1,405 @@
+==================================================
+name:aaneuljbde.jpg
+data:{'Reason': None, 'Status': 0, 'text': '27% HEPHHKA OPTE KapaHoAKTHB 3BANAP 40% DETOX Siberian Green Canada', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 5.20158, 'time_reg_eng': 0.3216, 'time_reg_vn': 0, 'total_time': 5.52845}
+error:0
+====================================================================================================
+name:aaquwbirgq.jpg
+data:{'Reason': None, 'Status': 0, 'text': "Immigration To Canada Toronto Immigration Law Firm 24/7 Visas Application Hearings Appeal 35 years Practice of Immigration Law Canada's Largest and Most Established Immigration Law Firms Call Us 24/7 migrationlaw.com OPEN", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.1553, 'time_reg_eng': 1.17549, 'time_reg_vn': 0, 'total_time': 5.33704}
+error:0
+====================================================================================================
+name:abkjfvylzk.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Ad ww.bramptoneasttoyota.ca/ Get Genuine Toyota Oil Change Expert technicians Personalized service Book your appointment online today', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.17784, 'time_reg_eng': 0.63218, 'time_reg_vn': 0, 'total_time': 4.81465}
+error:0
+====================================================================================================
+name:ablocqyipu.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'BIELINSKI Built for life Bielinski Condos offer the craftsmanship and design you want in the size you need', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.22743, 'time_reg_eng': 0.46799, 'time_reg_vn': 0, 'total_time': 3.69946}
+error:0
+====================================================================================================
+name:abqlgnqlti.jpg
+data:{'Reason': None, 'Status': 0, 'text': None, 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 1.86002, 'time_reg_eng': 0, 'time_reg_vn': 0, 'total_time': 1.86128}
+error:0
+====================================================================================================
+name:absdlduttm.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Started in 2014 We Are Commercial Video Production Company Shotover Wedding Films', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.11079, 'time_reg_eng': 0.37545, 'time_reg_vn': 0, 'total_time': 4.49069}
+error:0
+====================================================================================================
+name:abucpfllsl.jpg
+data:{'Reason': None, 'Status': 0, 'text': "Jamestown Settlement Visit JYF Museums Show Local ID Get in Free! At JYF Museums Event Park stown Settlement Jamestown Beach Colonial Nat'l Store info Directions", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.42894, 'time_reg_eng': 0.72241, 'time_reg_vn': 0, 'total_time': 4.15583}
+error:0
+====================================================================================================
+name:acbpnsatye.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'CRISPY CHICKEN & GUASACA AVOCADO RANCH AREPA $4.95 VISIT TODAY', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 1.59357, 'time_reg_eng': 0.25472, 'time_reg_vn': 0, 'total_time': 1.85154}
+error:0
+====================================================================================================
+name:acekrwqoss.jpg
+data:{'Reason': None, 'Status': 0, 'text': '71ror HK Personalized Golf Lessons Our Custom Designed Netting Solution Is Made of High -Quality with Your Safety in Mind Directions Website', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.8991, 'time_reg_eng': 0.75115, 'time_reg_vn': 0, 'total_time': 4.65457}
+error:0
+====================================================================================================
+name:acilsqsqpu.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'IN MiHIGH', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.16846, 'time_reg_eng': 0.05358, 'time_reg_vn': 0, 'total_time': 3.22471}
+error:0
+====================================================================================================
+name:acmzrqjryp.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'RENTALCOVER.COM SAVE ON RENTAL CAR INSURANCE GET A QUOTE', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 5.43665, 'time_reg_eng': 0.3107, 'time_reg_vn': 0, 'total_time': 5.75227}
+error:0
+====================================================================================================
+name:adchfhujrw.jpg
+data:{'Reason': None, 'Status': 0, 'text': "Mister Car Wash Unlimited Wash Club Find Location Near You & Join Our Unlimited Wash Club! Best Greek DROADWAT American Opa's Cuis ESTATES Crave Coffee Bar Ni Hao Tea Store info Directions", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.62226, 'time_reg_eng': 1.13223, 'time_reg_vn': 0, 'total_time': 4.7598}
+error:0
+====================================================================================================
+name:admafztyyy.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'RITZYRAGS SHOES Boots and Flats Available We Also Sell Pants Sweaters Jackets and Jeans Ritzy Raqs Shoes', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.6764, 'time_reg_eng': 0.50289, 'time_reg_vn': 0, 'total_time': 4.18418}
+error:0
+====================================================================================================
+name:adqmiqamai.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'A&E Arborists Tree Care A&E Arborists Tree Care Our Experts Create and Implement Cost Effective Tree Care Strategies. Directions Website', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.31978, 'time_reg_eng': 0.67973, 'time_reg_vn': 0, 'total_time': 4.00432}
+error:0
+====================================================================================================
+name:adqoqtoeqe.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'FedEx Express NOW HIRING Couriers CLICK HERE TO LEARN MORE FedEx Expressisan', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.79236, 'time_reg_eng': 0.38061, 'time_reg_vn': 0, 'total_time': 4.17696}
+error:0
+====================================================================================================
+name:adqxyrwvmq.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Solio SHOP NOW', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.7326, 'time_reg_eng': 0.09287, 'time_reg_vn': 0, 'total_time': 3.82948}
+error:0
+====================================================================================================
+name:adqzsompgr.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Southerr Scapes Tree Experts Sou` uthern Scapes We Will Come to Your House Walk You the Process of Removing Your Problem Trees through Directions Website', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.93541, 'time_reg_eng': 0.90134, 'time_reg_vn': 0, 'total_time': 4.84125}
+error:0
+====================================================================================================
+name:adtanjwyqo.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Credit Bank Cards LIFETIME FREE Bank 4629 8668 1234 5678 VISA ICICI Bank Platinum Credit Card Chip No annual joining or fees 1% waiver on fuel surcharge Apply now', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 6.17143, 'time_reg_eng': 1.04154, 'time_reg_vn': 0, 'total_time': 7.22163}
+error:0
+====================================================================================================
+name:adtxmldpyu.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Tires Plus Tires Plus Battery Replacement Get A New Battery For Your Car At Your Nearest Tires Plus Pub uper Market at N Augusta Plaza Store info Directions', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.26817, 'time_reg_eng': 0.79849, 'time_reg_vn': 0, 'total_time': 4.07137}
+error:0
+====================================================================================================
+name:advxhpcoyb.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'SKIP ADS Add the browser extension to remove ads today! START NOW AdGone AD BLOCKER', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.81091, 'time_reg_eng': 0.3596, 'time_reg_vn': 0, 'total_time': 4.17551}
+error:0
+====================================================================================================
+name:aepekcfgtk.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Berrylook FREE SHIPPING SHOP NOW', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.77294, 'time_reg_eng': 0.16699, 'time_reg_vn': 0, 'total_time': 3.94388}
+error:0
+====================================================================================================
+name:aewkuaspva.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'i TMORE Designed Berkeley for life FINDOUTA', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.56116, 'time_reg_eng': 0.19174, 'time_reg_vn': 0, 'total_time': 4.75741}
+error:0
+====================================================================================================
+name:aewkwrjnem.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Start 3 simple steps 1 Click on Start 2. Activate your account 3. Access your content Movies Series Sports Fitness find it on allcontenthere.net', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.24963, 'time_reg_eng': 0.93299, 'time_reg_vn': 0, 'total_time': 5.18799}
+error:0
+====================================================================================================
+name:aexcpshfmz.jpg
+data:{'Reason': None, 'Status': 0, 'text': "i LET'S Spectrum GO Any career you want in tech create you can find at Spectrum. APPLY NOW", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 2.81102, 'time_reg_eng': 0.43552, 'time_reg_vn': 0, 'total_time': 3.25086}
+error:0
+====================================================================================================
+name:aexrsuwqge.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'PYRAMID The Pyramid F14 Sphinx I The All PYRAMID', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.05486, 'time_reg_eng': 0.27044, 'time_reg_vn': 0, 'total_time': 4.32809}
+error:0
+====================================================================================================
+name:aexzpplcds.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'CONTROL YOUR SOLAR POWER KOHLER GET A QUOTE KOHLER Power Reserve.', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.08647, 'time_reg_eng': 0.33087, 'time_reg_vn': 0, 'total_time': 4.42114}
+error:0
+====================================================================================================
+name:aezyacfqcx.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'We Buy Junk Trucks For Cash Get Cash For Your Junk Car Today Free Pickup Available', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.86656, 'time_reg_eng': 0.4933, 'time_reg_vn': 0, 'total_time': 4.36507}
+error:0
+====================================================================================================
+name:afdryjecaz.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'TECH NATION VISA Are you eligible? #WeAreTechNation technation.io/visc', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 5.50008, 'time_reg_eng': 0.22081, 'time_reg_vn': 0, 'total_time': 5.72403}
+error:0
+====================================================================================================
+name:affkjargpy.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'PET SUPPLIES PLUS SUPPLIES www.petsuppliesplus.com Pet Supplies Plus PET Glendale SUPPLIES PLUS Your Local Pet Store We Make Shopping Local Easy In Your Community Glendale OPEN 9AM 9PM Store info Directions', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 5.20402, 'time_reg_eng': 1.32367, 'time_reg_vn': 0, 'total_time': 6.53529}
+error:0
+====================================================================================================
+name:affnxrxfuv.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'GOOD by HEALTH YOURSELF tired? Could Always be sign of liver disease. MY LIVER MY SHIELD. Fatigue and liver health are co co-related. Know How', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.60578, 'time_reg_eng': 0.70274, 'time_reg_vn': 0, 'total_time': 4.31331}
+error:0
+====================================================================================================
+name:afinsqegmn.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'TagsforHope Dog ID Tags and Collars Te geForHope', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.84577, 'time_reg_eng': 0.25924, 'time_reg_vn': 0, 'total_time': 4.10801}
+error:0
+====================================================================================================
+name:afjmxmilyt.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'For Lease: Modern House Available Now in Isla Vista!', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.33148, 'time_reg_eng': 0.28086, 'time_reg_vn': 0, 'total_time': 3.6161}
+error:0
+====================================================================================================
+name:afkrvpgatt.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'New Arrivals Fall/Winter New Arrivals UNI Update your Fall Fashion now!', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.97835, 'time_reg_eng': 0.34608, 'time_reg_vn': 0, 'total_time': 4.32795}
+error:0
+====================================================================================================
+name:afspywexev.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Windows installation and sales We provide window installation window sales window replacement french sliding windows A.C.E Door Company', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.98046, 'time_reg_eng': 0.46381, 'time_reg_vn': 0, 'total_time': 4.44987}
+error:0
+====================================================================================================
+name:afxyjrabye.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'TENDER Tawa Mike Wynne-Jones Harcourts', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 2.69643, 'time_reg_eng': 0.16692, 'time_reg_vn': 0, 'total_time': 2.86663}
+error:0
+====================================================================================================
+name:agawghiion.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Become financial analyst for yourself Learn More', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.24484, 'time_reg_eng': 0.16027, 'time_reg_vn': 0, 'total_time': 3.40789}
+error:0
+====================================================================================================
+name:agbexjrphs.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Buy better Buy Bartons. Immediate AVAILABLE delivery NOW! B BARTONS Find out more', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.89499, 'time_reg_eng': 0.40828, 'time_reg_vn': 0, 'total_time': 4.30725}
+error:0
+====================================================================================================
+name:agcvlhedwq.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Tree Removal & Tree Trimming Certified Arborist Tree Risk Assessment Certified Your Tree Services LLC', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.09806, 'time_reg_eng': 0.47767, 'time_reg_vn': 0, 'total_time': 4.5815}
+error:0
+====================================================================================================
+name:agidnychat.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Matolaake koirille! Lue VeloxA pakkaus seloste tasta febanteeli vet pyranteeliembonaatti 150 pratsikvanteeli tabl. - VET CARE 2tabl. vetcare.fi KERTA ANNOS!', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.25994, 'time_reg_eng': 0.67012, 'time_reg_vn': 0, 'total_time': 3.93515}
+error:0
+====================================================================================================
+name:agkvqdvblp.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Outer Collection Men and Women Outerwear UNI Luxurious affordable OLO comfort', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.5626, 'time_reg_eng': 0.35329, 'time_reg_vn': 0, 'total_time': 3.91998}
+error:0
+====================================================================================================
+name:agnguyeggo.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Research Cloud Data Management See search results for cloud data yahoo! management on Yahoo Compare top options today', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.71121, 'time_reg_eng': 0.52091, 'time_reg_vn': 0, 'total_time': 4.2363}
+error:0
+====================================================================================================
+name:agnykbmzpe.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'GIAM 20% Tang tui xach Tu 30/07 den 20/08 thoi trang DANG KI NGAY TRI ANNGUOIDONGHAN DONG HANH', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 1.50985, 'time_reg_eng': 0.50786, 'time_reg_vn': 0, 'total_time': 2.0229}
+error:0
+====================================================================================================
+name:agttmcpknm.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'INTEGRIS HEALTH Ifyou have heart for helping we want you Learn More', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 5.83863, 'time_reg_eng': 0.33524, 'time_reg_vn': 0, 'total_time': 6.17989}
+error:0
+====================================================================================================
+name:aguwbmrmhp.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'WEB VERSE LOOKING FOR AN ECOMMERCE EXPERT? HIRE USNOW', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.26154, 'time_reg_eng': 0.2133, 'time_reg_vn': 0, 'total_time': 3.47833}
+error:0
+====================================================================================================
+name:agyxhbjohh.jpg
+data:{'Reason': None, 'Status': 0, 'text': "Get SA's best warranty. Learn 200 000 km HYUnDAI", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.65423, 'time_reg_eng': 0.2374, 'time_reg_vn': 0, 'total_time': 3.89458}
+error:0
+====================================================================================================
+name:ahdlogekhd.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'New Luxury Homes in Chesapeake New Single Family Homes DRAGAS Chesapeake VA Dragas Communities', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.85465, 'time_reg_eng': 0.46711, 'time_reg_vn': 0, 'total_time': 4.32752}
+error:0
+====================================================================================================
+name:ahiflkojnz.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'HOMELIFE CHINa Ultrasonic cute mist humidifier China Homelife Vietnam Trade Fair 2022 Saigon Exhibition and 29 31 Convention Center August Discover the World Expo Homelife 2022 brings many Industry leaders to the show Best chance to contact them', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.0799, 'time_reg_eng': 1.26937, 'time_reg_vn': 0, 'total_time': 5.35553}
+error:0
+====================================================================================================
+name:ahktlbmqxm.jpg
+data:{'Reason': None, 'Status': 0, 'text': '14ers Series 14ers Series A SUBLES RAGGEDS Join us outdoors in CO.. Outdoor Trail Maps', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.7273, 'time_reg_eng': 0.49191, 'time_reg_vn': 0, 'total_time': 4.22308}
+error:0
+====================================================================================================
+name:ahkxrophdt.jpg
+data:{'Reason': None, 'Status': 0, 'text': '50% 50% -40% EXPRESS New Accessories Express', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.03003, 'time_reg_eng': 0.2295, 'time_reg_vn': 0, 'total_time': 4.26315}
+error:0
+====================================================================================================
+name:ahpftlukcl.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Still looking for the perfect door? ROCK DOOR', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 1.74798, 'time_reg_eng': 0.17472, 'time_reg_vn': 0, 'total_time': 1.92566}
+error:0
+====================================================================================================
+name:ahptkkdkhb.jpg
+data:{'Reason': None, 'Status': 0, 'text': "WANT GO GET ND IT SMILEY Smiley@ CASETiFY Returns The OG positivity brand returns Don't miss the latest drop of Smiley@ CASETiFY", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.69811, 'time_reg_eng': 0.7625, 'time_reg_vn': 0, 'total_time': 4.47078}
+error:0
+====================================================================================================
+name:ahrxpnvhkd.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'SOMORAM SPICE None 16% SONDRAN SPICE Sonorar Spice Company Sonora: Spice Company', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.04576, 'time_reg_eng': 0.35506, 'time_reg_vn': 0, 'total_time': 4.40488}
+error:0
+====================================================================================================
+name:ahxbnohxpf.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Ad www.dewellynhyundai.com.a Llewellyn Hyundai Ipswich Visit Our Ipswich Hyundai Showroom To View Our Latest Range Of Vehicles', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.07143, 'time_reg_eng': 0.54555, 'time_reg_vn': 0, 'total_time': 4.62075}
+error:0
+====================================================================================================
+name:ahyjhwaczt.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'PropellerAds Rule-based Spend OPTIMIZATION CPA Try now ROI Campaigns budget safekeeping Get more traffic automatically if your campaign shows high CR and ROI Try new feature! PropellerAds', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.85654, 'time_reg_eng': 0.9951, 'time_reg_vn': 0, 'total_time': 4.85663}
+error:0
+====================================================================================================
+name:ahzafklywa.jpg
+data:{'Reason': None, 'Status': 0, 'text': '8P HEY TORONTO! FREE KIDS MEALS WHEN YOU DONATE $5 BUY NOW', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.03329, 'time_reg_eng': 0.26422, 'time_reg_vn': 0, 'total_time': 4.30071}
+error:0
+====================================================================================================
+name:aiaqqxvpzd.jpg
+data:{'Reason': None, 'Status': 0, 'text': "On Today's Online Purchase. $10 CASH BACK CONTINUE shipmentsfree.com", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 5.11352, 'time_reg_eng': 0.23482, 'time_reg_vn': 0, 'total_time': 5.35174}
+error:0
+====================================================================================================
+name:aibqxkllaw.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Gentle & Effective Our sliding scale of $25-$65 allows you to choose what is right for you White Phoenix Acupuncture', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.51495, 'time_reg_eng': 0.72469, 'time_reg_vn': 0, 'total_time': 4.24559}
+error:0
+====================================================================================================
+name:aicwmlwsmi.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Food Driver Delivery Jobs Delivery Jobs Express Delivery Package Delivery Jobs Jobs Jqbs2Careers', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.69494, 'time_reg_eng': 0.32666, 'time_reg_vn': 0, 'total_time': 4.02504}
+error:0
+====================================================================================================
+name:aieebdczpq.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'HELP REFUGEES TODAY SupportCrisisRelief.org EVEN SMALL AMOUNTS MAKE A BIG DIFFERENCE ad', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 5.99655, 'time_reg_eng': 0.45306, 'time_reg_vn': 0, 'total_time': 6.45509}
+error:0
+====================================================================================================
+name:aihiljzrxa.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'LiKE PARKS PARKS! Jeen Looking to Sell Your Car? Find Out How Much Your Caris Worth with Our Online Trade-In Tool.', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.94781, 'time_reg_eng': 0.64109, 'time_reg_vn': 0, 'total_time': 4.59429}
+error:0
+====================================================================================================
+name:ainiyahvly.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Tech & electronics deals Discover the offers at ShopFully', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.00292, 'time_reg_eng': 0.29137, 'time_reg_vn': 0, 'total_time': 4.29861}
+error:0
+====================================================================================================
+name:aiojxqtetr.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Centra Windows #1 for Stratas Over 350 full-unit Strata complexes Centra and thousands of individual Strata owners love Centra', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.78318, 'time_reg_eng': 0.6349, 'time_reg_vn': 0, 'total_time': 4.42277}
+error:0
+====================================================================================================
+name:aiuvervegw.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'oooooo MOKWHEEL', 'text_vietnamese': 'MOKWHEEL', 'time_detect_image': 0.0, 'time_detect_text': 3.02624, 'time_reg_eng': 0.07506, 'time_reg_vn': 2.02985, 'total_time': 5.13323}
+error:0
+====================================================================================================
+name:aizvnhnura.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'QuillBot Save 20%OFF OFF on Quillbot Premium Switch to Premium', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.06785, 'time_reg_eng': 0.29391, 'time_reg_vn': 0, 'total_time': 4.36493}
+error:0
+====================================================================================================
+name:ajaipzbnrw.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'WORKOUT ANYTIME BEACH MODE ON YOU HERE', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.32595, 'time_reg_eng': 0.21431, 'time_reg_vn': 0, 'total_time': 3.54482}
+error:0
+====================================================================================================
+name:ajofdbfglm.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Mlendela Borrow up to $100 000 Disbursement in day COMPARE NOW', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.76569, 'time_reg_eng': 0.38363, 'time_reg_vn': 0, 'total_time': 4.15218}
+error:0
+====================================================================================================
+name:ajsikviuew.jpg
+data:{'Reason': None, 'Status': 0, 'text': '#KingstonlronKey Keep Data Secure and Portable Compact encrypted external SSD Kingston keeps your data secure on the go', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.00655, 'time_reg_eng': 0.63119, 'time_reg_vn': 0, 'total_time': 4.64333}
+error:0
+====================================================================================================
+name:ajubvjbkdt.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'AS LOW AS $8.33 SHOP NOW', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.87942, 'time_reg_eng': 0.17926, 'time_reg_vn': 0, 'total_time': 4.06317}
+error:0
+====================================================================================================
+name:ajudmoibwy.jpg
+data:{'Reason': None, 'Status': 0, 'text': "Blk Stry Studio DFW Natural Light portrait studio 1 Frisco TX photograph' Photography Studio near You Choose a Clean and Organized Venue for Your Hassle-Free Photo Shoot Visit Us Directions Website", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.86497, 'time_reg_eng': 1.05434, 'time_reg_vn': 0, 'total_time': 4.92489}
+error:0
+====================================================================================================
+name:ajuqzfxlkv.jpg
+data:{'Reason': None, 'Status': 0, 'text': None, 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.59055, 'time_reg_eng': 0, 'time_reg_vn': 0, 'total_time': 3.59174}
+error:0
+====================================================================================================
+name:ajvfvbwqzg.jpg
+data:{'Reason': None, 'Status': 0, 'text': "HSBC We aim to become Asia's leading Wealth Manager by 2025", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 1.50108, 'time_reg_eng': 0.32926, 'time_reg_vn': 0, 'total_time': 1.83328}
+error:0
+====================================================================================================
+name:akcghnwpcu.jpg
+data:{'Reason': None, 'Status': 0, 'text': "ADDITIONAL 28% FOR OFF ENDLESS SUMMER THIS SALE WON'T LAST LONG! BOOK OUR AMAZING DEALS $150USD Resort Credit Free Upgrade Kids stay & eat free BOOK NOW 1877 845 6030 RIVIERA NAYARIT", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.57663, 'time_reg_eng': 1.09718, 'time_reg_vn': 0, 'total_time': 4.68012}
+error:0
+====================================================================================================
+name:akdcnthgmv.jpg
+data:{'Reason': None, 'Status': 0, 'text': "Concerts Are Better In Caverns Learn More TENNESSEE'S SOUTH CUMBERLAND Mountains of Adventure", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.33208, 'time_reg_eng': 0.40896, 'time_reg_vn': 0, 'total_time': 3.74626}
+error:0
+====================================================================================================
+name:akddrvahvi.jpg
+data:{'Reason': None, 'Status': 0, 'text': '10 To-Do Lists Are Dead Motion Calculates Your Tasks and Work Time It Builds Schedule to Get ItAll Done', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.8122, 'time_reg_eng': 0.64061, 'time_reg_vn': 0, 'total_time': 4.45755}
+error:0
+====================================================================================================
+name:akkvgbivff.jpg
+data:{'Reason': None, 'Status': 0, 'text': None, 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.29705, 'time_reg_eng': 0, 'time_reg_vn': 0, 'total_time': 3.29907}
+error:0
+====================================================================================================
+name:aklzmlmxvx.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Power your portfolio with our powerful data Just $1.99/month SUBSCRIBE Bloomberg.com', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.93212, 'time_reg_eng': 0.35811, 'time_reg_vn': 0, 'total_time': 4.29477}
+error:0
+====================================================================================================
+name:akmjrysplj.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Transportation Service CA North Bay Limousine LLC Premier service for all your transportation needs', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.21496, 'time_reg_eng': 0.35033, 'time_reg_vn': 0, 'total_time': 3.56982}
+error:0
+====================================================================================================
+name:aknvfibwtu.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'CHOOSE YOUR SIGN ARIES TAURUS GEMINI CANCER LEO VIRGO TO FIND OUT YOUR FATE LIBRA SCORPIO SAGITTARIUS CAPRICORN AQUARIUS PISCES', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.04348, 'time_reg_eng': 0.55827, 'time_reg_vn': 0, 'total_time': 3.60977}
+error:0
+====================================================================================================
+name:akyiwldoas.jpg
+data:{'Reason': None, 'Status': 0, 'text': "Cat Door WORLD'S CAT LITTER BEST 20% WORLD'SBI Cat Pet Shop Products Pet.co.nz", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.48027, 'time_reg_eng': 0.3748, 'time_reg_vn': 0, 'total_time': 3.85913}
+error:0
+====================================================================================================
+name:alavfeuvsp.jpg
+data:{'Reason': None, 'Status': 0, 'text': "MARKETING DIGITAL Digital Marketing Melbourne Australia's Leading SEO Performance Agency Delivering Outstanding Results For Clients", 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.75312, 'time_reg_eng': 0.39141, 'time_reg_vn': 0, 'total_time': 4.14934}
+error:0
+====================================================================================================
+name:albhtkaesg.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Luxury Mykonos Resort ONCE brand new getaway just above INHYKONGS Ornos beach with amazing Cycladic scenery', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.02416, 'time_reg_eng': 0.37527, 'time_reg_vn': 0, 'total_time': 3.40396}
+error:0
+====================================================================================================
+name:albmfevcfs.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'ROSELINLIN 809 SALE SHOP NOW', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 2.91231, 'time_reg_eng': 0.16002, 'time_reg_vn': 0, 'total_time': 3.08047}
+error:0
+====================================================================================================
+name:alddsronvi.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Architect Certificate Warranty All Of Our Services Certification and Warranty Are Now Available For Commercial Property', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.81387, 'time_reg_eng': 0.44688, 'time_reg_vn': 0, 'total_time': 4.26534}
+error:0
+====================================================================================================
+name:alfxvalejt.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Image Coming Soon New 2022 Dodge Charger $55,075 I Miles I Colorado Springs CO Take a test drive! This New 2022 Charger is ready to be #482013 Dodge driven', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.0081, 'time_reg_eng': 0.75347, 'time_reg_vn': 0, 'total_time': 4.76718}
+error:0
+====================================================================================================
+name:aliiobkoss.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'BUILT Ford TOUGH 2020F-150 The Ford F-150 Is Setting The Bar Making Look Tough Tasks Easy SHOPNOW COCONUT POINT FORD ESTERO,F Ford', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 5.04862, 'time_reg_eng': 0.58331, 'time_reg_vn': 0, 'total_time': 5.63805}
+error:0
+====================================================================================================
+name:alnankwfqy.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Park Central Recently Reduced Pricing Two Swimming Pools Outdoor Lounge Bark Park Fitness Center Sports Court & More Directions Website', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.76445, 'time_reg_eng': 0.67589, 'time_reg_vn': 0, 'total_time': 4.44448}
+error:0
+====================================================================================================
+name:alpdtfmtgl.jpg
+data:{'Reason': None, 'Status': 0, 'text': '14kt Solid Gold Earrings Handcrafted Jewelry made in Los 23NORTH Angeles Butterfly Huggies Free Shipping on all orders', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.49139, 'time_reg_eng': 0.5696, 'time_reg_vn': 0, 'total_time': 4.06519}
+error:0
+====================================================================================================
+name:alrovbyeyy.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'PET SUPPLIES PLUS SUPPLIES www.petsuppliesplus.com Pet Supplies Plus PET Glendale SUPPLIES PLUS Save On Pet Food & Supplies We Make Shopping Local Easy In Your Community Glendale OPEN 9AM 9PM Stare info Directions', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 5.28724, 'time_reg_eng': 1.33259, 'time_reg_vn': 0, 'total_time': 6.62645}
+error:0
+====================================================================================================
+name:aluvdhgtyf.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'BlueCopper Photography BlueCopper Photography Quality photography for families kids newborns and milestone sessions Directions Website', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.46608, 'time_reg_eng': 0.45681, 'time_reg_vn': 0, 'total_time': 3.92649}
+error:0
+====================================================================================================
+name:alwtgzdgrv.jpg
+data:{'Reason': None, 'Status': 0, 'text': None, 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.56922, 'time_reg_eng': 0, 'time_reg_vn': 0, 'total_time': 3.57049}
+error:0
+====================================================================================================
+name:alxaoruekq.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Amaia Affordable and Sustainable Homes HOUSE AND LOT HIGH-RISE MID-RISE TOWN HOUSE Starts at P6,000 monthly! Click Here to Inquire', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 5.73981, 'time_reg_eng': 0.63771, 'time_reg_vn': 0, 'total_time': 6.3841}
+error:0
+====================================================================================================
+name:alzgprqfms.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Five Below Shop Online Or -Store Shop The Latest Toys Games Arts & Crafts & More! LITTLE BRAZIL M Times Sq 42 St M42 St t-Bryant Park Store info Directions', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.10373, 'time_reg_eng': 0.94785, 'time_reg_vn': 0, 'total_time': 5.05783}
+error:0
+====================================================================================================
+name:amcsgzspoh.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Managed IT Services Get Your Free 10 Minute JumpStart Consultation', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.95049, 'time_reg_eng': 0.32881, 'time_reg_vn': 0, 'total_time': 4.28427}
+error:0
+====================================================================================================
+name:amgsreijrg.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'STREAMING UNLIMITED streamingonline 589.8K PLAY Q Charges wil apply asper the operator', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.79303, 'time_reg_eng': 0.30131, 'time_reg_vn': 0, 'total_time': 5.09855}
+error:0
+====================================================================================================
+name:ampgecpuof.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'BOB WONDRIES FORD REPLACE BRAKE PADS RESURFACE ROTORS 22988 PER AXEL MOST FORD & MOTORCRAFT BRAKE PADS. DOES NOT INCLUDE TRANSIT OR SUPER DUTY GET OFFER SEE DEALER FOR DETAILS EXPIRES 08/31/2022', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.25968, 'time_reg_eng': 0.84817, 'time_reg_vn': 0, 'total_time': 4.1141}
+error:0
+====================================================================================================
+name:amspfzfxro.jpg
+data:{'Reason': None, 'Status': 0, 'text': None, 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 2.92418, 'time_reg_eng': 0, 'time_reg_vn': 0, 'total_time': 2.92584}
+error:0
+====================================================================================================
+name:amudyinubk.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Xanadu Daily Yoga Sessions Learn to surf in Lombok', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.09964, 'time_reg_eng': 0.28448, 'time_reg_vn': 0, 'total_time': 4.38805}
+error:0
+====================================================================================================
+name:amwwhzogeh.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Secure your Mercedes Benz with all vehicles ready for immediate delivery Mercedes Benz Waverley', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.52373, 'time_reg_eng': 0.32905, 'time_reg_vn': 0, 'total_time': 3.85731}
+error:0
+====================================================================================================
+name:anamkgyejn.jpg
+data:{'Reason': None, 'Status': 0, 'text': '2022 HIGHLANDER TOYOTA Lease for $599 A MONTH Offers Expire 3/31/2022', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.94018, 'time_reg_eng': 0.35579, 'time_reg_vn': 0, 'total_time': 4.30111}
+error:0
+====================================================================================================
+name:anpcsllban.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'PAINT YOUR pet PAINT YOUR OWN CUSTOM PET PORTRAIT!', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 3.33648, 'time_reg_eng': 0.28469, 'time_reg_vn': 0, 'total_time': 3.62485}
+error:0
+====================================================================================================
+name:abysqefpst.jpg
+data:{'Reason': None, 'Status': 0, 'text': 'Selling Real Estate Made Easy! exp REALTY Jennifer Hoyt', 'text_vietnamese': None, 'time_detect_image': 0.0, 'time_detect_text': 4.39226, 'time_reg_eng': 0.27894, 'time_reg_vn': 0, 'total_time': 4.67881}
+error:0
+==================================================
