@@ -63,12 +63,10 @@ class NSFW():
             self.model = self.load_model()
             r = self.model(x)
             re = self.softmax_layer(r)
-            # re = torch.sigmoid(r)
-            print(">>>> result nsfw:", re)
+            
             score , pred = torch.max(re, 1)
             pred = pred.cpu().detach().numpy()
             score = score.cpu().detach().numpy()
-            print("score sexy:", score, pred)
             if self.class_names[pred[0]] != 'neural' and score[0]>self.thres:
                 return True 
             return False

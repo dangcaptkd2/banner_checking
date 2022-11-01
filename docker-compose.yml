@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  server:
+    image: banner:latest
+    ports:
+      - "3050:3050"
+    restart: unless-stopped

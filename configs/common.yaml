@@ -22,11 +22,10 @@ models:
     detect_weapon: "./models/weapon_0609.pt"
     class_name_sexy: ['bikini', 'neural', 'nude'] 
     name_model_sexy: "efficientnet_b1"
+    device: 'cpu'
 utils:
     draw: True
     save_image: False
-    verbose: True
-    show_image: True
     checking_boob: True
 path_save:
     path_image_root: "./static/uploads/" 
@@ -35,10 +34,10 @@ path_save:
     sexy_half: "./tmp_images/sexy_image_half/"
     human4boob_detect: "./tmp_images/human4boob_detect/"
 run:
-    sexy: False          # MUST TRUE WHEN COMMIT!!!!
-    politician: False    # MUST TRUE WHEN COMMIT!!!!
-    crypto: False        # MUST TRUE WHEN COMMIT!!!!
-    flag: False          # MUST TRUE WHEN COMMIT!!!!
+    sexy: True          # MUST TRUE WHEN COMMIT!!!!
+    politician: True    # MUST TRUE WHEN COMMIT!!!!
+    crypto: True        # MUST TRUE WHEN COMMIT!!!!
+    flag: True          # MUST TRUE WHEN COMMIT!!!!
     weapon: False        
     ocr: True           # MUST TRUE WHEN COMMIT!!!!
 

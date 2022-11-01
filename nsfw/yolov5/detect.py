@@ -37,7 +37,6 @@ def run(
         augment=False,  # augmented inference
         half=False,  # use FP16 half-precision inference
         dnn=False,  # use OpenCV DNN for ONNX inference
-        verbose=False,
 ):
     source = str(source)
 
@@ -99,12 +98,7 @@ def run(
                         a = list(map(float, a.split()))
                         a[0] = names[int(a[0])]
                         result.append(a)
-
-                        if verbose:
-                            print(">>>> result detect:", names[int(cls)], conf)
             else:
-                if verbose:
-                    print("found no object by yolov5")
                 result=None
 
 
@@ -115,21 +109,21 @@ def run(
 
 def get_human(img_path, config):
     print(">>>> running human model")
-    return run(source=img_path, weights=config["models"]["detect_human"], conf_thres=config["threshold"]["detect_human"], verbose=config["utils"]["verbose"])
+    return run(source=img_path, weights=config["models"]["detect_human"], conf_thres=config["threshold"]["detect_human"])
 
 def get_flag(img_path, config):
     print(">>>> running flag model")
-    return run(source=img_path, weights=config["models"]["detect_flag"], conf_thres=config["threshold"]["detect_flag"], verbose=config["utils"]["verbose"])
+    return run(source=img_path, weights=config["models"]["detect_flag"], conf_thres=config["threshold"]["detect_flag"])
 
 def get_weapon(img_path, config):
     print(">>>> running weapon model")
-    return run(source=img_path, weights=config["models"]["detect_weapon"], conf_thres=config["threshold"]["detect_weapon"], verbose=config["utils"]["verbose"])
+    return run(source=img_path, weights=config["models"]["detect_weapon"], conf_thres=config["threshold"]["detect_weapon"])
 
 def get_crypto(img_path, config):
     print(">>>> running crypto model")
-    return run(source=img_path, weights=config["models"]["detect_crypto"], conf_thres=config["threshold"]["detect_crypto"], verbose=config["utils"]["verbose"])
+    return run(source=img_path, weights=config["models"]["detect_crypto"], conf_thres=config["threshold"]["detect_crypto"])
 
 def get_boob(img_path, config):
     print(">>>> running detect boob model")
-    return run(source=img_path, weights=config["models"]["detect_boob"], conf_thres=config["threshold"]["detect_boob"], verbose=config["utils"]["verbose"])
+    return run(source=img_path, weights=config["models"]["detect_boob"], conf_thres=config["threshold"]["detect_boob"])
 

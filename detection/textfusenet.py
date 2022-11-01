@@ -17,7 +17,7 @@ path_root = './'
 config_path = 'configs/ocr/'
 model_path = 'models/'
 
-def setup_cfg():
+def setup_cfg(device):
     # load config from file and command-line arguments
     cfg = get_cfg()
     cfg.merge_from_file(os.path.join(path_root, config_path, "icdar2013_101_FPN.yaml"))
@@ -28,6 +28,7 @@ def setup_cfg():
     cfg.MODEL.RETINANET.SCORE_THRESH_TEST = 0.7
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7
     cfg.MODEL.PANOPTIC_FPN.COMBINE.INSTANCES_CONFIDENCE_THRESH = 0.7
+    cfg.MODEL.DEVICE = device
     cfg.freeze()
     return cfg
 
@@ -35,6 +36,7 @@ def convert_to_xyxy(prediction):
 
     classes = prediction['instances'].pred_classes
     boxes = prediction['instances'].pred_boxes.tensor
+    scores = prediction['instances'].scores
 
     result = {}
     id = 0
@@ -51,8 +53,8 @@ def convert_to_xyxy(prediction):
 
 class DETECTION():
     
-    def __init__(self) -> None:
-        self.cfg = setup_cfg()
+    def __init__(self, device='cpu') -> None:
+        self.cfg = setup_cfg(device)
         self.model = None
         self.ok = False    # check if image has text or not
 

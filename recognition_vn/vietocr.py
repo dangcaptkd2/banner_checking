@@ -7,11 +7,11 @@ from PIL import Image
 # sys.path.append()
 
 class RECOGNITION_VN():
-    def __init__(self) -> None:
+    def __init__(self, device) -> None:
         self.config = Cfg.load_config_from_name('vgg_transformer')
         self.config['weights'] = './models/transformerocr.pth'
         self.config['cnn']['pretrained']=False
-        self.config['device'] = 'cpu'
+        self.config['device'] = device
         self.config['predictor']['beamsearch']=False
 
         self.model = None
@@ -27,7 +27,6 @@ class RECOGNITION_VN():
         model = self.get_model()
         text_boundings = [Image.fromarray(B) for B in image_array]
         texts, scores = model.predict_batch(text_boundings,return_prob=True)
-        print(">>>>>>>",dict(zip(texts, scores)))
         final_text = [texts[i] for i in range(len(texts)) if scores[i]>thres]
         return final_text
     

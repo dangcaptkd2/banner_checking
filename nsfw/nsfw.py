@@ -112,8 +112,6 @@ def detect_nsfw(img_path, config, politician):
                     path_ = "{}/{}.jpg".format(path_save_human4boob_detect, name)
                     crop_image.save(path_)
                     result_boob = get_boob(path_, config=config)
-                    if config['utils']['verbose']:
-                        print(">>> boob:", result_boob)
                     if result_boob is not None:
                         if config['utils']['save_image']:
                             tmp_name = len(os.listdir(path_save_sexy))
@@ -133,8 +131,6 @@ def detect_nsfw(img_path, config, politician):
                         if config['utils']['save_image']:
                             tmp_name = len(os.listdir(path_save_sexy_but_not_has_boob))
                             crop_image.save(f"{path_save_sexy_but_not_has_boob}/{tmp_name}.jpg")
-                        if config['utils']['verbose']:
-                            print(">>>>", "sexy but dont have boob")
                 else:
                     if config['utils']['save_image']:
                         tmp_name = len(os.listdir(path_save_sexy))
@@ -147,7 +143,6 @@ def detect_nsfw(img_path, config, politician):
     #### politician
     if politician:
         cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
-        print(">>> num human and hello", len(cordinates))
         if cordinates:
             scores = []
             names = []

@@ -1,25 +1,20 @@
 import cv2
 from flask_restful import Resource 
 
-from detection import DETECTION
-from recognition import RECOGNITION 
+from detection.textfusenet import DETECTION
+from parseq.model import RECOGNITION
 from recognition_vn.vietocr import RECOGNITION_VN
 from utils.mid_process import mid_process_func_2, merge_boxes_to_line_text
 from utils.policy_checking import check_text_eng, check_text_vi
-from utils.utils import check_is_vn, clear_folder, save_image
+from utils.utils import check_is_vn, clear_folder
 from nsfw.nsfw import detect_flag, detect_weapon, detect_crypto, detect_nsfw
-from parseq.predict import get_predict
-
-import torch
 
 import os
 import time
-from collections import Counter
 
 import torch
 import time
 import yaml
-import gc
 
 with open('./configs/common.yaml') as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
@@ -34,9 +29,9 @@ class banner_cheking():
     def __init__(self) -> None:
         self.path_image_root = config['path_save']['path_image_root']
         if config["run"]["ocr"]:
-            self.detect = DETECTION()
-            self.recog = RECOGNITION()
-            self.recog_vn = RECOGNITION_VN()
+            self.detect:DETECTION = DETECTION(device=config["models"]["device"])
+            self.recog:RECOGNITION = RECOGNITION(device=config["models"]["device"])
+            self.recog_vn:RECOGNITION_VN = RECOGNITION_VN(device=config["models"]["device"])
         
     def predict(self, filename: str) -> dict:
         item = {
@@ -56,7 +51,6 @@ class banner_cheking():
             'ban keyword': [],
             'time_reg_vn_in': 0,
         }
-
         image_path = os.path.join(self.path_image_root, filename)
         name = filename.replace('.jpg', '').replace('.jpeg', '').replace('.png', '')    
         since = time.time() 
@@ -110,20 +104,17 @@ class banner_cheking():
             item['time_detect_text'] = round(time.time()-since, 5)
 
             if len(list_arr)>0:
-                # recog = RECOGNITION()
                 since = time.time()
-                result_eng = self.recog.predict_arr(bib_list=list_arr)
-                # del recog
-                torch.cuda.empty_cache()
-                text_en = [result_eng[k][0] for k in result_eng if result_eng[k][1]>config["threshold"]["eng_text"]]
-
-                if len(text_en)==0:
-                    return item
-                    
-                item['text'] = ' '.join(text_en)
+                for i in list_arr:
+                    print(i.mode)
+                result_eng = self.recog.predict(list_img=list_arr)
+                item['text'] = result_eng
                 item['time_reg_eng'] = round(time.time()-since, 5)
 
-                if not check_is_vn(text_en, threshold=config["threshold"]["is_vn"]):
+                if len(result_eng)==0:
+                    return item
+                
+                if not check_is_vn(result_eng, threshold=config["threshold"]["is_vn"]):
                     result_check_text_eng = check_text_eng(item['text'])
                     if result_check_text_eng:
                         item['Status'] = 'Block'
@@ -225,24 +216,10 @@ class banner_cheking():
             torch.cuda.empty_cache()
             list_arr, sorted_cor = mid_process_func_2(image = img, result_detect=result_detect)
             item['time_detect_text'] = round(time.time()-since, 5)
-
+        
             if len(list_arr)>0:
-                # since = time.time()
-                # result_eng = self.recog.predict_arr(bib_list=list_arr)
-                # # del recog
-                # torch.cuda.empty_cache()
-                # text_en = [result_eng[k][0] for k in result_eng if result_eng[k][1]>config["threshold"]["eng_text"]]
-
-                # if len(text_en)==0:
-                #     return item
-                    
-                # item['text'] = ' '.join(text_en)
-                # item['time_reg_eng'] = round(time.time()-since, 5)
-
                 since = time.time()
-                for i in list_arr:
-                    print(i.mode)
-                result_eng_2 = get_predict(list_img=list_arr)
+                result_eng_2 = self.recog.predict(list_img=list_arr)
                 item['text'] = result_eng_2
                 item['time_reg_eng'] = round(time.time()-since, 5)
 
@@ -274,5 +251,5 @@ class banner_cheking():
 if __name__ == '__main__': 
     print("helllooooo")
     a = banner_cheking()
-    r = a.predict_2('aaneuljbde.jpg')
+    r = a.predict_2('acdysiggib.jpg')
     print(r)
