@@ -1,7 +1,10 @@
 version: "3.9"
 services:
   server:
-    image: banner:latest
+    image: banner:v2
+    volumes:
+      - .:/app
+    command: python image_server.py
     ports:
       - "3050:3050"
     restart: unless-stopped

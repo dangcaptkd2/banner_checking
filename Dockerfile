@@ -13,6 +13,3 @@ RUN pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 RUN python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
-COPY . /app
-ENTRYPOINT [ "python" ]
-CMD [ "image_server.py" ]
