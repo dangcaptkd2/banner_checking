@@ -139,6 +139,7 @@ dmypy.json
 /demo.ipynb
 /demo.py
 /api.log
+/sync_code.sh
 *.zip
 *.pt 
 *.pth 
