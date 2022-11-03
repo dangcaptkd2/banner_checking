@@ -35,9 +35,9 @@ path_save:
     human4boob_detect: "./tmp_images/human4boob_detect/"
 run:
     sexy: True          # MUST TRUE WHEN COMMIT!!!!
-    politician: True    # MUST TRUE WHEN COMMIT!!!!
-    crypto: True        # MUST TRUE WHEN COMMIT!!!!
-    flag: True          # MUST TRUE WHEN COMMIT!!!!
+    politician: False    
+    crypto: True        
+    flag: True          
     weapon: False        
     ocr: True           # MUST TRUE WHEN COMMIT!!!!
 
