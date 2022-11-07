@@ -132,6 +132,7 @@ dmypy.json
 /build
 /static
 /tmp_images
+/logs
 /service.sh
 /test.py
 /utils/call_api.py

@@ -2,7 +2,7 @@ from PIL import Image
 import cv2
 
 def convert(dw, dh, dt):
-  _, x, y, w, h = dt
+  _, x, y, w, h, score = dt
 
   l = int((x - w / 2) * dw)
   r = int((x + w / 2) * dw)
@@ -17,20 +17,19 @@ def convert(dw, dh, dt):
       t = 0
   if b > dh - 1:
       b = dh - 1
-  return _,l,r,t,b
+  return _,l,r,t,b, score
 
 def convert_filter(w: int, h: int, lst: list) -> list:
   result = []
   for dt in lst:
-    cls, x1,x2,y1,y2 = convert(w, h, dt)
+    cls, x1,x2,y1,y2, score = convert(w, h, dt)
     result.append([x1,x2,y1,y2])
   return result
 
 def human_filter(w: int, h: int, lst: list, return_only_biggest_box: bool = True) -> any:
   result = []
   for dt in lst:
-    cls, x1,x2,y1,y2 = convert(w, h, dt)
-
+    cls, x1,x2,y1,y2, score = convert(w, h, dt)
     if cls=='person':
       result.append([x1,x2,y1,y2])
   if return_only_biggest_box:

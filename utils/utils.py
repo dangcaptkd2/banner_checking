@@ -4,6 +4,7 @@ import os
 import shutil
 import json
 import cv2
+import logging
 
 def call_api_vi(name):
     API_ENDPOINT = "http://localhost:4050/viet_ocr/html"
@@ -110,6 +111,7 @@ def check_is_vn(lst: list, threshold=0.6) -> bool:
         if check_single_word(w)==1:
             c+=1
     score = c/len(lst)
+    logging.getLogger('root').debug(f"Score vietnamese: {round(score, 3)}")
     if score>=threshold:
         return True 
     return False
@@ -120,12 +122,14 @@ def clear_folder() -> None:
     
     if os.path.isdir(path_image_root):
       if len(os.listdir(path_image_root)) > 100:
+          logging.getLogger('root').info(f"Reset {path_image_root}")
           shutil.rmtree(path_image_root)
           os.makedirs(path_image_root)
           print("reset folder contain file!!!!!!")
 
     if os.path.isdir(path_save_human4boob_detect):
       if len(os.listdir(path_save_human4boob_detect)) > 100:
+        logging.getLogger('root').info(f"Reset {path_save_human4boob_detect}")
         shutil.rmtree(path_save_human4boob_detect)
         print("reset human4boob_detect contain file!!!!!!")
 
