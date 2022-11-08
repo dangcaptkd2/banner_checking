@@ -53,8 +53,8 @@ class banner_cheking():
         
     def predict(self, filename: str) -> dict:
         item = {
-            'text': None,
-            'text_vietnamese': None,
+            'text': "",
+            'text_vietnamese': "",
             'time_detect_text': 0,
             'time_reg_eng': 0,
             'time_reg_vn': 0,
@@ -174,14 +174,14 @@ class banner_cheking():
     def predict_2(self, filename: str) -> dict:
         app_log.info(f"filename: {filename}")
         item = {
-            'text': None,
-            'text_vietnamese': None,
+            'text': "",
+            'text_vietnamese': "",
             'time_detect_text': 0,
             'time_reg_eng': 0,
             'time_reg_vn': 0,
             'time_detect_image': 0,
             'Status': 0,  # 0: review, 1: keyword, 2: sexy, 3: crypto, 4: flag, 5: politician, 6: weapon
-            'Reason': None,
+            'Reason': "",
             'total_time': 0,
         }
         dict_result = {
