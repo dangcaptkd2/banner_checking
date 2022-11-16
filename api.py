@@ -264,6 +264,8 @@ class banner_cheking():
                 item['time_reg_eng'] = round(time.time()-since, 5)
                 app_log.info(f"Text: {result_eng_2}")
 
+                if len(result_eng_2) == 0:
+                    return item
 
                 if not check_is_vn(result_eng_2, threshold=config["threshold"]["is_vn"]):
                     app_log.info("Text is not Vietnamese")
