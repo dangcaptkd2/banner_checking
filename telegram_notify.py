@@ -1,8 +1,8 @@
 import logging
 import requests
-# bot_group_id "-426808543"
-bot_token = '5553072289:AAEulErdk1S67cselxfxVFXTxtmXnyGNDY0'
-bot_chatID = '-853423053'
+
+bot_token = ''
+bot_chatID = ''
 
 
 def telegram_bot_sendtext(bot_message):
