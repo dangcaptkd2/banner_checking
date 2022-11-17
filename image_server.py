@@ -2,26 +2,22 @@
 # -*- coding: utf-8 -*-
 import logging
 import logging.config
-import yaml
-import sys
 import argparse
 
 from flask import Flask, jsonify, request, render_template, flash, redirect, url_for
 from flask_restful import Api
 from api import Stat, banner_cheking
 
-import sys
-
-import os
 import gdown
 
 from werkzeug.utils import secure_filename
 
-import requests
 import time
 
 import os
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
+
+from telegram_notify import telegram_bot_sendtext
 
 # app = Flask(__name__)
 app = Flask(__name__, 
@@ -120,17 +116,21 @@ def upload_check_ocr():
 def check_banner():
 	start_time = time.time()
 	if request.method.lower() == 'post':	
-		if 'file' not in request.files:			
-			return jsonify(dict(error=1,message="Data invaild"))
-		file = request.files['file']	
-		if file.filename == '':			
-			return jsonify(dict(error=1,message="Data invaild"))
-		if file and allowed_file(file.filename):
-			filename = secure_filename(file.filename)			
-			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			r = my_module.predict_2(filename) 
-			r['total_time'] = round(time.time()-start_time, 5)
-			return jsonify(dict(error=0,data=r))
+		try:
+			if 'file' not in request.files:			
+				return jsonify(dict(error=1,message="Data invaild"))
+			file = request.files['file']	
+			if file.filename == '':			
+				return jsonify(dict(error=1,message="Data invaild"))
+			if file and allowed_file(file.filename):
+				filename = secure_filename(file.filename)			
+				file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+				r = my_module.predict_2(filename) 
+				r['total_time'] = round(time.time()-start_time, 5)
+				return jsonify(dict(error=0,data=r))
+		except:
+			telegram_bot_sendtext(str("File error: " + file.filename))
+			return jsonify(dict(error=1,message="Something Error"))
 	return render_template('upload.html')
 
 @app.route('/banner_detection/check_ocr_url', methods =["GET", "POST"])
