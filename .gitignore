@@ -141,6 +141,7 @@ dmypy.json
 /demo.py
 /api.log
 /sync_code.sh
+/telegram_notify.py
 *.zip
 *.pt 
 *.pth 
