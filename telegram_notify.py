@@ -4,8 +4,6 @@ import requests
 bot_token = ''
 bot_chatID = ''
 
-#### ?
-
 def telegram_bot_sendtext(bot_message):
     try:
         bot_message = bot_message.replace("_", "\\_")
