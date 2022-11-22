@@ -47,9 +47,11 @@ class banner_cheking():
         self.path_image_root = config['path_save']['path_image_root']
         self.IMAGE_DETECTION = IMAGE_DETECT(config=config)
         if config["run"]["ocr"]:
-            self.detect:DETECTION = DETECTION(device=config["models"]["device"])
+            invidiual_device = 'cuda' if torch.cuda.is_available() else 'cpu'
+            self.detect:DETECTION = DETECTION(device=invidiual_device)
+            
             self.recog:RECOGNITION = RECOGNITION(device=config["models"]["device"])
-            self.recog_vn:RECOGNITION_VN = RECOGNITION_VN(device=config["models"]["device"])
+            self.recog_vn:RECOGNITION_VN = RECOGNITION_VN(device=invidiual_device)
         
     def predict(self, filename: str) -> dict:
         item = {
@@ -297,7 +299,19 @@ class banner_cheking():
 
 
 if __name__ == '__main__': 
+    # print("helllooooo")
+    # a = banner_cheking()
+    # r = a.predict_2('acdysiggib.jpg')
+    # print(r)
     print("helllooooo")
+    config['path_save']['path_image_root'] = "./tmp_images/100-500-1000/100" 
+    import os 
+    import time 
+    from tqdm import tqdm 
+    since = time.time()
+    images_path = "./tmp_images/100-500-1000/100" 
     a = banner_cheking()
-    r = a.predict_2('acdysiggib.jpg')
-    print(r)
+    for img_name in tqdm(os.listdir(images_path)):
+        r = a.predict_2(img_name)
+    end = time.time()
+    print((end-since)/len(os.listdir(images_path)))
