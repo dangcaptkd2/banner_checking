@@ -3,12 +3,26 @@ from vietocr.tool.config import Cfg
 
 import os
 from PIL import Image
+import yaml
 
 # sys.path.append()
 
 class RECOGNITION_VN():
     def __init__(self, device) -> None:
-        self.config = Cfg.load_config_from_name('vgg_transformer')
+        curdir = os.path.dirname(__file__)
+
+        cfg_vgg = os.path.join(curdir, 'config', 'vgg-transformer.yml')        
+        cfg_base = os.path.join(curdir, 'config', 'base.yml')
+        
+        with open(cfg_base, encoding='utf-8') as f:
+            base_config = yaml.safe_load(f)
+            
+        with open(cfg_vgg, encoding='utf-8') as f:
+            vgg_config = yaml.safe_load(f)
+          
+        base_config.update(vgg_config)
+        self.config = Cfg(base_config)
+        
         self.config['weights'] = './models/transformerocr.pth'
         self.config['cnn']['pretrained']=False
         self.config['device'] = device

@@ -9,7 +9,7 @@ class RECOGNITION():
     def __init__(self, device='cpu') -> None:
         self._device=device
         # Load model and image transforms
-        self.parseq = torch.hub.load('baudm/parseq', 'parseq', pretrained=True).eval().to(self._device)
+        self.parseq = torch.hub.load('/servers/hubs/parseq', 'parseq', pretrained=True, source='local').eval().to(self._device)
         self.img_transform = SceneTextDataModule.get_transform(self.parseq.hparams.img_size)
 
     def predict(self, list_img: list, thres: float = 0.8):
