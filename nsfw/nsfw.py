@@ -115,8 +115,8 @@ class IMAGE_DETECT(YOLOV5):
                         result_boob = self.get_boob(boob_img_path=path_)
                         if result_boob is not None:
                             if self.save_image:
-                                tmp_name = len(os.listdir(path_save['bikini']))
-                                crop_image.save(f"{path_save['bikini']}/{tmp_name}.jpg")
+                                tmp_name = len(os.listdir(path_save[name_sexy]))
+                                crop_image.save(f"{path_save[name_sexy]}/{tmp_name}.jpg")
 
                             human_img_array = cv2.imread(path_)
                             h,w,_ = human_img_array.shape

@@ -14,19 +14,19 @@ models:
     textfusenet: "./models/model_ic13_r101.pth"
     deeptext: "./models/TPS-ResNet-BiLSTM-Attn.pth"
     vietocr: "./models/transformerocr.pth"
-    sexy: "./models/coatnet_sexy_15_12.pt"
+    sexy: "./models/sexy_3class_2010_acc_917.pt"
     detect_human: "./models/model_human.pt"
     detect_boob: "./models/boob_detect_1008.pt"
     detect_flag: "./models/model_flag_5m.pt"
     detect_crypto: "./models/model_crypto_new.pt"
     detect_weapon: "./models/weapon_0609.pt"
     class_name_sexy: ['bikini', 'neural', 'nude'] 
-    name_model_sexy: "coatnet"
+    name_model_sexy: "efficientnet_b1"
     device: 'cpu'
 utils:
     draw: True
     save_image: True
-    checking_boob: False
+    checking_boob: True
 path_save:
     path_image_root: "./static/uploads/" 
     bikini: "./tmp_images/bikini_image/"
