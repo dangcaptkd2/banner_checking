@@ -138,9 +138,10 @@ class IMAGE_DETECT(YOLOV5):
                             crop_image.save(f"{path_save[name_sexy]}/{tmp_name}.jpg")
                         return result_nsfw 
                 else:
-                    if self.save_image and crop_image.size[0]*crop_image.size[1]>200*200:
+                    if self.save_image and crop_image.size[0]*crop_image.size[1]>200*200 and score_sexy>0.7:
                         tmp_name = len(os.listdir(path_save[name_sexy]))
-                        crop_image.save(f"{path_save[name_sexy]}/{tmp_name}.jpg")
+                        if tmp_name<=2000:
+                            crop_image.save(f"{path_save[name_sexy]}/{tmp_name}.jpg")
         #### politician
         # if self.check_politician:
         #     cordinates = human_filter(w=w, h=h, lst=out_yolo, return_only_biggest_box=False)
