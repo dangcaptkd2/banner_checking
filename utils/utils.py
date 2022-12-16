@@ -121,7 +121,7 @@ def clear_folder() -> None:
     path_save_human4boob_detect = './tmp_images/human4boob_detect'
     
     if os.path.isdir(path_image_root):
-      if len(os.listdir(path_image_root)) > 100:
+      if len(os.listdir(path_image_root)) > 2000:
           logging.getLogger('root').info(f"Reset {path_image_root}")
           shutil.rmtree(path_image_root)
           os.makedirs(path_image_root)
