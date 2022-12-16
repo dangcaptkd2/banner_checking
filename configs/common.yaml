@@ -1,5 +1,5 @@
 threshold:
-    sexy: 0.7
+    sexy: 0.5
     detect_human: 0.45
     detect_boob: 0.7
     detect_flag: 0.85
@@ -14,22 +14,23 @@ models:
     textfusenet: "./models/model_ic13_r101.pth"
     deeptext: "./models/TPS-ResNet-BiLSTM-Attn.pth"
     vietocr: "./models/transformerocr.pth"
-    sexy: "./models/sexy_3class_2010_acc_917.pt"
+    sexy: "./models/coatnet_sexy_15_12.pt"
     detect_human: "./models/model_human.pt"
     detect_boob: "./models/boob_detect_1008.pt"
     detect_flag: "./models/model_flag_5m.pt"
     detect_crypto: "./models/model_crypto_new.pt"
     detect_weapon: "./models/weapon_0609.pt"
     class_name_sexy: ['bikini', 'neural', 'nude'] 
-    name_model_sexy: "efficientnet_b1"
+    name_model_sexy: "coatnet"
     device: 'cpu'
 utils:
     draw: True
-    save_image: False
-    checking_boob: True
+    save_image: True
+    checking_boob: False
 path_save:
     path_image_root: "./static/uploads/" 
-    sexy: "./tmp_images/sexy_image/"
+    bikini: "./tmp_images/bikini_image/"
+    nude: "./tmp_images/nude_image/"
     neural: "./tmp_images/neural_image/"
     sexy_half: "./tmp_images/sexy_image_half/"
     human4boob_detect: "./tmp_images/human4boob_detect/"

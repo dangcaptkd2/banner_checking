@@ -142,23 +142,29 @@ def upload_check_ocr_url():
 		# if allowed_file(url):
 		download_image_from_url(url, filename)
 
-		r = my_module.predict(filename) 
+		r = my_module.predict_2(filename) 
 		r['total_time'] = round(time.time()-start_time,5)
+		item = {
+		'text': None,
+		'text_vietnamese': None,
+		'time_detect_text': 0,
+		'time_reg_eng': 0,
+		'time_reg_vn': 0,
+		'time_detect_image': 0,
+		'Status': 0,  # 0: review, 1: keyword, 2: sexy, 3: crypto, 4: flag, 5: politician, 6: weapon
+		'Reason': None,
+		'total_time': 0,
+	}
 		d = {
-				'time_detect_text': 'Thời gian phát hiện vùng có text (GPU)', 
-				'time_reg_eng': 'Thời gian nhận dạng text theo tiếng Anh (GPU)', 
+				'time_detect_text': 'Thời gian phát hiện vùng có text', 
+				'time_reg_eng': 'Thời gian nhận dạng text theo tiếng Anh', 
 				'text': 'Text theo tiếng Anh', 
-				'time_reg_vn': 'Thời gian nhận dạng text theo tiếng Việt (GPU)', 
+				'time_reg_vn': 'Thời gian nhận dạng text theo tiếng Việt', 
 				'text_vietnamese': 'Text theo tiếng Việt', 
-				'time_detect_image': 'Thời gian chạy mô hình detect hình ảnh (CPU)', 
-				'status_sexy': 'Kết quả của mô hình detect sexy', 
-				'flag': 'Kết quả của mô hình detect cờ', 
-				'weapon': 'Kết quả của mô hình detect vũ khí',
-				'crypto': 'Kết quả của mô hình detect tiền ảo',
-				'status_face_reg': 'Kết của nhận diện chính khách',
-				'ban keyword': 'Danh sách các từ khóa bị cấm', 
-				'Status': 'Status', 
-				'total_time': 'Tổng thời gian'
+				'time_detect_image': 'Thời gian chạy mô hình detect hình ảnh', 
+				'Status': 'Trạng thái',  
+				'Reason': 'Lý do',
+				'total_time': 'Tổng thời gian',
 			}
 		for k,v in d.items():
 			flash(v+': '+str(r[k]))

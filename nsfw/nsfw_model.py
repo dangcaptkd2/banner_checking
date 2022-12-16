@@ -3,6 +3,7 @@ import torch.nn as nn
 import numpy as np
 from torchvision import models, transforms
 from PIL import Image
+import timm
 
 import torchvision.transforms.functional as F
 
@@ -27,27 +28,38 @@ class NSFW():
         self.device = 'cpu'
         self.model = None
         self.path_ckp = config['models']['sexy']
-        self.transform = transforms.Compose([
-                                        SquarePad(),
-                                        transforms.Resize(128),
-                                        transforms.CenterCrop(112),
-                                        transforms.ToTensor(),
-                                        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-                                    ])
         self.softmax_layer = nn.Softmax(dim=1)
         self.class_names = config['models']['class_name_sexy']
         self.thres = config['threshold']['sexy']
         self.model_name = config['models']['name_model_sexy']
+        if self.model_name == "coatnet":
+            a = 256
+            b = 224
+        else:
+            a = 128
+            b = 112
+        self.transform = transforms.Compose([
+                                    SquarePad(),
+                                    transforms.Resize(a),
+                                    transforms.CenterCrop(b),
+                                    transforms.ToTensor(),
+                                    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+                                ])
+                            
     
     def load_model(self):
         if self.model is not None:
             return self.model
         if  self.model_name == 'efficientnet_b0':
-            model = models.efficientnet_b0(pretrained=True)
+            model = models.efficientnet_b0(pretrained=False)
+            numrs = model.classifier[1].in_features
+            model.classifier[1] = nn.Linear(numrs, len(self.class_names))
         elif self.model_name == 'efficientnet_b1':
-            model = models.efficientnet_b1(pretrained=True)
-        numrs = model.classifier[1].in_features
-        model.classifier[1] = nn.Linear(numrs, len(self.class_names))
+            model = models.efficientnet_b1(pretrained=False)
+            numrs = model.classifier[1].in_features
+            model.classifier[1] = nn.Linear(numrs, len(self.class_names))
+        elif self.model_name == 'coatnet':
+            model = timm.create_model("coatnet_1_rw_224", pretrained=False, num_classes=len(self.class_names), drop_path_rate=0.05)
 
         model.load_state_dict(torch.load(self.path_ckp, map_location=torch.device('cpu')))
         model.to(self.device)
@@ -68,8 +80,8 @@ class NSFW():
             pred = pred.cpu().detach().numpy()
             score = score.cpu().detach().numpy()
             if self.class_names[pred[0]] != 'neural' and score[0]>self.thres:
-                return True 
-            return False
+                return True, self.class_names[pred[0]], score[0]
+            return False, 'neural', score[0]
 
 
 # if __name__ == "__main__":
