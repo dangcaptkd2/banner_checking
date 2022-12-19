@@ -114,7 +114,7 @@ class IMAGE_DETECT(YOLOV5):
                         crop_image.save(path_)
                         result_boob = self.get_boob(boob_img_path=path_)
                         if result_boob is not None:
-                            if self.save_image:
+                            if self.save_image and score_sexy>0.7 and crop_image.size[0]*crop_image.size[1]>150*150:
                                 tmp_name = len(os.listdir(path_save[name_sexy]))
                                 crop_image.save(f"{path_save[name_sexy]}/{tmp_name}.jpg")
 
