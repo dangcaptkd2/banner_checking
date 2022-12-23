@@ -8,9 +8,9 @@ import timm
 import torchvision.transforms.functional as F
 
 import random
-# torch.manual_seed(42)
-# random.seed(42)
 np.random.seed(42)
+
+_FILL = (128,128,128)
 
 class SquarePad:
 	def __call__(self, image):
@@ -19,7 +19,7 @@ class SquarePad:
 		hp = int((max_wh - w) / 2)
 		vp = int((max_wh - h) / 2)
 		padding = (hp, vp, hp, vp)
-		return F.pad(image, padding, 0, 'constant')
+		return F.pad(image, padding, _FILL, 'constant')
 
 
 class NSFW():
@@ -32,7 +32,7 @@ class NSFW():
         self.class_names = config['models']['class_name_sexy']
         self.thres = config['threshold']['sexy']
         self.model_name = config['models']['name_model_sexy']
-        if self.model_name == "coatnet":
+        if self.model_name == "coatnet" or 'student' in self.path_ckp:
             a = 256
             b = 224
         else:
@@ -55,9 +55,12 @@ class NSFW():
             numrs = model.classifier[1].in_features
             model.classifier[1] = nn.Linear(numrs, len(self.class_names))
         elif self.model_name == 'efficientnet_b1':
-            model = models.efficientnet_b1(pretrained=False)
-            numrs = model.classifier[1].in_features
-            model.classifier[1] = nn.Linear(numrs, len(self.class_names))
+            if 'student' not in self.path_ckp:
+                model = models.efficientnet_b1(pretrained=False)
+                numrs = model.classifier[1].in_features
+                model.classifier[1] = nn.Linear(numrs, len(self.class_names))
+            else:
+                model = timm.create_model("efficientnet_b1", pretrained=False, num_classes=len(self.class_names))
         elif self.model_name == 'coatnet':
             model = timm.create_model("coatnet_1_rw_224", pretrained=False, num_classes=len(self.class_names), drop_path_rate=0.05)
 
