@@ -269,15 +269,15 @@ class banner_cheking():
                 if len(result_eng_2) == 0:
                     return item
 
-                if not check_is_vn(result_eng_2, threshold=config["threshold"]["is_vn"]):
-                    app_log.info("Text is not Vietnamese")
-                    result_check_text_eng = check_text_eng(item['text'])
-                    if result_check_text_eng:
-                        app_log.info(f"Contain ban keyword: {result_check_text_eng}")
-                        item['Status'] = dict_result['keyword']
-                        item['Reason'] = result_check_text_eng
-                        return item
+                result_check_text_eng = check_text_eng(item['text'])
+                if result_check_text_eng:
+                    app_log.info(f"Contain ban keyword: {result_check_text_eng}")
+                    item['Status'] = dict_result['keyword']
+                    item['Reason'] = result_check_text_eng
+                    return item
 
+                if not check_is_vn(result_eng_2, threshold=config["threshold"]["is_vn"]):
+                    app_log.info("Text is not Vietnamese") 
                 else:
                     app_log.info("Text is Vietnamese")
                     since = time.time()

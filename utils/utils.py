@@ -29,17 +29,37 @@ def call_api_nsfw(filename):
 
     return result
 
-def check_single_word(T: str) -> int:
+def check_single_word(T: str) -> bool:
+    """
+    if T có khả năng là tiếng việt: return True
+    else: return False
+    """
+    def check_english_1(T: str) -> bool:
+      """
+      Idea: trong tiếng việt, trừ từ 'xoong' ra thì không có từ nào có 2 chữ cái gần nhau mà giống nhau
+      if not vietnamese: return True
+      else: return False
+      """
+      if T=='xoong':
+        return False
+      for i in range(len(T)-1):
+        if T[i]==T[i+1] and T[i].isalpha():
+          return True
+      return False
     vowel = 'ueoaiy'
     # 1.Chuyển chuỗi về không dấu, low case 
     T = T.strip().lower()
 
+    # Nếu T có 2 chữ cái gần nhau mà giống nhau thì không phải là tiếng việt
+    if check_english_1(T):
+      return False
+
     # Nếu T là toàn là số thì là tiếng việt, nếu T chứa w,z,j,f thì không phải là tiếng việt
     if T.isnumeric():
-      return 1
+      return True
     for i in ['w', 'z', 'j', 'f']:
       if i in T:
-        return -1
+        return False
 
     # 2.Đánh dấu vị trí các nguyên âm : a, e, i, y, o, u 
     A = [i if T[i] in vowel else -1 for i in range(len(T))]
@@ -48,7 +68,7 @@ def check_single_word(T: str) -> int:
     A = [i for i in A if i!=-1]
     # 3. Nếu từ không hề có bất kỳ nguyên âm nào  (mảng A toàn -1) -> từ không phải tiếng việt.
     if len(A)==0:
-      return -1
+      return False
 
     # 5.Đếm trong chuỗi T các trường hợp có lớn hơn 1 nguyên âm cùng loại, ví dụ: aa, uu, oo,ii, yy
     new_T = [T[A[i]] for i in range(len(A))]
@@ -60,14 +80,14 @@ def check_single_word(T: str) -> int:
         tmp = ["xoong", "truu", "tuu", "khuyu",  "luu", "cuu", "suu", "buu", "muu", "huu", "nguu", "gioi", "giai", "giui", "ngoeo", "quau", "uou"]
         for i in tmp:
           if i in T:
-            return 1
-        return -1
+            return True
+        return False
     
     # 7.Nếu mảng A có length > 1:
     if len(A)>1:
       # 7.1. mảng A có length > 3 : Trả ra là không phải tiếng Việt
       if len(A)>3:
-        return -1
+        return False
       """
       7.2. Mảng A có length = 3: Nếu T có chứa cụm từ sau : uoi|uoc|uye|uya|oai|quai|giay|giau|giao|quao|giua|giuong|uay|oay|uan|yeu|ieu|queo 
       => là tiếng Việt. Nếu không trả ra là khác tiếng Việt.
@@ -76,8 +96,8 @@ def check_single_word(T: str) -> int:
         tmp = ["uoi","uoc","uye","uya","oai","quai","giay","giau","giao","quao","giua","giuong","uay","oay","uan","yeu","ieu","queo"]
         for i in tmp:
           if i in T:
-            return 1
-        return -1
+            return True
+        return False
       """
       7.3. Trường hợp Mảng A có length < 3: Nếu có chứa cụm từ sau : ai|ay|ao|au|eo|eu|ia|ie|iu|oa|oe|oi|ua|ue|ui|uy|uo|ye|gio
       => là tiếng Việt. Nếu không trả ra là khác tiếng Việt.
@@ -87,13 +107,13 @@ def check_single_word(T: str) -> int:
         tmp = ["ai", "ay", "ao", "au", "eo", "eu", "ia", "ie", "iu", "oa", "oe", "oi", "ua", "ue", "ui", "uy", "uo", "ye", "gio"]
         for i in tmp:
           if i in T:
-            return 1
-        return -1
+            return True
+        return False
     # 8.Mảng A có length =< 1
     if len(A)==1:
       #8.1.Nếu chuỗi T có length = 1 và chỉ nằm trong các chữ cái sau : a|e|o|u|i|y => là tiếng Việt
       if len(T)==1 and T in vowel:
-        return 1
+        return True
       # 8.2.Trường hợp chuỗi T có chứa :  ac|at|am|an|ap|ec|et|em|en|ep|ic|it|im|in|ip|oc|ot|om|on|uc|ut|um|un|up|op => là tiếng Việt.  Nếu không trả ra là khác tiếng Việt.
       tmp = ["ac", "at", "am", "an", "ap", "ba", "ca", "da", "ga", "ha", "la", "ma", "na", "ra", "sa", "ta", "va", \
              "ec", "et", "em", "en", "ep", "be", "de", "he", "le", "me", "ne", "re", "se", "te", "ve", \
@@ -102,10 +122,11 @@ def check_single_word(T: str) -> int:
              "uc", "ut", "um", "un", "up", "bu", "cu", "du", "hu", "lu", "mu", "nu", "ru", "su", "tu", "vu"]
       for i in tmp:
         if i in T:
-          return 1
-      return -1
+          return True
+      return False
 
-def check_is_vn(lst: list, threshold=0.6) -> bool:
+def check_is_vn(text: str, threshold=0.6) -> bool:
+    lst = text.split()
     c=0
     for w in lst:
         if check_single_word(w)==1:

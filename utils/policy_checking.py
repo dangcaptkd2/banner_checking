@@ -4,6 +4,10 @@ import json
 
 dic_vi = json.load(open('./data/dic_vi.json'))
 dic_eng = json.load(open('./data/dic_eng.json'))
+halfban_eng = json.load(open('./data/halfban_eng.json'))
+vice_eng = json.load(open('./data/vice_eng.json'))
+
+halfban_eng = [i.lower() for i in halfban_eng]
 
 def compare(key: str, text: str) -> bool:
     lst = text.split()
@@ -30,14 +34,23 @@ def check_text_vi(text: str) -> list:
 def check_text_eng(text: str) -> list:
     if text is None:
         return []
-    low_text = text.lower()
+    text = text.lower()
     for key, lst_key in dic_eng.items():
         for word in lst_key:
-            low_word = word.lower()
-            if compare(low_word, low_text):
-                return [key, word]
+            word = word.lower()
+            if compare(word, text):
+                if word in halfban_eng and len(vice_eng[key])>0:
+                    for vice_word in vice_eng[key]:
+                        vice_word = vice_word.lower()
+                        if compare(vice_word, text) and vice_word!=word:
+                            return [key, word, vice_word]
+                else:
+                    return [key, word]
     
     return []
 
-
+if __name__ == '__main__':
+    text = "Shiba Inu coin's value grew million percent. In other word even $1 investment in August 2020 would have generated $700K in profit. S100 OCT 2021 Sma Crypto 101 SmartNews Smarter news smarter moves Crypto news & investing basics Google Play Install"
+    result = check_text_eng(text)
+    print(result)
     
