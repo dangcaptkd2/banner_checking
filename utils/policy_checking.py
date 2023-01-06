@@ -6,6 +6,8 @@ dic_vi = json.load(open('./data/dic_vi.json'))
 dic_eng = json.load(open('./data/dic_eng.json'))
 halfban_eng = json.load(open('./data/halfban_eng.json'))
 vice_eng = json.load(open('./data/vice_eng.json'))
+halfban_vi = json.load(open('./data/halfban_vi.json'))
+vice_vi = json.load(open('./data/vice_vi.json'))
 
 halfban_eng = [i.lower() for i in halfban_eng]
 
@@ -22,12 +24,18 @@ def compare(key: str, text: str) -> bool:
 def check_text_vi(text: str) -> list:
     if text is None:
         return []
-    low_text = text.lower()
+    text = text.lower()
     for key, lst_key in dic_vi.items():
         for word in lst_key:
-            low_word = str(word).lower()
-            if compare(low_word, low_text):
-                return [key, word]
+            word = str(word).lower()
+            if compare(word, text):
+                if word in halfban_vi and len(vice_vi[key])>0:
+                    for vice_word in vice_vi[key]:
+                        vice_word = vice_word.lower()
+                        if compare(vice_word, text) and vice_word!=word:
+                            return [key, word, vice_word]
+                else:
+                    return [key, word]
     
     return []
 
