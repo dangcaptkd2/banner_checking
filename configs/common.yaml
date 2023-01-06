@@ -26,9 +26,9 @@ models:
 utils:
     draw: True
     save_image: True
-    checking_boob: True
+    checking_boob: False
 path_save:
-    path_image_root: "./static/uploads/" 
+    path_image_root: "tmp_images/14-15_12" #"./static/uploads/" 
     bikini: "./tmp_images/bikini_image/"
     nude: "./tmp_images/nude_image/"
     neural: "./tmp_images/neural_image/"

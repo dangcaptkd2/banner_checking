@@ -1,22 +1,17 @@
 from nsfw.nsfw_model import NSFW 
-from nsfw.yolov5.detect import YOLOV5
-from nsfw.crop_human import human_filter, convert, convert_filter
+from nsfw.yolo import FISH
+from nsfw.crop_human import human_filter
 # from nsfw.deepface import search_single_face
-
-# from TextFuseNet.mid_process import 
 
 import cv2 
 from PIL import Image
 import os
 
-import gc 
-import torch
-import random 
 import numpy as np
 
 np.random.seed(42)
 
-class IMAGE_DETECT(YOLOV5):
+class IMAGE_DETECT(FISH):
     def __init__(self, config) -> None:
         super().__init__(config)
         self.config = config
@@ -30,7 +25,7 @@ class IMAGE_DETECT(YOLOV5):
         img = cv2.imread(self.img_path)
         h,w,_ = img.shape
         for lst in out_yolo:
-            cls, x1,x2,y1,y2, score = convert(w, h, lst)
+            cls, (x1,y1,x2,y2), score = lst
             img = cv2.rectangle(img, (x1,y1), (x2,y2), (0,0,255), 1)
         name = self.img_path.split('/')[-1].replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
         cv2.imwrite('./static/uploads/'+name, img)
@@ -38,7 +33,7 @@ class IMAGE_DETECT(YOLOV5):
     def detect_flag(self):
         ban_list = ['ba_que', 'my', 'nga', 'trieu_tien', 'trung_quoc', 'ukraina', 'viet_nam',]
         out_yolo = self.get_flag()
-        if out_yolo is None:
+        if not out_yolo:
             return False 
         if self.draw:
             self.draw_image(out_yolo)
@@ -49,7 +44,7 @@ class IMAGE_DETECT(YOLOV5):
 
     def detect_weapon(self):
         out_yolo = self.get_weapon()
-        if out_yolo is None:
+        if not out_yolo:
             return [] 
         if self.draw:
             self.draw_image(out_yolo)
@@ -58,7 +53,7 @@ class IMAGE_DETECT(YOLOV5):
 
     def detect_crypto(self):
         out_yolo = self.get_crypto()
-        if out_yolo is None:
+        if not out_yolo:
             return [] 
         if self.draw:
             self.draw_image(out_yolo)
@@ -82,7 +77,7 @@ class IMAGE_DETECT(YOLOV5):
 
         out_yolo = self.get_human()
 
-        if out_yolo is None:
+        if not out_yolo:
             return None
         img = cv2.imread(self.img_path)  
         h,w,_ = img.shape  
@@ -95,37 +90,35 @@ class IMAGE_DETECT(YOLOV5):
         if not cordinates:
             return None
         for cordinate in cordinates:
-            x1,x2,y1,y2 = cordinate
+            # x1,x2,y1,y2 = cordinate
+            x1,y1,x2,y2 = cordinate
             if self.draw:
                 image_draw = cv2.rectangle(image_draw, (x1,y1), (x2,y2), (0,0,255), 1)
                 name = self.img_path.split('/')[-1].replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
                 cv2.imwrite('./static/uploads/'+name, image_draw)
             crop_rgb = img_rgb[y1:y2, x1:x2]
+            crop_bgr = img[y1:y2, x1:x2]
             crop_image = Image.fromarray(crop_rgb.astype('uint8'), 'RGB')
             
             if crop_image.size[0]*crop_image.size[1]>=self.config['threshold']['size_human']:
                 result_nsfw, name_sexy, score_sexy = self.sexy_model.predict(crop_image)
 
                 if result_nsfw:
-                    result_boob = None
                     if self.checking_boob:
                         name = len(os.listdir(path_save['human4boob_detect']))
                         path_ = "{}/{}.jpg".format(path_save['human4boob_detect'], name)
                         crop_image.save(path_)
-                        result_boob = self.get_boob(boob_img_path=path_)
-                        if result_boob is not None:
+                        result_boob = self.get_boob(image=path_)
+                        if result_boob:
                             if self.save_image and score_sexy>0.7 and crop_image.size[0]*crop_image.size[1]>150*150:
                                 tmp_name = len(os.listdir(path_save[name_sexy]))
                                 crop_image.save(f"{path_save[name_sexy]}/{tmp_name}.jpg")
 
-                            human_img_array = cv2.imread(path_)
-                            h,w,_ = human_img_array.shape
-                            boob_cor = convert_filter(w, h, result_boob)
-                            for cor in boob_cor:
-                                x1,x2,y1,y2 = cor
-                                human_img_array = cv2.rectangle(human_img_array, (x1,y1), (x2,y2), (255,0,0), 1)
+                            for cor in result_boob:
+                                cls, (x1,y1,x2,y2), score = cor
+                                crop_bgr = cv2.rectangle(crop_bgr, (x1,y1), (x2,y2), (255,0,0), 1)
                                 name = self.img_path.split('/')[-1].replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'__.jpg'
-                            cv2.imwrite('./static/uploads/'+name, human_img_array)
+                            cv2.imwrite('./static/uploads/'+name, crop_bgr)
 
                             return result_nsfw 
                         else:

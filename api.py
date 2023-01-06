@@ -21,9 +21,9 @@ app_log.addHandler(my_handler)
 from detection.textfusenet import DETECTION
 from parseq.model import RECOGNITION
 from recognition_vn.vietocr import RECOGNITION_VN
-from utils.mid_process import mid_process_func_2, merge_boxes_to_line_text
-from utils.policy_checking import check_text_eng, check_text_vi
-from utils.utils import check_is_vn, clear_folder
+from myutils.mid_process import mid_process_func_2, merge_boxes_to_line_text
+from myutils.policy_checking import check_text_eng, check_text_vi
+from myutils.utils import check_is_vn, clear_folder
 from nsfw.nsfw import IMAGE_DETECT
 
 import os

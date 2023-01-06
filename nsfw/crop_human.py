@@ -1,37 +1,10 @@
-from PIL import Image 
-import cv2
-
-def convert(dw, dh, dt):
-  _, x, y, w, h, score = dt
-
-  l = int((x - w / 2) * dw)
-  r = int((x + w / 2) * dw)
-  t = int((y - h / 2) * dh)
-  b = int((y + h / 2) * dh)
-  
-  if l < 0:
-      l = 0
-  if r > dw - 1:
-      r = dw - 1
-  if t < 0:
-      t = 0
-  if b > dh - 1:
-      b = dh - 1
-  return _,l,r,t,b, score
-
-def convert_filter(w: int, h: int, lst: list) -> list:
-  result = []
-  for dt in lst:
-    cls, x1,x2,y1,y2, score = convert(w, h, dt)
-    result.append([x1,x2,y1,y2])
-  return result
 
 def human_filter(w: int, h: int, lst: list, return_only_biggest_box: bool = True) -> any:
   result = []
   for dt in lst:
-    cls, x1,x2,y1,y2, score = convert(w, h, dt)
-    if cls=='person':
-      result.append([x1,x2,y1,y2])
+    cls, (x1,y1,x2,y2), score = dt
+    if cls=='person' or cls==0:
+      result.append([x1,y1,x2,y2])
   if return_only_biggest_box:
     if len(result)>1:
       return find_largest_box(result)
