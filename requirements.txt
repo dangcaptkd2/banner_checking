@@ -23,3 +23,5 @@ lmdb
 vietocr
 seaborn
 nltk
+ipython
+psutil
