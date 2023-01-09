@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import json
+from typing import Tuple
 
 dic_vi = json.load(open('./data/dic_vi.json'))
 dic_eng = json.load(open('./data/dic_eng.json'))
@@ -21,44 +22,36 @@ def compare(key: str, text: str) -> bool:
             return True 
     return False
 
-def check_text_vi(text: str) -> list:
+def check_text(text: str, who: str) -> Tuple[bool, list]:
     if text is None:
         return []
+    assert who != 'vietnamese' or who != 'english', 'who should be vietnamese or english'
     text = text.lower()
-    for key, lst_key in dic_vi.items():
+    if who == 'vietnamese':
+        dic=dic_vi
+        halfban = halfban_vi
+        vice = vice_vi
+    if who == 'english':
+        dic=dic_eng
+        halfban = halfban_eng
+        vice = vice_eng
+    for key, lst_key in dic.items():
         for word in lst_key:
             word = str(word).lower()
             if compare(word, text):
-                if word in halfban_vi and len(vice_vi[key])>0:
-                    for vice_word in vice_vi[key]:
+                if word in halfban and len(vice[key])>0:
+                    for vice_word in vice[key]:
                         vice_word = vice_word.lower()
                         if compare(vice_word, text) and vice_word!=word:
-                            return [key, word, vice_word]
+                            return True, [key, word, vice_word]
+                    return False, [key, word]
                 else:
-                    return [key, word]
+                    return True, [key, word]
     
-    return []
-
-def check_text_eng(text: str) -> list:
-    if text is None:
-        return []
-    text = text.lower()
-    for key, lst_key in dic_eng.items():
-        for word in lst_key:
-            word = word.lower()
-            if compare(word, text):
-                if word in halfban_eng and len(vice_eng[key])>0:
-                    for vice_word in vice_eng[key]:
-                        vice_word = vice_word.lower()
-                        if compare(vice_word, text) and vice_word!=word:
-                            return [key, word, vice_word]
-                else:
-                    return [key, word]
-    
-    return []
+    return False, []
 
 if __name__ == '__main__':
-    text = "Shiba Inu coin's value grew million percent. In other word even $1 investment in August 2020 would have generated $700K in profit. S100 OCT 2021 Sma Crypto 101 SmartNews Smarter news smarter moves Crypto news & investing basics Google Play Install"
-    result = check_text_eng(text)
+    text = "Lift saggy breasts with this meal plan"
+    result = check_text(text, who='english')
     print(result)
     
