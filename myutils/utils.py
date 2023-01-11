@@ -149,7 +149,7 @@ def clear_folder() -> None:
           print("reset folder contain file!!!!!!")
 
     if os.path.isdir(path_save_human4boob_detect):
-      if len(os.listdir(path_save_human4boob_detect)) > 100:
+      if len(os.listdir(path_save_human4boob_detect)) > 1000:
         logging.getLogger('root').info(f"Reset {path_save_human4boob_detect}")
         shutil.rmtree(path_save_human4boob_detect)
         print("reset human4boob_detect contain file!!!!!!")
