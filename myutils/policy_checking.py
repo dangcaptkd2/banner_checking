@@ -35,6 +35,7 @@ def check_text(text: str, who: str) -> Tuple[bool, list]:
         dic=dic_eng
         halfban = halfban_eng
         vice = vice_eng
+    tmp_list = []
     for key, lst_key in dic.items():
         for word in lst_key:
             word = str(word).lower()
@@ -44,11 +45,11 @@ def check_text(text: str, who: str) -> Tuple[bool, list]:
                         vice_word = vice_word.lower()
                         if compare(vice_word, text) and vice_word!=word:
                             return True, [key, word, vice_word]
-                    return False, [key, word]
+                    tmp_list = [key, word]
                 else:
                     return True, [key, word]
     
-    return False, []
+    return False, tmp_list
 
 if __name__ == '__main__':
     text = "Lift saggy breasts with this meal plan"
