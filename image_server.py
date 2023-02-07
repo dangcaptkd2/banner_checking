@@ -46,55 +46,70 @@ def download_image_from_url(url, filename):
 
 @app.route('/banner_detection/html', methods=['GET','POST'])
 def upload_check_ocr_html():
+	start_time = time.time()
 	if request.method.lower() == 'post':
-		start_time = time.time()	
-		if 'file' not in request.files:			
-			return jsonify(dict(error=1,message="Data invaild"))
-		file = request.files['file']	
-		if file.filename == '':			
-			return jsonify(dict(error=1,message="Data invaild"))
-		if file and allowed_file(file.filename):
-			filename = secure_filename(file.filename)			
-			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-
-			r = my_module.predict_2(filename) 
-			r['total_time'] = round(time.time()-start_time,5)
-			item = {
-            'text': None,
-            'text_vietnamese': None,
-            'time_detect_text': 0,
-            'time_reg_eng': 0,
-            'time_reg_vn': 0,
-            'time_detect_image': 0,
-            'Status': 0,  # 0: review, 1: keyword, 2: sexy, 3: crypto, 4: flag, 5: politician, 6: weapon
-            'Reason': None,
-            'total_time': 0,
-        }
-			d = {
-					'time_detect_text': 'Thời gian phát hiện vùng có text', 
-					'time_reg_eng': 'Thời gian nhận dạng text theo tiếng Anh', 
-					'text': 'Text theo tiếng Anh', 
-					'time_reg_vn': 'Thời gian nhận dạng text theo tiếng Việt', 
-					'text_vietnamese': 'Text theo tiếng Việt', 
-					'time_detect_image': 'Thời gian chạy mô hình detect hình ảnh', 
-					'Status': 'Trạng thái',  
-            		'Reason': 'Lý do',
-            		'total_time': 'Tổng thời gian',
-				}
-			for k,v in d.items():
-				flash(v+': '+str(r[k]))
-			
-			#return jsonify(dict(error=0,data=r))
-			new_filename = filename.replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
-			new_filename2 = filename.replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'__.jpg'
-			if os.path.isfile(os.path.join('./static/uploads', new_filename)):
-				if not os.path.isfile(os.path.join('./static/uploads', new_filename)):
-					return render_template('upload.html', filename=new_filename)
-				else:
-					return render_template('upload.html', filename=new_filename, filename2=new_filename2)
+		url = request.form.get("fname")
+		if url is not None:
+			try:
+				filename = "test_image.jpg"
+				download_image_from_url(url, filename)
+				r = my_module.predict_2(filename) 
+				r['total_time'] = round(time.time()-start_time,5)
+			except:
+				return jsonify(dict(error=1,message="URL invaild"))
+		else:	
+			if 'file' not in request.files:			
+				return jsonify(dict(error=1,message="Data invaild"))
+			file = request.files['file']	
+			if file.filename == '':			
+				return jsonify(dict(error=1,message="Data invaild"))
+			if file and allowed_file(file.filename):
+				filename = secure_filename(file.filename)			
+				file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+				r = my_module.predict_2(filename) 
+				r['total_time'] = round(time.time()-start_time,5)
+		item = {
+		'text': None,
+		'text_vietnamese': None,
+		'time_detect_text': 0,
+		'time_reg_eng': 0,
+		'time_reg_vn': 0,
+		'time_detect_image': 0,
+		'Status': 0,  # 0: review, 1: keyword, 2: sexy, 3: crypto, 4: flag, 5: politician, 6: weapon
+		'Reason': None,
+		'total_time': 0,
+		}
+		dict_status = {
+			0: 'review', 1: 'keyword', 2: 'sexy', 3: 'crypto', 4: 'flag', 5: 'politician', 6: 'weapon'
+		}
+		d = {
+			'time_detect_text': 'Thời gian phát hiện vùng có text', 
+			'time_reg_eng': 'Thời gian nhận dạng text theo tiếng Anh', 
+			'text': 'Text theo tiếng Anh', 
+			'time_reg_vn': 'Thời gian nhận dạng text theo tiếng Việt', 
+			'text_vietnamese': 'Text theo tiếng Việt', 
+			'time_detect_image': 'Thời gian chạy mô hình detect hình ảnh', 
+			'Status': 'Trạng thái',  
+			'Reason': 'Lý do',
+			'total_time': 'Tổng thời gian',
+			}
+		for k,v in d.items():
+			if k=='Status':
+				flash(v+': '+str(dict_status[r[k]]))
 			else:
-				return render_template('upload.html', filename=filename)
-	
+				flash(v+': '+str(r[k]))
+		
+		#return jsonify(dict(error=0,data=r))
+		new_filename = filename.replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
+		new_filename2 = filename.replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'__.jpg'
+		if os.path.isfile(os.path.join('./static/uploads', new_filename)):
+			if not os.path.isfile(os.path.join('./static/uploads', new_filename)):
+				return render_template('upload.html', filename=new_filename)
+			else:
+				return render_template('upload.html', filename=new_filename, filename2=new_filename2)
+		else:
+			return render_template('upload.html', filename=filename)
+
 	return render_template('upload.html')
 	
 @app.route('/banner_detection/check_ocr', methods=['GET','POST'])
@@ -132,54 +147,6 @@ def check_banner():
 			telegram_bot_sendtext(str("File error: " + file.filename))
 			return jsonify(dict(error=1,message="Something Error"))
 	return render_template('upload.html')
-
-@app.route('/banner_detection/check_ocr_url', methods =["GET", "POST"])
-def upload_check_ocr_url():
-	start_time = time.time()	
-	filename = "test_image.jpg"
-	if request.method == "POST":
-		url = request.form.get("fname")
-		# if allowed_file(url):
-		download_image_from_url(url, filename)
-
-		r = my_module.predict_2(filename) 
-		r['total_time'] = round(time.time()-start_time,5)
-		item = {
-		'text': None,
-		'text_vietnamese': None,
-		'time_detect_text': 0,
-		'time_reg_eng': 0,
-		'time_reg_vn': 0,
-		'time_detect_image': 0,
-		'Status': 0,  # 0: review, 1: keyword, 2: sexy, 3: crypto, 4: flag, 5: politician, 6: weapon
-		'Reason': None,
-		'total_time': 0,
-	}
-		d = {
-				'time_detect_text': 'Thời gian phát hiện vùng có text', 
-				'time_reg_eng': 'Thời gian nhận dạng text theo tiếng Anh', 
-				'text': 'Text theo tiếng Anh', 
-				'time_reg_vn': 'Thời gian nhận dạng text theo tiếng Việt', 
-				'text_vietnamese': 'Text theo tiếng Việt', 
-				'time_detect_image': 'Thời gian chạy mô hình detect hình ảnh', 
-				'Status': 'Trạng thái',  
-				'Reason': 'Lý do',
-				'total_time': 'Tổng thời gian',
-			}
-		for k,v in d.items():
-			flash(v+': '+str(r[k]))
-		
-		#return jsonify(dict(error=0,data=r))
-		new_filename = filename.replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'_.jpg'
-		new_filename2 = filename.replace('.jpg', '').replace('.png', '').replace('.jpeg', '').replace('.gif', '')+'__.jpg'
-		if os.path.isfile(os.path.join('./static/uploads', new_filename)):
-			if not os.path.isfile(os.path.join('./static/uploads', new_filename)):
-				return render_template('upload.html', filename=new_filename)
-			else:
-				return render_template('upload.html', filename=new_filename, filename2=new_filename2)
-		else:
-			return render_template('upload.html', filename=filename)
-	return render_template("upload.html")
 
 @app.route('/banner_detection/display/<filename>')
 def display_image(filename):
