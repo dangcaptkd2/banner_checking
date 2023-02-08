@@ -26,7 +26,7 @@ models:
 utils:
     draw: True
     save_image: True
-    checking_boob: False
+    checking_boob: True
 path_save:
     path_image_root: "./static/uploads/" 
     bikini: "./tmp_images/bikini_image/"
