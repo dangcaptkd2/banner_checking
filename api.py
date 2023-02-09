@@ -159,9 +159,8 @@ class banner_cheking():
                     item['Reason'] = reason
 
                 if not check_is_vn(result_eng_2, threshold=config["threshold"]["is_vn"]):
-                    app_log.info("Text is not Vietnamese") 
+                    pass
                 else:
-                    app_log.info("Text is Vietnamese")
                     since = time.time()
                     bboxs = merge_boxes_to_line_text(img, sorted_cor)
                     text_vn = self.recog_vn.predict(bboxs, thres=config["threshold"]["vi_text"])
@@ -178,6 +177,7 @@ class banner_cheking():
                     elif reason:
                         item['Reason'] = reason
                     item['time_reg_vn'] = round(time.time()-since, 5)
+        app_log.info(f"Status: Review")
         clear_folder()
         return item
 

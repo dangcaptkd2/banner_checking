@@ -146,13 +146,13 @@ def clear_folder() -> None:
           logging.getLogger('root').info(f"Reset {path_image_root}")
           shutil.rmtree(path_image_root)
           os.makedirs(path_image_root)
-          print("reset folder contain file!!!!!!")
+          logging.getLogger('root').info("Reset folder contain file")
 
     if os.path.isdir(path_save_human4boob_detect):
       if len(os.listdir(path_save_human4boob_detect)) > 1000:
         logging.getLogger('root').info(f"Reset {path_save_human4boob_detect}")
         shutil.rmtree(path_save_human4boob_detect)
-        print("reset human4boob_detect contain file!!!!!!")
+        logging.getLogger('root').info("Reset human4boob_detect contain file")
 
 def save_image(lst: list, BGR: bool=True) -> None:
   path_save = './saved_image/'
