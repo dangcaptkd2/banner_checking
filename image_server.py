@@ -49,7 +49,7 @@ def upload_check_ocr_html():
 	start_time = time.time()
 	if request.method.lower() == 'post':
 		url = request.form.get("fname")
-		if url is not None:
+		if url is not None and url.startswith('http'):
 			try:
 				filename = "test_image.jpg"
 				download_image_from_url(url, filename)

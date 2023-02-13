@@ -1,0 +1,41 @@
+<!doctype html>
+<title>Banner checking</title>
+<h2>Select a file to upload</h2>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+<form method="post" enctype="multipart/form-data">
+    <dl>
+		<p>
+			<input type="file" name="file" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Submit">
+	</p>
+</form>
+
+<form method="post" enctype="multipart/form-data">
+	<label for="url">URL:</label>
+	<input type="text" id="url" name="fname" placeholder="http://">
+	<button type="submit">Submit</button>
+</form>
+{% if filename %}
+	<div style="width: 100%; text-align: center; position: relative;">
+		<img src="{{ url_for('static', filename='/uploads/' + filename) }}">
+	</div>
+{% endif %}
+{% if filename2 %}
+	<div style="width: 100%; text-align: center; position: relative;">
+		<img src="{{ url_for('static', filename='/uploads/' + filename2) }}">
+	</div>
+{% endif %}
+
