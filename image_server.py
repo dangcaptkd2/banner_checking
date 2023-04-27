@@ -161,7 +161,7 @@ def main():
 	args = parser.parse_args()
 	port = int(args.port)
 	logging.info(f"Server start: {port}")
-	app.debug = True
+	app.debug = False
 	app.run("0.0.0.0", port=port, threaded=True)
 
 if __name__ == "__main__":

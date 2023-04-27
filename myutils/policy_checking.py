@@ -22,6 +22,12 @@ def compare(key: str, text: str) -> bool:
             return True 
     return False
 
+def compare_special_value(key: list, text: str) -> bool:
+    for word in key:
+        if word not in text:
+            return False 
+    return True
+
 def check_text(text: str, who: str) -> Tuple[bool, list]:
     if text is None:
         return []
@@ -37,17 +43,24 @@ def check_text(text: str, who: str) -> Tuple[bool, list]:
         vice = vice_eng
     tmp_list = []
     for key, lst_key in dic.items():
-        for word in lst_key:
-            word = str(word).lower()
-            if compare(word, text):
-                if word in halfban and len(vice[key])>0:
-                    for vice_word in vice[key]:
-                        vice_word = vice_word.lower()
-                        if compare(vice_word, text) and vice_word!=word:
-                            return True, [key, word, vice_word]
-                    tmp_list = [key, word]
-                else:
-                    return True, [key, word]
+        if key=='simple':
+            for special_value in lst_key:
+                print(special_value)
+                special_value = json.loads(special_value)
+                if compare_special_value(key=special_value, text=text):
+                    return True, [key, special_value]
+        else:
+            for word in lst_key:
+                word = str(word).lower()
+                if compare(word, text):
+                    if word in halfban and len(vice[key])>0:
+                        for vice_word in vice[key]:
+                            vice_word = vice_word.lower()
+                            if compare(vice_word, text) and vice_word!=word:
+                                return True, [key, word, vice_word]
+                        tmp_list = [key, word]
+                    else:
+                        return True, [key, word]
     
     return False, tmp_list
 

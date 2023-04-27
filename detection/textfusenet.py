@@ -25,9 +25,9 @@ def setup_cfg(device):
     # Set model
     cfg.MODEL.WEIGHTS = os.path.join(path_root, model_path, "model_ic13_r101.pth")
     # Set score_threshold for builtin models
-    cfg.MODEL.RETINANET.SCORE_THRESH_TEST = 0.7
-    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.7
-    cfg.MODEL.PANOPTIC_FPN.COMBINE.INSTANCES_CONFIDENCE_THRESH = 0.7
+    cfg.MODEL.RETINANET.SCORE_THRESH_TEST = 0.5
+    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.5
+    # cfg.MODEL.PANOPTIC_FPN.COMBINE.INSTANCES_CONFIDENCE_THRESH = 0.2
     cfg.MODEL.DEVICE = device
     cfg.freeze()
     return cfg
