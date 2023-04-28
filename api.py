@@ -102,11 +102,10 @@ class banner_cheking():
         if config["run"]["flag"]:
             r = self.IMAGE_DETECTION.detect_flag()
             if r:
-                app_log.info(f"Status: Sexy")
                 item['Status'] = dict_result['flag']
                 item['Reason'] = r
                 item['time_detect_image'] = round(time.time()-since, 5)
-                app_log.info(f"Status: flag - {item['flag']}")
+                app_log.info(f"Status: flag - {item['Reason']}")
                 return item
         
         if config["run"]["weapon"]:

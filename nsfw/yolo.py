@@ -7,6 +7,7 @@ class FISH:
     model_crypto = None 
     model_weapon = None
     model_human = None
+    classes = dict()
     def __init__(self, cfg) -> None:
         self.path_model_boob = cfg['models']['detect_boob']
         self.path_model_flag = cfg['models']['detect_flag']
@@ -23,10 +24,11 @@ class FISH:
     def get_img_path(self, img_path):
         self.img_path = img_path
 
-    def __get_model(self, model, path):
+    def __get_model(self, model, path, name):
         if model is not None:
             return model
         model = torch.hub.load('/servers/hubs/yolov5', 'custom', path, source='local')
+        self.classes[name] = model.names
         return model
 
     def __predict(self, model, image=None, thres=0.5, imgz=320, name=None):
@@ -50,23 +52,23 @@ class FISH:
         return r
 
     def get_boob(self, image=None):
-        self.model_boob = self.__get_model(model=self.model_boob, path=self.path_model_boob)
+        self.model_boob = self.__get_model(model=self.model_boob, path=self.path_model_boob, name='boob')
         return self.__predict(self.model_boob, image, thres=self.thres_boob, imgz=160, name='boob')
         
     def get_flag(self):
-        self.model_flag = self.__get_model(model=self.model_flag, path=self.path_model_flag)
+        self.model_flag = self.__get_model(model=self.model_flag, path=self.path_model_flag, name='flag')
         return self.__predict(self.model_flag, thres=self.thres_flag, name='flag')
 
     def get_crypto(self):
-        self.model_crypto = self.__get_model(model=self.model_crypto, path=self.path_model_crypto)
+        self.model_crypto = self.__get_model(model=self.model_crypto, path=self.path_model_crypto, name='crypto')
         return self.__predict(self.model_crypto, thres=self.thres_crypto, name='crypto')
 
     def get_weapon(self):
-        self.model_weapon = self.__get_model(model=self.model_weapon, path=self.path_model_weapon)
+        self.model_weapon = self.__get_model(model=self.model_weapon, path=self.path_model_weapon, name='weapon')
         return self.__predict(self.model_weapon, thres=self.thres_weapon, name='weapon')
     
     def get_human(self):
-        self.model_human = self.__get_model(model=self.model_human, path=self.path_model_human)
+        self.model_human = self.__get_model(model=self.model_human, path=self.path_model_human, name='human')
         return self.__predict(self.model_human, thres=self.thres_human, name='human')
 
 if __name__ == '__main__':

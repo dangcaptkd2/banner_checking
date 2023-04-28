@@ -38,7 +38,7 @@ class IMAGE_DETECT(FISH):
         if self.draw:
             self.draw_image(out_yolo)
 
-        names = [i[0] for i in out_yolo]
+        names = [self.classes['flag'][i[0]] for i in out_yolo]
         ban_names = [i for i in names if i in ban_list]
         return ban_names
 
