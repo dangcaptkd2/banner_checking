@@ -41,6 +41,7 @@ run:
     flag: True          
     weapon: False        
     ocr: True           # MUST TRUE WHEN COMMIT!!!!
+    atlas: True
 
 
 

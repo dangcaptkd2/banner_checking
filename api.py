@@ -25,6 +25,7 @@ from myutils.mid_process import mid_process_func_2, merge_boxes_to_line_text
 from myutils.policy_checking import check_text
 from myutils.utils import check_is_vn, clear_folder
 from nsfw.nsfw import IMAGE_DETECT
+from similar_image.atlas import SIMILAR_MODEL
 
 import os
 import time
@@ -52,6 +53,7 @@ class banner_cheking():
             
             self.recog:RECOGNITION = RECOGNITION(device=config["models"]["device"])
             self.recog_vn:RECOGNITION_VN = RECOGNITION_VN(device=invidiual_device)
+            self.similar = SIMILAR_MODEL()
     
     def predict_2(self, filename: str) -> dict:
         app_log.info(f"filename: {filename}")
@@ -74,6 +76,7 @@ class banner_cheking():
             'flag': 4,
             'politician': 5,
             'weapon': 6,
+            'atlas': 7,
         }
 
         image_path = os.path.join(self.path_image_root, filename)
@@ -124,6 +127,16 @@ class banner_cheking():
                 item['Reason'] = r
                 item['time_detect_image'] = round(time.time()-since, 5)
                 app_log.info(f"Status: crypto")
+                return item
+        
+        if config["run"]["atlas"]:
+            print("go to atlas")
+            r = self.similar.check_similar(img_path=image_path)
+            if r:
+                item['Status'] = dict_result['atlas']
+                item['Reason'] = 'atlas'
+                item['time_detect_image'] = round(time.time()-since, 5)
+                app_log.info(f"Status: atlas")
                 return item
 
         item['time_detect_image'] = round(time.time()-since, 5)

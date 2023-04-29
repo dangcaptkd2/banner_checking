@@ -80,7 +80,8 @@ def upload_check_ocr_html():
 		'total_time': 0,
 		}
 		dict_status = {
-			0: 'review', 1: 'keyword', 2: 'sexy', 3: 'crypto', 4: 'flag', 5: 'politician', 6: 'weapon'
+			0: 'review', 1: 'keyword', 2: 'sexy', 3: 'crypto', 4: 'flag', 5: 'politician', 6: 'weapon',
+			7: 'atlas'
 		}
 		d = {
 			'time_detect_text': 'Thời gian phát hiện vùng có text', 
