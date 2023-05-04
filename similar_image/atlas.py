@@ -31,7 +31,7 @@ class SIMILAR_MODEL:
         features = features.squeeze().detach().numpy()
         return features
     
-    def check_similar(self, thres=0.85, img_path=None):
+    def check_similar(self, thres=0.77, img_path=None):
         v = self._get_embedding(img_path=img_path)
         print("???", v)
         cos_sim_list = cosine_similarity([v], self.data)
