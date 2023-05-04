@@ -47,13 +47,13 @@ class banner_cheking():
     def __init__(self) -> None:
         self.path_image_root = config['path_save']['path_image_root']
         self.IMAGE_DETECTION = IMAGE_DETECT(config=config)
+        self.similar = SIMILAR_MODEL()
         if config["run"]["ocr"]:
             invidiual_device = 'cuda' if torch.cuda.is_available() else 'cpu'
             self.detect:DETECTION = DETECTION(device=invidiual_device)
             
             self.recog:RECOGNITION = RECOGNITION(device=config["models"]["device"])
             self.recog_vn:RECOGNITION_VN = RECOGNITION_VN(device=invidiual_device)
-            self.similar = SIMILAR_MODEL()
     
     def predict_2(self, filename: str) -> dict:
         app_log.info(f"filename: {filename}")
