@@ -16,7 +16,7 @@ PATH_SAVE_MODEL = './models/model_similar_atlas.pt'
 
 class SIMILAR_MODEL:
     model = Network()
-    model.load_state_dict(torch.load(PATH_SAVE_MODEL))
+    model.load_state_dict(torch.load(PATH_SAVE_MODEL, map_location=torch.device('cpu')))
     transform = transforms.Compose([
         transforms.Resize((224, 224)),
         transforms.ToTensor(),
