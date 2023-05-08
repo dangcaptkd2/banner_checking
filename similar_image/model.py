@@ -6,7 +6,7 @@ import torchvision.models as models
 class Network(nn.Module):
     def __init__(self):
         super(Network, self).__init__()
-        resnet50 = models.resnet50(weights=None)
+        resnet50 = models.resnet50(pretrained=False)
         self.model = nn.Sequential(*list(resnet50.children())[:-1])
         
     def forward(self, x):
