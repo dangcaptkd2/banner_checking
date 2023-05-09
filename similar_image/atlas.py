@@ -34,11 +34,11 @@ class SIMILAR_MODEL:
         features = features.squeeze().detach().numpy()
         return features
     
-    def check_similar(self, thres=0.85, img_path=None):
+    def check_similar(self, thres=0.999, img_path=None):
         v = self._get_embedding(img_path=img_path)
         cos_sim_list = cosine_similarity([v], self.data)
         score = max(cos_sim_list[0])
-        print(">>>", score)
+        print(">>>", min(cos_sim_list[0]), max(cos_sim_list[0]))
         if score>=thres:
             return True 
         return False
