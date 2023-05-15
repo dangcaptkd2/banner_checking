@@ -11,8 +11,8 @@ import numpy as np
 
 from similar_image.model import Network
 
-ATLAS_FILE = './data/data_atlas_0805.npy'
-PATH_SAVE_MODEL = './models/model_similar_atlas.pt'
+ATLAS_FILE = './data/data_atlas_1505.npy'
+PATH_SAVE_MODEL = './models/model_similar_atlas_1505.pt'
 
 class SIMILAR_MODEL:
     model = Network()
@@ -34,12 +34,12 @@ class SIMILAR_MODEL:
         features = features.squeeze().detach().numpy()
         return features
     
-    def check_similar(self, thres=0.9999, img_path=None):
+    def check_similar(self, thres_max=1.0, thres_mean=0.9, img_path=None):
         v = self._get_embedding(img_path=img_path)
         cos_sim_list = cosine_similarity([v], self.data)
         score = max(cos_sim_list[0])
-        print(">>>", min(cos_sim_list[0]), max(cos_sim_list[0]))
-        if score>=thres:
+        print(">>>", min(cos_sim_list[0]), max(cos_sim_list[0]), np.mean(cos_sim_list[0]))
+        if max(cos_sim_list[0])>=thres_max or np.mean(cos_sim_list[0])>thres_mean:
             return True 
         return False
 
