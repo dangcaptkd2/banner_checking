@@ -176,7 +176,7 @@ def check_banner():
 				r['total_time'] = round(time.time()-start_time, 5)
 				return jsonify(dict(error=0,data=r))
 		except:
-			telegram_bot_sendtext(str("File error: " + file.filename))
+			# telegram_bot_sendtext(str("File error: " + file.filename))
 			return jsonify(dict(error=1,message="Something Error"))
 	return render_template('upload.html')
 
