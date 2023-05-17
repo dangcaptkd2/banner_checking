@@ -7,6 +7,8 @@ import argparse
 from flask import Flask, jsonify, request, render_template, flash, redirect, url_for
 from flask_restful import Api
 from api import Stat, banner_cheking
+from myutils.utils import save_half_keyword, save_keyword
+from myutils.policy_checking import reload_file
 
 import gdown
 
@@ -26,6 +28,7 @@ app = Flask(__name__,
 api = Api(app)
 
 UPLOAD_FOLDER = './static/uploads'
+KEYWORD_FOLDER = './data'
 
 app.secret_key = "secret key"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -112,6 +115,34 @@ def upload_check_ocr_html():
 			return render_template('upload.html', filename=filename)
 
 	return render_template('upload.html')
+
+@app.route('/banner_detection/update_keyword', methods=['GET','POST'])
+def update_keyword():
+	if request.method.lower() == 'post':
+		if 'file' not in request.files:			
+			return jsonify(dict(error=1,message="Data invaild"))
+		file = request.files['file']	
+		if file.filename == '':			
+			return jsonify(dict(error=1,message="Data invaild"))
+		filename = secure_filename(file.filename)	
+		if not filename.endswith('.xlsx'):
+			return jsonify(dict(error=1,message="Data invaild"))
+		try:
+			path_file_excel = os.path.join(KEYWORD_FOLDER, 'Block QC 2022.xlsx')
+			file.save(path_file_excel)
+			save_half_keyword(path_excel=path_file_excel, name='ENG', name_save='halfban_eng')
+			save_half_keyword(path_excel=path_file_excel, name='VI', name_save='halfban_vi')
+			save_keyword(path_excel=path_file_excel, name_sheet='ENG', name='dic_eng')
+			save_keyword(path_excel=path_file_excel, name_sheet='VI', name='dic_vi')
+			save_keyword(path_excel=path_file_excel, name_sheet='vice_ENG', name='vice_eng')
+			save_keyword(path_excel=path_file_excel, name_sheet='vice_VI', name='vice_vi')
+			reload_file()
+			os.remove(path_file_excel)
+			return jsonify(dict(error=0, message="Update successful"))
+		except:
+			return jsonify(dict(error=1, message="Update failed"))
+
+	return render_template('upload2.html')
 	
 @app.route('/banner_detection/check_ocr', methods=['GET','POST'])
 def upload_check_ocr():

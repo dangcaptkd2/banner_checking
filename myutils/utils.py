@@ -3,31 +3,10 @@ from collections import Counter
 import os
 import shutil
 import json
-import cv2
+import pandas as pd
 import logging
-
-def call_api_vi(name):
-    API_ENDPOINT = "http://localhost:4050/viet_ocr/html"
-    data = {
-        'fname': (name)
-    }
-    r = requests.post(url = API_ENDPOINT, data = data)
-
-    result = json.loads(r.text)
-    print(">>>", result)
-    return result
-
-def call_api_nsfw(filename):
-    API_ENDPOINT = "http://localhost:6050/nsfw/html"
-    data = {
-        'fname': (filename)
-    }
-    r = requests.post(url = API_ENDPOINT, data = data)
-
-    print(">>>>>", r.text)
-    result = json.loads(r.text)
-
-    return result
+import openpyxl
+from openpyxl import load_workbook
 
 def check_single_word(T: str) -> bool:
     """
@@ -154,14 +133,28 @@ def clear_folder() -> None:
         shutil.rmtree(path_save_human4boob_detect)
         logging.getLogger('root').info("Reset human4boob_detect contain file")
 
-def save_image(lst: list, BGR: bool=True) -> None:
-  path_save = './saved_image/'
-  if not os.path.isdir(path_save):
-    os.mkdir(path_save)
-  
-  for crop in lst:
-    id = len(os.listdir(path_save))
-    if BGR:
-      cv2.imwrite(f'{path_save}{str(id)}.jpg', crop)
-    else:
-      cv2.imwrite(f'{path_save}{str(id)}.jpg', crop[:, :, ::-1])
+def save_half_keyword(path_excel, name, name_save):
+    wb = load_workbook(path_excel, data_only = True)
+    sh = wb[name]
+    s = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    half_bans = []
+    for i in list(s):
+        for cell in sh [f"{i}:{i}"]:
+            color = cell.fill.start_color.index
+            value = cell.internal_value
+            if color =='FFB6D7A8' and value is not None:
+                half_bans.append(value)
+    with open(f'./data/{name_save}.json', 'w') as outfile:
+        json.dump(half_bans, outfile)
+    logging.getLogger('root').info(f"Success save half keyword at ./data/{name_save}.json")
+
+def save_keyword(path_excel, name_sheet, name):
+  df = pd.read_excel(path_excel, name_sheet)
+  df = df.fillna(0)
+  d = df.to_dict('list')
+  for k,v in d.items():
+    new_v = [i for i in v if i!=0]
+    d[k] = new_v   
+  with open(f'./data/{name}.json', 'w') as outfile:
+    json.dump(d, outfile)
+  logging.getLogger('root').info(f"Success save keyword at ./data/{name}.json")

@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import json
 from typing import Tuple
+import logging
 
 dic_vi = json.load(open('./data/dic_vi.json'))
 dic_eng = json.load(open('./data/dic_eng.json'))
@@ -11,6 +12,20 @@ halfban_vi = json.load(open('./data/halfban_vi.json'))
 vice_vi = json.load(open('./data/vice_vi.json'))
 
 halfban_eng = [i.lower() for i in halfban_eng]
+
+def reload_file():
+    global dic_vi, dic_eng, halfban_eng, vice_eng, halfban_vi, vice_vi
+
+    dic_vi = json.load(open('./data/dic_vi.json'))
+    dic_eng = json.load(open('./data/dic_eng.json'))
+    halfban_eng = json.load(open('./data/halfban_eng.json'))
+    vice_eng = json.load(open('./data/vice_eng.json'))
+    halfban_vi = json.load(open('./data/halfban_vi.json'))
+    vice_vi = json.load(open('./data/vice_vi.json'))
+
+    halfban_eng = [i.lower() for i in halfban_eng]
+
+    logging.getLogger('root').info(f"Success reload keyword data file")
 
 def compare(key: str, text: str) -> bool:
     lst = text.split()

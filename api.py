@@ -14,7 +14,7 @@ my_handler.setFormatter(log_formatter)
 my_handler.setLevel(logging.DEBUG)
 
 app_log = logging.getLogger('root')
-app_log.setLevel(logging.DEBUG)
+app_log.setLevel(logging.INFO)
 
 app_log.addHandler(my_handler)
 
@@ -151,7 +151,7 @@ class banner_cheking():
             item['time_detect_text'] = round(time.time()-since, 5)
         
             if len(list_arr)>0:
-                app_log.info("The Image has text")
+                app_log.debug("The Image has text")
                 since = time.time()
                 result_eng_2 = self.recog.predict(list_img=list_arr)
                 item['text'] = result_eng_2
