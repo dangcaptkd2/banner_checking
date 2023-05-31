@@ -4,7 +4,7 @@ import logging
 import logging.config
 import argparse
 
-from flask import Flask, jsonify, request, render_template, flash, redirect, url_for
+from flask import Flask, jsonify, request, render_template, flash, redirect, url_for, send_file
 from flask_restful import Api
 from api import Stat, banner_cheking
 from myutils.utils import save_half_keyword, save_keyword
@@ -137,13 +137,17 @@ def update_keyword():
 			save_keyword(path_excel=path_file_excel, name_sheet='vice_ENG', name='vice_eng')
 			save_keyword(path_excel=path_file_excel, name_sheet='vice_VI', name='vice_vi')
 			reload_file()
-			os.remove(path_file_excel)
 			return jsonify(dict(error=0, message="Update successful"))
 		except:
 			return jsonify(dict(error=1, message="Update failed"))
 
 	return render_template('upload2.html')
-	
+
+@app.route('/banner_detection/download_excel_keyword')
+def downloadFile():
+    path = "./data/Block QC 2022.xlsx"
+    return send_file(path, as_attachment=True)
+
 @app.route('/banner_detection/check_ocr', methods=['GET','POST'])
 def upload_check_ocr():
 	if request.method.lower() == 'post':	
