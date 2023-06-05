@@ -11,8 +11,8 @@ import numpy as np
 
 from similar_image.model import Network
 
-ATLAS_FILE = './data/data_atlas_2205.npy'
-PATH_SAVE_MODEL = './models/model_similar_atlas_2205.pt'
+ATLAS_FILE = './data/data_atlas_0506.npy'
+PATH_SAVE_MODEL = './models/model_similar_atlas_0506.pt'
 
 class SIMILAR_MODEL:
     model = Network()
